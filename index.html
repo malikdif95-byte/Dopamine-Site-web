@@ -1696,16 +1696,34 @@ const unitPrice = getCurrentUnitPrice(); // NEW: Get current model price
             document.getElementById('customModal').style.display = 'none';
         }
 
-        // Initialize on page load
-window.addEventListener('load', function() {
-    console.log('Page loaded!');
-    updateModelOptions();
-    console.log('Model options updated');
-    selectModel(currentModel);
-    console.log('Model selected');
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded!');
+    
+    // Initialize wilayas FIRST
     initializeWilayaSelect();
     console.log('Wilaya initialized');
+    
+    // Then initialize models
+    updateModelOptions();
+    console.log('Model options updated');
+    
+    selectModel(currentModel);
+    console.log('Model selected');
+    
     updateQuantityDisplay();
     console.log('Quantity updated');
+});
+
+// Also keep the window load listener as backup
+window.addEventListener('load', function() {
+    console.log('Window fully loaded!');
+    
+    // Double-check wilayas are populated
+    const wilayaSelect = document.getElementById('wilayaSelect');
+    if (wilayaSelect && wilayaSelect.options.length <= 1) {
+        console.warn('⚠️ Wilayas not populated, retrying...');
+        initializeWilayaSelect();
+    }
 });
     </script>
