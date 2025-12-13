@@ -911,7 +911,7 @@
             <span id="productNameSticky">Jogging</span>
             <span id="stickyQuantity">الكمية: 1</span>
         </div>
-        <div class="sticky-price" id="stickyPrice">2800 دج</div>
+        <div class="sticky-price" id="stickyPrice">2500 دج</div>
     </div>
 
     <!-- Hero Section -->
@@ -990,15 +990,35 @@
                 </div>
 
                 <!-- Add this after the Quantity Selector section in your HTML -->
-<div id="freeDeliveryBadge" style="display: none; background: linear-gradient(135deg, #27ae60, #229954); padding: 15px 20px; border-radius: 12px; text-align: center; color: white; margin-bottom: 20px; animation: slideInUp 0.3s ease-out;">
-    <div style="font-size: 1.3em; font-weight: 700; margin-bottom: 5px;">🎉 توصيل مجاني!</div>
-    <div style="font-size: 0.95em; opacity: 0.9;">عند شراء قطعتين أو أكثر</div>
+<div id="freeDeliveryBadge" 
+     style="
+        display: none;
+        background: linear-gradient(135deg, #27ae60, #229954);
+        padding: 15px 20px;
+        border-radius: 12px;
+        text-align: center;
+        color: white;
+        margin-bottom: 20px;
+        animation: slideInUp 0.3s ease-out;
+     ">
+    <div style="font-size: 1.3em; font-weight: 700; margin-bottom: 5px;">
+        🎉 توصيل مجاني!
+    </div>
+    <div style="font-size: 0.95em; opacity: 0.9;">
+        عند شراء قطعتين أو أكثر
+    </div>
+</div>
+
+<!-- Delivery Info Message -->
+<div id="deliveryInfoMessage" class="delivery-info-message">
+    <i class="icon">ℹ️</i>
+    <p>سيتم احتساب تكلفة التوصيل بعد اختيار الولاية ومكان التوصيل</p>
 </div>
 
                 <!-- Price Display -->
                 <div class="price-display">
                     <div class="price-label">سعر الكمية</div>
-                    <div class="price-amount" id="displayPrice">2800 دج</div>
+                    <div class="price-amount" id="displayPrice">2500 دج</div>
                 </div>
 
 
@@ -1056,7 +1076,7 @@
                         <h3>تفاصيل الفاتورة</h3>
                         <div class="breakdown-row">
                             <span>سعر الوحدة:</span>
-                            <span id="unitPriceBreakdown">2800 دج</span>
+                            <span id="unitPriceBreakdown">2500 دج</span>
                         </div>
                         <div class="breakdown-row">
                             <span>الكمية:</span>
@@ -1068,7 +1088,7 @@
                         </div> -->
                         <div class="breakdown-row">
                             <span>تكلفة المنتج:</span>
-                            <span id="productTotalBreakdown">2800 دج</span>
+                            <span id="productTotalBreakdown">2500 دج</span>
                         </div>
                         <div class="breakdown-row">
                             <span>تكلفة التوصيل:</span>
@@ -1076,7 +1096,7 @@
                         </div>
                         <div class="breakdown-row">
                             <span>المجموع:</span>
-                            <span id="finalTotalBreakdown">2800 دج</span>
+                            <span id="finalTotalBreakdown">2500 دج</span>
                         </div>
                     </div>
 
@@ -1133,18 +1153,45 @@
             <div class="modal-details" id="modalDetails"></div>
             <button class="modal-close-btn" onclick="closeModal()">حسناً</button>
         </div>
+
+        <!-- Promotion Popup Modal -->
+<div class="modal-overlay" id="promoModal" style="display: flex;">
+    <div class="modal-content" style="max-width: 600px;">
+        <div style="font-size: 3em; margin-bottom: 15px;">🎉</div>
+        <h3 class="modal-title" style="color: var(--success-color); margin-bottom: 15px;">
+            عرض خاص! توصيل مجاني ومخفض
+        </h3>
+        <div style="text-align: right; padding: 20px; background: #f8f9fa; border-radius: 12px; margin-bottom: 20px;">
+            <div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 8px; border-right: 4px solid var(--success-color);">
+                <strong style="color: var(--success-color); font-size: 1.1em;">📦 عند شراء قطعتين أو أكثر:</strong>
+                <ul style="margin-top: 10px; padding-right: 25px; line-height: 2;">
+                    <li><strong>توصيل مجاني للمكتب</strong> في الولايات التي تكلفة التوصيل للمكتب فيها 500 دج أو أقل</li>
+                    <li><strong>خصم 500 دج</strong> على التوصيل للمنزل في جميع الولايات</li>
+                </ul>
+            </div>
+            <div style="padding: 10px; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 8px; margin-top: 10px;">
+                <p style="margin: 0; color: #856404; font-weight: 600;">
+                    ⚡ العرض ساري الآن! استفد من التوصيل المجاني والمخفض
+                </p>
+            </div>
+        </div>
+        <button class="modal-close-btn" onclick="closePromoModal()" style="width: 100%;">
+            فهمت! دعني أتسوق الآن
+        </button>
+    </div>
+</div>
     </div>
 
     <script>
         // Configuration
-        const PRODUCT_PRICE = 2800;
+        const PRODUCT_PRICE = 2500;
         const CURRENT_MODEL = "JOGGING";
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAQB5f1HMRxNuYBxiwuTirh458vErLN815VLSzUcMwvlPtt4gxRJjMLoGXEB959S0/exec';
 
 const productData = {
     'JOGGING': {
         name: 'Ensemble Jogging',
-        unitPrice: 2800,
+        unitPrice: 2500,
         defaultColor: 'Blanc',
         colors: {
             'Blanc': {
@@ -1195,6 +1242,13 @@ const productData = {
         }
     }
     // يمكنك إضافة المزيد من الموديلات هنا
+};
+
+// Promotion Configuration
+const PROMOTION_CONFIG = {
+    minQuantityForPromo: 2, // Minimum quantity to activate promotion
+    maxOfficeDeliveryForFree: 500, // Max office delivery price for free delivery
+    homeDeliveryDiscount: 500 // Discount amount for home delivery
 };
 
 let currentModel = 'JOGGING';
@@ -1536,40 +1590,94 @@ function updateModelOptions() {
 
         // Price Update
         function updatePrice() {
-            const wilaya = document.getElementById('wilayaSelect').value;
-            const deliveryType = document.getElementById('deliveryType').value;
-            
-            let deliveryPrice = 0;
-            
-            if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
-                deliveryPrice = deliveryType === 'home' ? 
-                    deliveryPriceData[wilaya].home : 
-                    deliveryPriceData[wilaya].office;
-            }
-            
-            const productTotal = PRODUCT_PRICE * currentQuantity;
-            const totalPrice = productTotal + deliveryPrice;
-            
-            document.getElementById('displayPrice').textContent = totalPrice + ' دج';
-            document.getElementById('stickyPrice').textContent = totalPrice + ' دج';
-            
-            updateBreakdown();
-            
-            if (wilaya && deliveryType) {
-                document.getElementById('priceBreakdownCard').style.display = 'block';
+    const wilaya = document.getElementById('wilayaSelect').value;
+    const deliveryType = document.getElementById('deliveryType').value;
+    
+    let deliveryPrice = 0;
+    let originalDeliveryPrice = 0;
+    let discountApplied = false;
+    
+    if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
+        originalDeliveryPrice = deliveryType === 'home' ? 
+            deliveryPriceData[wilaya].home : 
+            deliveryPriceData[wilaya].office;
+        
+        deliveryPrice = originalDeliveryPrice;
+        
+        // Apply promotion if quantity >= 2
+        if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
+            if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
+                // Free office delivery for provinces with office delivery <= 500
+                deliveryPrice = 0;
+                discountApplied = true;
+            } else if (deliveryType === 'home') {
+                // 500 DZD discount on home delivery
+                deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
+                discountApplied = true;
             }
         }
+    }
+    
+    const productTotal = PRODUCT_PRICE * currentQuantity;
+    const totalPrice = productTotal + deliveryPrice;
+    
+    document.getElementById('displayPrice').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+    document.getElementById('stickyPrice').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+    
+    // Update delivery info message
+    updateDeliveryInfoMessage(wilaya, deliveryType, originalDeliveryPrice, deliveryPrice, discountApplied);
+    
+    updateBreakdown();
+    
+    if (wilaya && deliveryType) {
+        document.getElementById('priceBreakdownCard').style.display = 'block';
+    }
+}
 
         function updateBreakdown() {
-            const wilaya = document.getElementById('wilayaSelect').value;
-            const deliveryType = document.getElementById('deliveryType').value;
-            
-            let deliveryPrice = 0;
-            if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
-                deliveryPrice = deliveryType === 'home' ? 
-                    deliveryPriceData[wilaya].home : 
-                    deliveryPriceData[wilaya].office;
+    const wilaya = document.getElementById('wilayaSelect').value;
+    const deliveryType = document.getElementById('deliveryType').value;
+    
+    let deliveryPrice = 0;
+    let originalDeliveryPrice = 0;
+    let discountAmount = 0;
+    
+    if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
+        originalDeliveryPrice = deliveryType === 'home' ? 
+            deliveryPriceData[wilaya].home : 
+            deliveryPriceData[wilaya].office;
+        
+        deliveryPrice = originalDeliveryPrice;
+        
+        // Apply promotion
+        if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
+            if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
+                discountAmount = originalDeliveryPrice;
+                deliveryPrice = 0;
+            } else if (deliveryType === 'home') {
+                discountAmount = Math.min(originalDeliveryPrice, PROMOTION_CONFIG.homeDeliveryDiscount);
+                deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
             }
+        }
+    }
+    
+    const unitPrice = getCurrentUnitPrice();
+    const productTotal = unitPrice * currentQuantity;
+    const totalPrice = productTotal + deliveryPrice;
+
+    document.getElementById('unitPriceBreakdown').textContent = unitPrice.toLocaleString('ar-DZ') + ' دج';
+    document.getElementById('quantityBreakdown').textContent = currentQuantity;
+    document.getElementById('productTotalBreakdown').textContent = productTotal.toLocaleString('ar-DZ') + ' دج';
+    
+    // Show delivery breakdown with discount if applicable
+    let deliveryText = deliveryPrice.toLocaleString('ar-DZ') + ' دج';
+    if (discountAmount > 0) {
+        deliveryText = `<span style="text-decoration: line-through; color: #999;">${originalDeliveryPrice.toLocaleString('ar-DZ')} دج</span> <span style="color: var(--success-color); font-weight: bold;">${deliveryPrice.toLocaleString('ar-DZ')} دج</span>`;
+    }
+    document.getElementById('deliveryBreakdown').innerHTML = deliveryText;
+    
+    document.getElementById('finalTotalBreakdown').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+}
 
 
         // Add this function to your JavaScript
@@ -1580,6 +1688,38 @@ function updateFreeDeliveryBadge() {
     } else {
         badge.style.display = 'none';
     }
+}
+
+function updateDeliveryInfoMessage(wilaya, deliveryType, originalPrice, finalPrice, discountApplied) {
+    const messageDiv = document.getElementById('deliveryInfoMessage');
+    
+    if (!wilaya || !deliveryType) {
+        messageDiv.classList.remove('show');
+        return;
+    }
+    
+    if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo && discountApplied) {
+        let message = '';
+        
+        if (deliveryType === 'office' && originalPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
+            message = `🎉 <strong>مبروك!</strong> حصلت على توصيل مجاني للمكتب في ولاية ${wilaya}`;
+        } else if (deliveryType === 'home' && originalPrice > finalPrice) {
+            const discount = originalPrice - finalPrice;
+            message = `🎉 <strong>تهانينا!</strong> حصلت على خصم ${discount.toLocaleString('ar-DZ')} دج على التوصيل للمنزل`;
+            
+            if (finalPrice === 0) {
+                message += ' - <strong>التوصيل مجاني تماماً!</strong>';
+            }
+        }
+        
+        if (message) {
+            messageDiv.innerHTML = `<i class="icon">ℹ️</i><p>${message}</p>`;
+            messageDiv.classList.add('show');
+            return;
+        }
+    }
+    
+    messageDiv.classList.remove('show');
 }
 
 // Update the changeQuantity function to call updateFreeDeliveryBadge
@@ -1605,7 +1745,22 @@ const unitPrice = getCurrentUnitPrice(); // NEW: Get current model price
     document.getElementById('productTotalBreakdown').textContent = productTotal.toLocaleString('ar-DZ') + ' دج';
     document.getElementById('deliveryBreakdown').textContent = deliveryPrice.toLocaleString('ar-DZ') + ' دج';
     document.getElementById('finalTotalBreakdown').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+
+    function closePromoModal() {
+    document.getElementById('promoModal').style.display = 'none';
+    // Save to localStorage that user has seen the promo
+    localStorage.setItem('promoModalSeen', 'true');
 }
+
+// Show promo modal on page load (only once per session)
+window.addEventListener('load', function() {
+    const hasSeenPromo = localStorage.getItem('promoModalSeen');
+    if (!hasSeenPromo) {
+        setTimeout(() => {
+            document.getElementById('promoModal').style.display = 'flex';
+        }, 1000); // Show after 1 second
+    }
+});
 
         // Sticky Bar
         window.addEventListener('scroll', function() {
@@ -1672,7 +1827,11 @@ const unitPrice = getCurrentUnitPrice(); // NEW: Get current model price
                 productTotal: PRODUCT_PRICE * currentQuantity,
                 deliveryPrice: document.getElementById('deliveryBreakdown').textContent,
                 totalPrice: totalPriceText,
-                notes: this.notes.value || 'لا توجد'
+                notes: this.notes.value || 'لا توجد',
+                originalDeliveryPrice: originalDeliveryPrice,
+                deliveryDiscount: discountAmount,
+                finalDeliveryPrice: deliveryPrice,
+                promotionApplied: discountAmount > 0
             };
             
             const submitButton = this.querySelector('.submit-btn');
