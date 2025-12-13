@@ -944,7 +944,7 @@
                 <!-- Image Gallery -->
                 <div class="image-gallery">
                     <div class="main-image-container">
-                        <img src="/images/model_Jogging/blanc.jpg" alt="Jogging" class="main-image" id="mainImage" 
+                        <img src="/images/model_Jogging/blan.jpg" alt="Jogging" class="main-image" id="mainImage" 
                              onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2224%22%3EDUNTH DU-T244%3C/text%3E%3C/svg%3E'">
                         <div class="image-indicator" id="imageIndicator"></div>
                     </div>
@@ -988,6 +988,12 @@
                         <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
                     </div>
                 </div>
+
+                <!-- Add this after the Quantity Selector section in your HTML -->
+<div id="freeDeliveryBadge" style="display: none; background: linear-gradient(135deg, #27ae60, #229954); padding: 15px 20px; border-radius: 12px; text-align: center; color: white; margin-bottom: 20px; animation: slideInUp 0.3s ease-out;">
+    <div style="font-size: 1.3em; font-weight: 700; margin-bottom: 5px;">🎉 توصيل مجاني!</div>
+    <div style="font-size: 0.95em; opacity: 0.9;">عند شراء قطعتين أو أكثر</div>
+</div>
 
                 <!-- Price Display -->
                 <div class="price-display">
@@ -1173,12 +1179,12 @@ const productData = {
             },
             'ٌRose': {
                 name: 'وردي - Rose',
-                images: ['/images/model_Jogging/blan.jpg'], // Replace with actual paths
+                images: ['/images/model_Jogging/rose.jpg'], // Replace with actual paths
                 colorCode: '#E91E63'
             },
             'Crevette': {
                 name: 'وردي سلمون(كروفيت) - Crevette',
-                images: ['/images/model_Jogging/blan.jpg'], // Replace with actual paths
+                images: ['/images/model_Jogging/crevette.jpg'], // Replace with actual paths
                 colorCode: '#FF8A80'
             },
             'Bleu Roi': {
@@ -1192,13 +1198,25 @@ const productData = {
 };
 
 let currentModel = 'JOGGING';
+let currentColor = productData[currentModel].defaultColor;
 let currentQuantity = 1;
 let currentImageIndex = 0;
 let autoSlideInterval;
 
 // Helper functions to retrieve current data
 function getCurrentImages() {
-    return productData[currentModel].colors[currentColor].images;
+    if (currentColor) {
+        // If a color is selected, show only that color's images
+        return productData[currentModel].colors[currentColor].images;
+    } else {
+        // If no color selected, show first image from each color
+        const allFirstImages = [];
+        Object.keys(productData[currentModel].colors).forEach(colorKey => {
+            const firstImage = productData[currentModel].colors[colorKey].images[0];
+            allFirstImages.push(firstImage);
+        });
+        return allFirstImages;
+    }
 }
 
 function getCurrentUnitPrice() {
@@ -1342,19 +1360,26 @@ function startAutoSlider() {
     currentImageIndex = 0;
     updateMainImage();
     updateIndicators();
-    // Use getCurrentImages().length for the loop
+    
     autoSlideInterval = setInterval(() => {
-        currentImageIndex = (currentImageIndex + 1) % getCurrentImages().length; // MODIFIED
+        currentImageIndex = (currentImageIndex + 1) % getCurrentImages().length;
         updateMainImage();
         updateIndicators();
     }, 3000);
+}
+
+function stopAutoSlider() {
+    if (autoSlideInterval) {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = null;
+    }
 }
 
 function updateMainImage() {
     const mainImage = document.getElementById('mainImage');
     mainImage.style.opacity = '0';
     setTimeout(() => {
-        mainImage.src = getCurrentImages()[currentImageIndex]; // MODIFIED
+        mainImage.src = getCurrentImages()[currentImageIndex];
         mainImage.style.opacity = '1';
     }, 300);
 }
@@ -1363,8 +1388,7 @@ function updateIndicators() {
     const indicatorContainer = document.getElementById('imageIndicator');
     indicatorContainer.innerHTML = '';
     
-    // Use getCurrentImages() for the loop
-    getCurrentImages().forEach((image, index) => { // MODIFIED
+    getCurrentImages().forEach((image, index) => {
         const dot = document.createElement('div');
         dot.className = `indicator-dot ${index === currentImageIndex ? 'active' : ''}`;
         dot.onclick = () => {
@@ -1393,9 +1417,9 @@ function selectColor(colorKey) {
     // 2. Update selected color name in the title
     document.getElementById('selectedColorName').textContent = `(${modelColors[colorKey].name})`;
 
-    // 3. Update main image gallery
+    // 3. Update main image gallery to show ONLY this color's images
     currentImageIndex = 0;
-    startAutoSlider(); // Restart slider with new images
+    startAutoSlider(); // Restart slider with selected color images
 
     // 4. Update Price Breakdown (if open)
     updateBreakdown();
@@ -1424,7 +1448,7 @@ function updateColorOptions() {
 
         const circle = document.createElement('div');
         circle.className = 'color-circle custom-color';
-        circle.style.setProperty('--color-code', colorData.colorCode); // Set custom color code
+        circle.style.setProperty('--color-code', colorData.colorCode);
 
         const span = document.createElement('span');
         span.textContent = colorData.name;
@@ -1434,8 +1458,9 @@ function updateColorOptions() {
         container.appendChild(option);
     });
     
-    // Initialize color display (must be called after options are built)
-    selectColor(currentColor);
+    // Initialize with first color selected by default
+    const firstColorKey = Object.keys(modelColors)[0];
+    selectColor(firstColorKey);
 }
 
 // NEW: Select Model function
@@ -1450,27 +1475,29 @@ function selectModel(modelKey) {
     });
     document.querySelector(`.model-option[data-model="${modelKey}"]`).classList.add('selected');
     
-    // 2. Update product name and price
+    // 2. Update product name
     const product = productData[modelKey];
     document.getElementById('productNameHero').textContent = product.name;
     document.getElementById('productNameSticky').textContent = product.name;
     
-    // 3. Reset color to default for the new model and re-render color options
-    currentColor = product.defaultColor;
-    updateColorOptions(); // This calls selectColor, which triggers image/breakdown updates
+    // 3. Reset to first color and update color options
+    currentColor = null; // Reset to show all colors
+    updateColorOptions(); // This will call selectColor with first color
 
-    // 4. Update Price Display (for unit price change)
+    // 4. Update Price Display
     updatePriceDisplay();
 }
 
-// NEW: Function to generate model options
+// Function to generate model options
 function updateModelOptions() {
     const container = document.getElementById('modelOptionsContainer');
     container.innerHTML = '';
 
     Object.keys(productData).forEach(modelKey => {
         const modelData = productData[modelKey];
-        const defaultColorData = modelData.colors[modelData.defaultColor];
+        // Get first color's first image for model thumbnail
+        const firstColorKey = Object.keys(modelData.colors)[0];
+        const firstColorData = modelData.colors[firstColorKey];
         
         const option = document.createElement('div');
         option.className = `model-option ${modelKey === currentModel ? 'selected' : ''}`;
@@ -1479,12 +1506,12 @@ function updateModelOptions() {
 
         const thumbnail = document.createElement('img');
         thumbnail.className = 'model-thumbnail-img';
-        thumbnail.src = defaultColorData.images[0]; // Use the first image of the default color as the model thumbnail
+        thumbnail.src = firstColorData.images[0]; // First image of first color
         thumbnail.alt = modelData.name;
 
         const span = document.createElement('span');
         span.className = 'model-name';
-        span.textContent = modelData.name.split(' (')[0]; // Use a cleaner name for the small thumbnail
+        span.textContent = modelData.name.split(' (')[0];
 
         option.appendChild(thumbnail);
         option.appendChild(span);
@@ -1543,6 +1570,28 @@ function updateModelOptions() {
                     deliveryPriceData[wilaya].home : 
                     deliveryPriceData[wilaya].office;
             }
+
+
+        // Add this function to your JavaScript
+function updateFreeDeliveryBadge() {
+    const badge = document.getElementById('freeDeliveryBadge');
+    if (currentQuantity >= 2) {
+        badge.style.display = 'block';
+    } else {
+        badge.style.display = 'none';
+    }
+}
+
+// Update the changeQuantity function to call updateFreeDeliveryBadge
+function changeQuantity(change) {
+    const newQuantity = currentQuantity + change;
+    if (newQuantity >= 1 && newQuantity <= 10) {
+        currentQuantity = newQuantity;
+        updateQuantityDisplay();
+        updatePrice();
+        updateFreeDeliveryBadge(); // Add this line
+    }
+}
             
 const unitPrice = getCurrentUnitPrice(); // NEW: Get current model price
     const productTotal = unitPrice * currentQuantity; // MODIFIED: Use unitPrice
@@ -1700,14 +1749,15 @@ const unitPrice = getCurrentUnitPrice(); // NEW: Get current model price
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded!');
     
-    // Initialize wilayas FIRST
+    // Initialize wilayas
     initializeWilayaSelect();
     console.log('Wilaya initialized');
     
-    // Then initialize models
+    // Initialize models
     updateModelOptions();
     console.log('Model options updated');
     
+    // Select default model (this will auto-select first color)
     selectModel(currentModel);
     console.log('Model selected');
     
@@ -1715,7 +1765,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Quantity updated');
 });
 
-// Also keep the window load listener as backup
+// Backup initialization
 window.addEventListener('load', function() {
     console.log('Window fully loaded!');
     
@@ -1726,4 +1776,5 @@ window.addEventListener('load', function() {
         initializeWilayaSelect();
     }
 });
+
     </script>
