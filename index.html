@@ -261,6 +261,7 @@
             display: flex;
             gap: 12px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .color-option {
@@ -391,7 +392,7 @@
         }
 
         /* Price Display */
-        /* .price-display {
+        .price-display {
             background: linear-gradient(135deg, var(--success-color), #229954);
             padding: 30px;
             border-radius: 15px;
@@ -399,7 +400,7 @@
             color: white;
             box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
             margin-bottom: 25px;
-        } */
+        }
 
         .price-label {
             font-size: 1.1em;
@@ -722,43 +723,43 @@
         }
 
         .delivery-info-message {
-    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-    border-left: 4px solid #ffc107;
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-top: 15px;
-    display: none;
-    animation: slideInUp 0.3s ease-out;
-}
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            display: none;
+            animation: slideInUp 0.3s ease-out;
+        }
 
-.delivery-info-message.show {
-    display: block;
-}
+        .delivery-info-message.show {
+            display: block;
+        }
 
-.delivery-info-message i {
-    color: #ff9800;
-    font-size: 1.2em;
-    margin-left: 10px;
-}
+        .delivery-info-message i {
+            color: #ff9800;
+            font-size: 1.2em;
+            margin-left: 10px;
+        }
 
-.delivery-info-message p {
-    margin: 0;
-    color: #856404;
-    font-weight: 600;
-    font-size: 0.95em;
-    line-height: 1.6;
-}
+        .delivery-info-message p {
+            margin: 0;
+            color: #856404;
+            font-weight: 600;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
 
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* Responsive Design */
         @media (max-width: 968px) {
@@ -806,99 +807,98 @@
                 font-size: 1.5em;
             }
         }
+        
         /* NEW: Model Selector/Slider Styles */
-.model-selector {
-    padding: 15px 0;
-    margin-bottom: 25px;
-    border-radius: 15px;
-    background: #ffffff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    border: 2px solid #e9ecef;
-}
+        .model-selector {
+            padding: 15px 0;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            background: #ffffff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 2px solid #e9ecef;
+        }
 
-.model-selector h3 {
-    font-size: 1.1em;
-    margin-bottom: 12px;
-    color: var(--text-dark);
-    text-align: center;
-}
+        .model-selector h3 {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+            text-align: center;
+        }
 
-.model-slider-container {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap;
-    padding: 0 10px;
-    /* Hide scrollbar for a cleaner look */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
+        .model-slider-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 0 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-.model-slider-container::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
-}
+        .model-slider-container::-webkit-scrollbar {
+            display: none;
+        }
 
-.model-options {
-    display: inline-flex; /* Allows models to line up horizontally */
-    gap: 15px;
-    padding-bottom: 5px;
-}
+        .model-options {
+            display: inline-flex;
+            gap: 15px;
+            padding-bottom: 5px;
+        }
 
-.model-option {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    border: 4px solid #e9ecef;
-    border-radius: 15px;
-    padding: 10px;
-    transition: var(--transition);
-    background: var(--bg-light);
-    min-width: 100px; /* Ensures a minimum size for each model container */
-    flex-shrink: 0;
-}
+        .model-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            border: 4px solid #e9ecef;
+            border-radius: 15px;
+            padding: 10px;
+            transition: var(--transition);
+            background: var(--bg-light);
+            min-width: 100px;
+            flex-shrink: 0;
+        }
 
-.model-option.selected {
-    border-color: var(--highlight-color); /* Highlight color for selected model */
-    background: linear-gradient(135deg, #ffeef1 0%, #f7d4d8 100%);
-    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.2);
-}
+        .model-option.selected {
+            border-color: var(--highlight-color);
+            background: linear-gradient(135deg, #ffeef1 0%, #f7d4d8 100%);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.2);
+        }
 
-.model-thumbnail-img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    background: white;
-    padding: 5px;
-}
+        .model-thumbnail-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            background: white;
+            padding: 5px;
+        }
 
-.model-name {
-    font-size: 0.85em;
-    font-weight: 600;
-    color: var(--text-dark);
-    white-space: normal;
-    text-align: center;
-}
+        .model-name {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: normal;
+            text-align: center;
+        }
 
-/* Update Color Selector for dynamic colors */
-.color-circle.custom-color {
-    background: var(--color-code); /* Uses a dynamic CSS variable */
-    /* Remove redundant gradients for white/black if defined elsewhere */
-}
+        /* Update Color Selector for dynamic colors */
+        .color-circle.custom-color {
+            background: var(--color-code);
+        }
 
-@media (max-width: 600px) {
-    .model-option {
-        min-width: 80px;
-        padding: 8px;
-    }
-    .model-thumbnail-img {
-        width: 60px;
-        height: 60px;
-    }
-    .model-name {
-        font-size: 0.75em;
-    }
-}
+        @media (max-width: 600px) {
+            .model-option {
+                min-width: 80px;
+                padding: 8px;
+            }
+            .model-thumbnail-img {
+                width: 60px;
+                height: 60px;
+            }
+            .model-name {
+                font-size: 0.75em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -954,30 +954,17 @@
                     <h3>اختر الموديل/المنتج</h3>
                     <div class="model-slider-container">
                         <div class="model-options" id="modelOptionsContainer">
-                            </div>
+                            <!-- Models will be added here by JavaScript -->
+                        </div>
                     </div>
                 </div>
 
                 <div class="color-selector">
                     <h3>اختر اللون <span id="selectedColorName"></span></h3>
                     <div class="color-options" id="colorOptionsContainer">
-                        </div>
-                </div>
-
-                <!-- Color Selector
-                <div class="color-selector">
-                    <h3>اختر اللون</h3>
-                    <div class="color-options">
-                        <div class="color-option" data-color="white" onclick="selectColor('white')">
-                            <div class="color-circle white"></div>
-                            <span>أبيض</span>
-                        </div>
-                        <div class="color-option" data-color="black" onclick="selectColor('black')">
-                            <div class="color-circle black"></div>
-                            <span>أسود</span>
-                        </div>
+                        <!-- Colors will be added here by JavaScript -->
                     </div>
-                </div> -->
+                </div>
 
                 <!-- Quantity Selector -->
                 <div class="quantity-selector-box">
@@ -989,39 +976,38 @@
                     </div>
                 </div>
 
-                <!-- Add this after the Quantity Selector section in your HTML -->
-<div id="freeDeliveryBadge" 
-     style="
-        display: none;
-        background: linear-gradient(135deg, #27ae60, #229954);
-        padding: 15px 20px;
-        border-radius: 12px;
-        text-align: center;
-        color: white;
-        margin-bottom: 20px;
-        animation: slideInUp 0.3s ease-out;
-     ">
-    <div style="font-size: 1.3em; font-weight: 700; margin-bottom: 5px;">
-        🎉 توصيل مجاني!
-    </div>
-    <div style="font-size: 0.95em; opacity: 0.9;">
-        عند شراء قطعتين أو أكثر
-    </div>
-</div>
+                <!-- Free Delivery Badge -->
+                <div id="freeDeliveryBadge" 
+                     style="
+                        display: none;
+                        background: linear-gradient(135deg, #27ae60, #229954);
+                        padding: 15px 20px;
+                        border-radius: 12px;
+                        text-align: center;
+                        color: white;
+                        margin-bottom: 20px;
+                        animation: slideInUp 0.3s ease-out;
+                     ">
+                    <div style="font-size: 1.3em; font-weight: 700; margin-bottom: 5px;">
+                        🎉 توصيل مجاني!
+                    </div>
+                    <div style="font-size: 0.95em; opacity: 0.9;">
+                        عند شراء قطعتين أو أكثر
+                    </div>
+                </div>
 
-<!-- Delivery Info Message -->
-<div id="deliveryInfoMessage" class="delivery-info-message">
-    <i class="icon">ℹ️</i>
-    <p>سيتم احتساب تكلفة التوصيل بعد اختيار الولاية ومكان التوصيل</p>
-</div>
+                <!-- Delivery Info Message -->
+                <div id="deliveryInfoMessage" class="delivery-info-message">
+                    <i class="icon">ℹ️</i>
+                    <p>سيتم احتساب تكلفة التوصيل بعد اختيار الولاية ومكان التوصيل</p>
+                </div>
 
                 <!-- Price Display -->
                 <div class="price-display">
                     <div class="price-label">سعر الكمية</div>
                     <div class="price-amount" id="displayPrice">2500 دج</div>
                 </div>
-
-
+            </div>
 
             <!-- Order Form Section -->
             <div class="order-form-section">
@@ -1045,7 +1031,7 @@
                         <label>الولاية *</label>
                         <select name="wilaya" id="wilayaSelect" required>
                             <option value="">اختر الولاية</option>
-                            <!-- ### ADD YOUR WILAYA OPTIONS HERE ### -->
+                            <!-- Will be populated by JavaScript -->
                         </select>
                     </div>
 
@@ -1063,8 +1049,6 @@
                             <option value="home">التوصيل للمنزل</option>
                             <option value="office">التوصيل للمكتب</option>
                         </select>
-
-                        
                     </div>
 
                     <div class="form-group">
@@ -1082,10 +1066,6 @@
                             <span>الكمية:</span>
                             <span id="quantityBreakdown">1</span>
                         </div>
-                        <!-- <div class="breakdown-row">
-                            <span>اللون:</span>
-                            <span id="colorBreakdown">أبيض</span>
-                        </div> -->
                         <div class="breakdown-row">
                             <span>تكلفة المنتج:</span>
                             <span id="productTotalBreakdown">2500 دج</span>
@@ -1107,42 +1087,42 @@
     </div>
 
     <div class="features-section">
-    <h3 class="section-title">✨ تفاصيل وميزات الطقم الشتوي ✨</h3>
-    
-    <div class="feature-item">
-        <span class="feature-icon">🧶</span>
-        <span class="feature-text">
-            **خامة فاخرة:** قماش شتوي **دافيء وناعم وثقيل**، يضمن لكِ الدفء والرقي طوال اليوم.
-        </span>
-    </div>
+        <h3 class="section-title">✨ تفاصيل وميزات الطقم الشتوي ✨</h3>
+        
         <div class="feature-item">
-        <span class="feature-icon">👗</span>
-        <span class="feature-text">
-            **قصة عصرية:** تصميم **Oversize** أنيق، يمنحكِ لوكًا مرتّبًا بلا مجهود.
-        </span>
-    </div>
+            <span class="feature-icon">🧶</span>
+            <span class="feature-text">
+                **خامة فاخرة:** قماش شتوي **دافيء وناعم وثقيل**، يضمن لكِ الدفء والرقي طوال اليوم.
+            </span>
+        </div>
+        <div class="feature-item">
+            <span class="feature-icon">👗</span>
+            <span class="feature-text">
+                **قصة عصرية:** تصميم **Oversize** أنيق، يمنحكِ لوكًا مرتّبًا بلا مجهود.
+            </span>
+        </div>
 
-    <div class="feature-item">
-        <span class="feature-icon">📏</span>
-        <span class="feature-text">
-            **مقاس مرن:** يلبس من **36 حتى 48**، قصّة لا تشدّ ولا تبرّم، مريحة جداً.
-        </span>
-    </div>
+        <div class="feature-item">
+            <span class="feature-icon">📏</span>
+            <span class="feature-text">
+                **مقاس مرن:** يلبس من **36 حتى 48**، قصّة لا تشدّ ولا تبرّم، مريحة جداً.
+            </span>
+        </div>
 
-    <div class="feature-item">
-        <span class="feature-icon">🧕</span>
-        <span class="feature-text">
-            **متعدد الاستخدام:** مناسب للمحجبات وغير المحجبات، ويليق بمختلف الإطلالات (بوت، سبور، للخروج والعمل).
-        </span>
-    </div>
+        <div class="feature-item">
+            <span class="feature-icon">🧕</span>
+            <span class="feature-text">
+                **متعدد الاستخدام:** مناسب للمحجبات وغير المحجبات، ويليق بمختلف الإطلالات (بوت، سبور، للخروج والعمل).
+            </span>
+        </div>
 
-    <div class="feature-item">
-        <span class="feature-icon">🎨</span>
-        <span class="feature-text">
-            **ألوان متناسقة:** متوفر في **بزاف الألوان العصرية** التي تضفي ستايلًا بناتيًا راقيًا.
-        </span>
+        <div class="feature-item">
+            <span class="feature-icon">🎨</span>
+            <span class="feature-text">
+                **ألوان متناسقة:** متوفر في **بزاف الألوان العصرية** التي تضفي ستايلًا بناتيًا راقيًا.
+            </span>
+        </div>
     </div>
-</div>
 
     <!-- Modal -->
     <div class="modal-overlay" id="customModal">
@@ -1153,167 +1133,103 @@
             <div class="modal-details" id="modalDetails"></div>
             <button class="modal-close-btn" onclick="closeModal()">حسناً</button>
         </div>
-
-        <!-- Promotion Popup Modal -->
-<div class="modal-overlay" id="promoModal" style="display: flex;">
-    <div class="modal-content" style="max-width: 600px;">
-        <div style="font-size: 3em; margin-bottom: 15px;">🎉</div>
-        <h3 class="modal-title" style="color: var(--success-color); margin-bottom: 15px;">
-            عرض خاص! توصيل مجاني ومخفض
-        </h3>
-        <div style="text-align: right; padding: 20px; background: #f8f9fa; border-radius: 12px; margin-bottom: 20px;">
-            <div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 8px; border-right: 4px solid var(--success-color);">
-                <strong style="color: var(--success-color); font-size: 1.1em;">📦 عند شراء قطعتين أو أكثر:</strong>
-                <ul style="margin-top: 10px; padding-right: 25px; line-height: 2;">
-                    <li><strong>توصيل مجاني للمكتب</strong> في الولايات التي تكلفة التوصيل للمكتب فيها 500 دج أو أقل</li>
-                    <li><strong>خصم 500 دج</strong> على التوصيل للمنزل في جميع الولايات</li>
-                </ul>
-            </div>
-            <div style="padding: 10px; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 8px; margin-top: 10px;">
-                <p style="margin: 0; color: #856404; font-weight: 600;">
-                    ⚡ العرض ساري الآن! استفد من التوصيل المجاني والمخفض
-                </p>
-            </div>
-        </div>
-        <button class="modal-close-btn" onclick="closePromoModal()" style="width: 100%;">
-            فهمت! دعني أتسوق الآن
-        </button>
     </div>
-</div>
+
+    <!-- Promotion Popup Modal -->
+    <div class="modal-overlay" id="promoModal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px;">
+            <div style="font-size: 3em; margin-bottom: 15px;">🎉</div>
+            <h3 class="modal-title" style="color: var(--success-color); margin-bottom: 15px;">
+                عرض خاص! توصيل مجاني ومخفض
+            </h3>
+            <div style="text-align: right; padding: 20px; background: #f8f9fa; border-radius: 12px; margin-bottom: 20px;">
+                <div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 8px; border-right: 4px solid var(--success-color);">
+                    <strong style="color: var(--success-color); font-size: 1.1em;">📦 عند شراء قطعتين أو أكثر:</strong>
+                    <ul style="margin-top: 10px; padding-right: 25px; line-height: 2;">
+                        <li><strong>توصيل مجاني للمكتب</strong> في الولايات التي تكلفة التوصيل للمكتب فيها 500 دج أو أقل</li>
+                        <li><strong>خصم 500 دج</strong> على التوصيل للمنزل في جميع الولايات</li>
+                    </ul>
+                </div>
+                <div style="padding: 10px; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 8px; margin-top: 10px;">
+                    <p style="margin: 0; color: #856404; font-weight: 600;">
+                        ⚡ العرض ساري الآن! استفد من التوصيل المجاني والمخفض
+                    </p>
+                </div>
+            </div>
+            <button class="modal-close-btn" onclick="closePromoModal()" style="width: 100%;">
+                فهمت! دعني أتسوق الآن
+            </button>
+        </div>
     </div>
 
     <script>
-        // Configuration
+        // ============================================
+        // CONFIGURATION AND DATA
+        // ============================================
         const PRODUCT_PRICE = 2500;
-        const CURRENT_MODEL = "JOGGING";
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAQB5f1HMRxNuYBxiwuTirh458vErLN815VLSzUcMwvlPtt4gxRJjMLoGXEB959S0/exec';
 
-const productData = {
-    'JOGGING': {
-        name: 'Ensemble Jogging',
-        unitPrice: 2500,
-        defaultColor: 'Blanc',
-        colors: {
-            'Blanc': {
-                name: 'أبيض',
-                images: ['/images/model_Jogging/blan.jpg'], // Replace with actual paths
-                colorCode: 'white' // CSS color or hex
-            },
-            'Maron Foncé': {
-                name: 'بني غامق - Maron Foncé',
-                images: ['/images/model_Jogging/maronF.jpg'], // Replace with actual paths
-                colorCode: '#4E342E'
-            },
-            'Beige clair': {
-                name: 'بيج فاتح - Beige clair',
-                images: ['/images/model_Jogging/bc.jpg'], // Replace with actual paths
-                colorCode: '#F5F5DC'
-            },
-            'Beige Foncé': {
-                name: 'بيج غامق - Beige Foncé',
-                images: ['/images/model_Jogging/bf.jpg'], // Replace with actual paths
-                colorCode: '#C2B280'
-            },
-            'Vert': {
-                name: 'أخضر - Vert',
-                images: ['/images/model_Jogging/vert.jpg'], // Replace with actual paths
-                colorCode: 'green'
-            },
-            'Violet Aubergine': {
-                name: 'بنفسجي باذنجاني - Violet Aubergine',
-                images: ['/images/model_Jogging/blan.jpg'], // Replace with actual paths
-                colorCode: '#4B2E39'
-            },
-            'ٌRose': {
-                name: 'وردي - Rose',
-                images: ['/images/model_Jogging/rose.jpg'], // Replace with actual paths
-                colorCode: '#E91E63'
-            },
-            'Crevette': {
-                name: 'وردي سلمون(كروفيت) - Crevette',
-                images: ['/images/model_Jogging/crevette.jpg'], // Replace with actual paths
-                colorCode: '#FF8A80'
-            },
-            'Bleu Roi': {
-                name: 'أزرق ملكي - Bleu Roi',
-                images: ['/images/model_Jogging/bleu.jpg'], // Replace with actual paths
-                colorCode: '#4169E1'
-            }     
-        }
-    }
-    // يمكنك إضافة المزيد من الموديلات هنا
-};
+        const productData = {
+            'JOGGING': {
+                name: 'Ensemble Jogging',
+                unitPrice: 2500,
+                defaultColor: 'Blanc',
+                colors: {
+                    'Blanc': {
+                        name: 'أبيض',
+                        images: ['/images/model_Jogging/blan.jpg'],
+                        colorCode: 'white'
+                    },
+                    'Maron Foncé': {
+                        name: 'بني غامق - Maron Foncé',
+                        images: ['/images/model_Jogging/maronF.jpg'],
+                        colorCode: '#4E342E'
+                    },
+                    'Beige clair': {
+                        name: 'بيج فاتح - Beige clair',
+                        images: ['/images/model_Jogging/bc.jpg'],
+                        colorCode: '#F5F5DC'
+                    },
+                    'Beige Foncé': {
+                        name: 'بيج غامق - Beige Foncé',
+                        images: ['/images/model_Jogging/bf.jpg'],
+                        colorCode: '#C2B280'
+                    },
+                    'Vert': {
+                        name: 'أخضر - Vert',
+                        images: ['/images/model_Jogging/vert.jpg'],
+                        colorCode: 'green'
+                    },
+                    'Violet Aubergine': {
+                        name: 'بنفسجي باذنجاني - Violet Aubergine',
+                        images: ['/images/model_Jogging/blan.jpg'],
+                        colorCode: '#4B2E39'
+                    },
+                    'Rose': {
+                        name: 'وردي - Rose',
+                        images: ['/images/model_Jogging/rose.jpg'],
+                        colorCode: '#E91E63'
+                    },
+                    'Crevette': {
+                        name: 'وردي سلمون(كروفيت) - Crevette',
+                        images: ['/images/model_Jogging/crevette.jpg'],
+                        colorCode: '#FF8A80'
+                    },
+                    'Bleu Roi': {
+                        name: 'أزرق ملكي - Bleu Roi',
+                        images: ['/images/model_Jogging/bleu.jpg'],
+                        colorCode: '#4169E1'
+                    }     
+                }
+            }
+        };
 
-// Promotion Configuration
-const PROMOTION_CONFIG = {
-    minQuantityForPromo: 2, // Minimum quantity to activate promotion
-    maxOfficeDeliveryForFree: 500, // Max office delivery price for free delivery
-    homeDeliveryDiscount: 500 // Discount amount for home delivery
-};
+        const PROMOTION_CONFIG = {
+            minQuantityForPromo: 2,
+            maxOfficeDeliveryForFree: 500,
+            homeDeliveryDiscount: 500
+        };
 
-let currentModel = 'JOGGING';
-let currentColor = productData[currentModel].defaultColor;
-let currentQuantity = 1;
-let currentImageIndex = 0;
-let autoSlideInterval;
-
-// Helper functions to retrieve current data
-function getCurrentImages() {
-    if (currentColor) {
-        // If a color is selected, show only that color's images
-        return productData[currentModel].colors[currentColor].images;
-    } else {
-        // If no color selected, show first image from each color
-        const allFirstImages = [];
-        Object.keys(productData[currentModel].colors).forEach(colorKey => {
-            const firstImage = productData[currentModel].colors[colorKey].images[0];
-            allFirstImages.push(firstImage);
-        });
-        return allFirstImages;
-    }
-}
-
-function getCurrentUnitPrice() {
-    return productData[currentModel].unitPrice;
-}
-
-function getCurrentProductName() {
-    return productData[currentModel].name;
-}
-
-        
-        // let currentQuantity = 1;
-        // let currentColor = 'general';
-        // let currentImageIndex = 0;
-        // let autoSlideInterval = null;
-
-        // Image arrays for different colors
-        // const productImages = {
-        //     general: [
-        //         '/images/img_2.jpeg',
-        //         '/images/gb.jpg',
-        //         '/images/img_3_h.jpg',
-        //         '/images/img_10.png',
-        //         '/images/img_3.jpg',
-        //         '/images/img_d1.jpg',
-        //         '/images/img_d2.jpg'
-                
-        //     ],   
-        //     white: [
-        //         '/GBP3_blanche_1.jpg',
-        //         '/GBP3_blanche.jpg',
-        //         '/GBP3_blanche_2.jpg',
-        //         '/GBP3_blanche_3.jpg'
-        //     ],
-        //     black: [
-        //         '/GBP3_noire_4.jpg',
-        //         '/GBP3_noire_3.jpg',
-        //         '/GBP3_noire_1.jpg',
-        //         '/GBP3_noire_2.jpg'
-        //     ]
-        // };
-
-        // ### ADD YOUR WILAYA AND COMMUNE DATA HERE ###
         const wilayasData = [
             "01: أدرار", "02: الشلف", "03: الأغواط", "04: أم البواقي", "05: باتنة", "06: بجاية", "07: بسكرة", "08: بشار", "09: البليدة", "10: البويرة", 
             "11: تمنراست", "12: تبسة", "13: تلمسان", "14: تيارت", "15: تيزي وزو", "16: الجزائر", "17: الجلفة", "18: جيجل", "19: سطيف", "20: سعيدة", 
@@ -1407,533 +1323,712 @@ function getCurrentProductName() {
             "58: المنيعة": ["المنيعة", "حاسي القارة", "المنصورة ", "حاسي لفحل"]
     };
 
-        // Image Auto Slider
-// Image Auto Slider
-function startAutoSlider() {
-    stopAutoSlider();
-    currentImageIndex = 0;
-    updateMainImage();
-    updateIndicators();
-    
-    autoSlideInterval = setInterval(() => {
-        currentImageIndex = (currentImageIndex + 1) % getCurrentImages().length;
-        updateMainImage();
-        updateIndicators();
-    }, 3000);
-}
+        // ============================================
+        // STATE VARIABLES
+        // ============================================
+        let currentModel = 'JOGGING';
+        let currentColor = null;
+        let currentQuantity = 1;
+        let currentImageIndex = 0;
+        let autoSlideInterval = null;
 
-function stopAutoSlider() {
-    if (autoSlideInterval) {
-        clearInterval(autoSlideInterval);
-        autoSlideInterval = null;
-    }
-}
+        // ============================================
+        // HELPER FUNCTIONS
+        // ============================================
+        function getCurrentImages() {
+            if (currentColor && productData[currentModel].colors[currentColor]) {
+                return productData[currentModel].colors[currentColor].images;
+            } else {
+                const allImages = [];
+                Object.keys(productData[currentModel].colors).forEach(colorKey => {
+                    const firstImage = productData[currentModel].colors[colorKey].images[0];
+                    allImages.push(firstImage);
+                });
+                return allImages;
+            }
+        }
 
-function updateMainImage() {
-    const mainImage = document.getElementById('mainImage');
-    mainImage.style.opacity = '0';
-    setTimeout(() => {
-        mainImage.src = getCurrentImages()[currentImageIndex];
-        mainImage.style.opacity = '1';
-    }, 300);
-}
+        function getCurrentUnitPrice() {
+            return productData[currentModel].unitPrice;
+        }
 
-function updateIndicators() {
-    const indicatorContainer = document.getElementById('imageIndicator');
-    indicatorContainer.innerHTML = '';
-    
-    getCurrentImages().forEach((image, index) => {
-        const dot = document.createElement('div');
-        dot.className = `indicator-dot ${index === currentImageIndex ? 'active' : ''}`;
-        dot.onclick = () => {
-            currentImageIndex = index;
+        function getCurrentProductName() {
+            return productData[currentModel].name;
+        }
+
+        // ============================================
+        // IMAGE SLIDER FUNCTIONS
+        // ============================================
+        function startAutoSlider() {
+            stopAutoSlider();
+            currentImageIndex = 0;
             updateMainImage();
             updateIndicators();
-            stopAutoSlider();
-        };
-        indicatorContainer.appendChild(dot);
-    });
-}
+            
+            autoSlideInterval = setInterval(() => {
+                const images = getCurrentImages();
+                if (images.length > 0) {
+                    currentImageIndex = (currentImageIndex + 1) % images.length;
+                    updateMainImage();
+                    updateIndicators();
+                }
+            }, 3000);
+        }
 
-// NEW: Select Color function
-function selectColor(colorKey) {
-    const modelColors = productData[currentModel].colors;
-    if (!modelColors[colorKey]) return;
+        function stopAutoSlider() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+                autoSlideInterval = null;
+            }
+        }
 
-    currentColor = colorKey;
+        function updateMainImage() {
+            const mainImage = document.getElementById('mainImage');
+            const images = getCurrentImages();
+            
+            if (images.length > 0 && currentImageIndex < images.length) {
+                mainImage.style.opacity = '0';
+                setTimeout(() => {
+                    mainImage.src = images[currentImageIndex];
+                    mainImage.style.opacity = '1';
+                }, 300);
+            }
+        }
 
-    // 1. Update visual selection
-    document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
-        option.classList.remove('selected');
-    });
-    document.querySelector(`.color-option[data-color="${colorKey}"]`).classList.add('selected');
-    
-    // 2. Update selected color name in the title
-    document.getElementById('selectedColorName').textContent = `(${modelColors[colorKey].name})`;
+        function updateIndicators() {
+            const indicatorContainer = document.getElementById('imageIndicator');
+            const images = getCurrentImages();
+            
+            if (!indicatorContainer) return;
+            
+            indicatorContainer.innerHTML = '';
+            
+            images.forEach((image, index) => {
+                const dot = document.createElement('div');
+                dot.className = `indicator-dot ${index === currentImageIndex ? 'active' : ''}`;
+                dot.onclick = () => {
+                    currentImageIndex = index;
+                    updateMainImage();
+                    updateIndicators();
+                    stopAutoSlider();
+                };
+                indicatorContainer.appendChild(dot);
+            });
+        }
 
-    // 3. Update main image gallery to show ONLY this color's images
-    currentImageIndex = 0;
-    startAutoSlider(); // Restart slider with selected color images
+        // ============================================
+        // MODEL SELECTION FUNCTIONS
+        // ============================================
+        function updateModelOptions() {
+            const container = document.getElementById('modelOptionsContainer');
+            if (!container) {
+                console.error('Model container not found');
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            Object.keys(productData).forEach(modelKey => {
+                const modelData = productData[modelKey];
+                const firstColorKey = Object.keys(modelData.colors)[0];
+                const firstColorData = modelData.colors[firstColorKey];
+                
+                const option = document.createElement('div');
+                option.className = `model-option ${modelKey === currentModel ? 'selected' : ''}`;
+                option.setAttribute('data-model', modelKey);
+                
+                const thumbnail = document.createElement('img');
+                thumbnail.className = 'model-thumbnail-img';
+                thumbnail.src = firstColorData.images[0];
+                thumbnail.alt = modelData.name;
+                thumbnail.onerror = function() {
+                    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect fill="%23ddd" width="80" height="80"/%3E%3Ctext x="40" y="40" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="14"%3E' + modelData.name + '%3C/text%3E%3C/svg%3E';
+                };
+                
+                const span = document.createElement('span');
+                span.className = 'model-name';
+                span.textContent = modelData.name.split(' (')[0];
+                
+                option.appendChild(thumbnail);
+                option.appendChild(span);
+                
+                option.onclick = function() {
+                    selectModel(modelKey);
+                };
+                
+                container.appendChild(option);
+            });
+            
+            console.log('Models populated:', Object.keys(productData).length);
+        }
 
-    // 4. Update Price Breakdown (if open)
-    updateBreakdown();
-}
+        function selectModel(modelKey) {
+            if (!productData[modelKey]) {
+                console.error('Model not found:', modelKey);
+                return;
+            }
+            
+            currentModel = modelKey;
+            currentColor = null;
+            
+            // Update model selection UI
+            document.querySelectorAll('#modelOptionsContainer .model-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            const selectedModel = document.querySelector(`.model-option[data-model="${modelKey}"]`);
+            if (selectedModel) {
+                selectedModel.classList.add('selected');
+            }
+            
+            // Update product name
+            const productName = productData[modelKey].name;
+            document.getElementById('productNameHero').textContent = productName;
+            document.getElementById('productNameSticky').textContent = productName;
+            
+            // Update color options
+            updateColorOptions();
+            
+            // Update price
+            updatePriceDisplay();
+            updatePrice();
+            
+            console.log('Model selected:', modelKey);
+        }
 
-function updatePriceDisplay() {
-    const unitPrice = getCurrentUnitPrice(); // MODIFIED: Use helper
-    const totalPrice = unitPrice * currentQuantity; // MODIFIED: Use helper
-    
-    document.getElementById('displayPrice').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-    document.getElementById('stickyPrice').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-    document.getElementById('stickyQuantity').textContent = `الكمية: ${currentQuantity}`;
-}
-// NEW: Function to generate color options
-function updateColorOptions() {
-    const container = document.getElementById('colorOptionsContainer');
-    const modelColors = productData[currentModel].colors;
-    container.innerHTML = '';
-    
-    Object.keys(modelColors).forEach(colorKey => {
-        const colorData = modelColors[colorKey];
-        const option = document.createElement('div');
-        option.className = `color-option ${colorKey === currentColor ? 'selected' : ''}`;
-        option.setAttribute('data-color', colorKey);
-        option.setAttribute('onclick', `selectColor('${colorKey}')`);
+        // ============================================
+        // COLOR SELECTION FUNCTIONS
+        // ============================================
+        function updateColorOptions() {
+            const container = document.getElementById('colorOptionsContainer');
+            if (!container) {
+                console.error('Color container not found');
+                return;
+            }
+            
+            container.innerHTML = '';
+            const modelColors = productData[currentModel].colors;
+            
+            Object.keys(modelColors).forEach(colorKey => {
+                const colorData = modelColors[colorKey];
+                
+                const option = document.createElement('div');
+                option.className = `color-option`;
+                option.setAttribute('data-color', colorKey);
+                
+                const circle = document.createElement('div');
+                circle.className = 'color-circle custom-color';
+                circle.style.setProperty('--color-code', colorData.colorCode);
+                
+                const span = document.createElement('span');
+                span.textContent = colorData.name;
+                
+                option.appendChild(circle);
+                option.appendChild(span);
+                
+                option.onclick = function() {
+                    selectColor(colorKey);
+                };
+                
+                container.appendChild(option);
+            });
+            
+            // Select first color by default
+            const firstColorKey = Object.keys(modelColors)[0];
+            if (firstColorKey) {
+                selectColor(firstColorKey);
+            }
+            
+            console.log('Colors populated:', Object.keys(modelColors).length);
+        }
 
-        const circle = document.createElement('div');
-        circle.className = 'color-circle custom-color';
-        circle.style.setProperty('--color-code', colorData.colorCode);
+        function selectColor(colorKey) {
+            const modelColors = productData[currentModel].colors;
+            if (!modelColors[colorKey]) {
+                console.error('Color not found:', colorKey);
+                return;
+            }
+            
+            currentColor = colorKey;
+            
+            // Update color selection UI
+            document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            const selectedColor = document.querySelector(`.color-option[data-color="${colorKey}"]`);
+            if (selectedColor) {
+                selectedColor.classList.add('selected');
+            }
+            
+            // Update color name display
+            const colorNameElement = document.getElementById('selectedColorName');
+            if (colorNameElement) {
+                colorNameElement.textContent = `(${modelColors[colorKey].name})`;
+            }
+            
+            // Update images
+            currentImageIndex = 0;
+            startAutoSlider();
+            
+            console.log('Color selected:', colorKey);
+        }
 
-        const span = document.createElement('span');
-        span.textContent = colorData.name;
-
-        option.appendChild(circle);
-        option.appendChild(span);
-        container.appendChild(option);
-    });
-    
-    // Initialize with first color selected by default
-    const firstColorKey = Object.keys(modelColors)[0];
-    selectColor(firstColorKey);
-}
-
-// NEW: Select Model function
-function selectModel(modelKey) {
-    if (!productData[modelKey]) return;
-
-    currentModel = modelKey;
-    
-    // 1. Update visual selection on the model slider
-    document.querySelectorAll('#modelOptionsContainer .model-option').forEach(option => {
-        option.classList.remove('selected');
-    });
-    document.querySelector(`.model-option[data-model="${modelKey}"]`).classList.add('selected');
-    
-    // 2. Update product name
-    const product = productData[modelKey];
-    document.getElementById('productNameHero').textContent = product.name;
-    document.getElementById('productNameSticky').textContent = product.name;
-    
-    // 3. Reset to first color and update color options
-    currentColor = null; // Reset to show all colors
-    updateColorOptions(); // This will call selectColor with first color
-
-    // 4. Update Price Display
-    updatePriceDisplay();
-}
-
-// Function to generate model options
-function updateModelOptions() {
-    const container = document.getElementById('modelOptionsContainer');
-    container.innerHTML = '';
-
-    Object.keys(productData).forEach(modelKey => {
-        const modelData = productData[modelKey];
-        // Get first color's first image for model thumbnail
-        const firstColorKey = Object.keys(modelData.colors)[0];
-        const firstColorData = modelData.colors[firstColorKey];
-        
-        const option = document.createElement('div');
-        option.className = `model-option ${modelKey === currentModel ? 'selected' : ''}`;
-        option.setAttribute('data-model', modelKey);
-        option.setAttribute('onclick', `selectModel('${modelKey}')`);
-
-        const thumbnail = document.createElement('img');
-        thumbnail.className = 'model-thumbnail-img';
-        thumbnail.src = firstColorData.images[0]; // First image of first color
-        thumbnail.alt = modelData.name;
-
-        const span = document.createElement('span');
-        span.className = 'model-name';
-        span.textContent = modelData.name.split(' (')[0];
-
-        option.appendChild(thumbnail);
-        option.appendChild(span);
-        container.appendChild(option);
-    });
-}
-
-        // Quantity Management
+        // ============================================
+        // QUANTITY FUNCTIONS
+        // ============================================
         function changeQuantity(change) {
             const newQuantity = currentQuantity + change;
             if (newQuantity >= 1 && newQuantity <= 10) {
                 currentQuantity = newQuantity;
                 updateQuantityDisplay();
                 updatePrice();
+                updateFreeDeliveryBadge();
             }
         }
 
         function updateQuantityDisplay() {
-            document.getElementById('quantityDisplay').textContent = currentQuantity;
-            document.getElementById('stickyQuantity').textContent = `الكمية: ${currentQuantity}`;
+            const quantityDisplay = document.getElementById('quantityDisplay');
+            const stickyQuantity = document.getElementById('stickyQuantity');
+            
+            if (quantityDisplay) quantityDisplay.textContent = currentQuantity;
+            if (stickyQuantity) stickyQuantity.textContent = `الكمية: ${currentQuantity}`;
         }
 
-        // Price Update
+        // ============================================
+        // PRICE FUNCTIONS
+        // ============================================
+        function updatePriceDisplay() {
+            const unitPrice = getCurrentUnitPrice();
+            const totalPrice = unitPrice * currentQuantity;
+            
+            const displayPrice = document.getElementById('displayPrice');
+            const stickyPrice = document.getElementById('stickyPrice');
+            
+            if (displayPrice) displayPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+            if (stickyPrice) stickyPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+        }
+
         function updatePrice() {
-    const wilaya = document.getElementById('wilayaSelect').value;
-    const deliveryType = document.getElementById('deliveryType').value;
-    
-    let deliveryPrice = 0;
-    let originalDeliveryPrice = 0;
-    let discountApplied = false;
-    
-    if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
-        originalDeliveryPrice = deliveryType === 'home' ? 
-            deliveryPriceData[wilaya].home : 
-            deliveryPriceData[wilaya].office;
-        
-        deliveryPrice = originalDeliveryPrice;
-        
-        // Apply promotion if quantity >= 2
-        if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
-            if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
-                // Free office delivery for provinces with office delivery <= 500
-                deliveryPrice = 0;
-                discountApplied = true;
-            } else if (deliveryType === 'home') {
-                // 500 DZD discount on home delivery
-                deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
-                discountApplied = true;
+            const wilayaSelect = document.getElementById('wilayaSelect');
+            const deliveryTypeSelect = document.getElementById('deliveryType');
+            
+            if (!wilayaSelect || !deliveryTypeSelect) return;
+            
+            const wilaya = wilayaSelect.value;
+            const deliveryType = deliveryTypeSelect.value;
+            
+            let deliveryPrice = 0;
+            let originalDeliveryPrice = 0;
+            let discountApplied = false;
+            
+            if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
+                originalDeliveryPrice = deliveryType === 'home' ? 
+                    deliveryPriceData[wilaya].home : 
+                    deliveryPriceData[wilaya].office;
+                
+                deliveryPrice = originalDeliveryPrice;
+                
+                // Apply promotion if quantity >= 2
+                if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
+                    if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
+                        deliveryPrice = 0;
+                        discountApplied = true;
+                    } else if (deliveryType === 'home') {
+                        deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
+                        discountApplied = true;
+                    }
+                }
+            }
+            
+            const unitPrice = getCurrentUnitPrice();
+            const productTotal = unitPrice * currentQuantity;
+            const totalPrice = productTotal + deliveryPrice;
+            
+            // Update price displays
+            const displayPrice = document.getElementById('displayPrice');
+            const stickyPrice = document.getElementById('stickyPrice');
+            
+            if (displayPrice) displayPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+            if (stickyPrice) stickyPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+            
+            // Update delivery info message
+            updateDeliveryInfoMessage(wilaya, deliveryType, originalDeliveryPrice, deliveryPrice, discountApplied);
+            
+            // Update breakdown
+            updateBreakdown();
+            
+            // Show/hide breakdown card
+            const breakdownCard = document.getElementById('priceBreakdownCard');
+            if (breakdownCard) {
+                breakdownCard.style.display = (wilaya && deliveryType) ? 'block' : 'none';
             }
         }
-    }
-    
-    const productTotal = PRODUCT_PRICE * currentQuantity;
-    const totalPrice = productTotal + deliveryPrice;
-    
-    document.getElementById('displayPrice').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-    document.getElementById('stickyPrice').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-    
-    // Update delivery info message
-    updateDeliveryInfoMessage(wilaya, deliveryType, originalDeliveryPrice, deliveryPrice, discountApplied);
-    
-    updateBreakdown();
-    
-    if (wilaya && deliveryType) {
-        document.getElementById('priceBreakdownCard').style.display = 'block';
-    }
-}
 
         function updateBreakdown() {
-    const wilaya = document.getElementById('wilayaSelect').value;
-    const deliveryType = document.getElementById('deliveryType').value;
-    
-    let deliveryPrice = 0;
-    let originalDeliveryPrice = 0;
-    let discountAmount = 0;
-    
-    if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
-        originalDeliveryPrice = deliveryType === 'home' ? 
-            deliveryPriceData[wilaya].home : 
-            deliveryPriceData[wilaya].office;
-        
-        deliveryPrice = originalDeliveryPrice;
-        
-        // Apply promotion
-        if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
-            if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
-                discountAmount = originalDeliveryPrice;
-                deliveryPrice = 0;
-            } else if (deliveryType === 'home') {
-                discountAmount = Math.min(originalDeliveryPrice, PROMOTION_CONFIG.homeDeliveryDiscount);
-                deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
+            const wilayaSelect = document.getElementById('wilayaSelect');
+            const deliveryTypeSelect = document.getElementById('deliveryType');
+            
+            if (!wilayaSelect || !deliveryTypeSelect) return;
+            
+            const wilaya = wilayaSelect.value;
+            const deliveryType = deliveryTypeSelect.value;
+            
+            let deliveryPrice = 0;
+            let originalDeliveryPrice = 0;
+            let discountAmount = 0;
+            
+            if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
+                originalDeliveryPrice = deliveryType === 'home' ? 
+                    deliveryPriceData[wilaya].home : 
+                    deliveryPriceData[wilaya].office;
+                
+                deliveryPrice = originalDeliveryPrice;
+                
+                // Apply promotion
+                if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
+                    if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
+                        discountAmount = originalDeliveryPrice;
+                        deliveryPrice = 0;
+                    } else if (deliveryType === 'home') {
+                        discountAmount = Math.min(originalDeliveryPrice, PROMOTION_CONFIG.homeDeliveryDiscount);
+                        deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
+                    }
+                }
+            }
+            
+            const unitPrice = getCurrentUnitPrice();
+            const productTotal = unitPrice * currentQuantity;
+            const totalPrice = productTotal + deliveryPrice;
+
+            // Update breakdown elements
+            const unitPriceBreakdown = document.getElementById('unitPriceBreakdown');
+            const quantityBreakdown = document.getElementById('quantityBreakdown');
+            const productTotalBreakdown = document.getElementById('productTotalBreakdown');
+            const deliveryBreakdown = document.getElementById('deliveryBreakdown');
+            const finalTotalBreakdown = document.getElementById('finalTotalBreakdown');
+            
+            if (unitPriceBreakdown) unitPriceBreakdown.textContent = unitPrice.toLocaleString('ar-DZ') + ' دج';
+            if (quantityBreakdown) quantityBreakdown.textContent = currentQuantity;
+            if (productTotalBreakdown) productTotalBreakdown.textContent = productTotal.toLocaleString('ar-DZ') + ' دج';
+            
+            if (deliveryBreakdown) {
+                let deliveryText = deliveryPrice.toLocaleString('ar-DZ') + ' دج';
+                if (discountAmount > 0) {
+                    deliveryText = `<span style="text-decoration: line-through; color: #999;">${originalDeliveryPrice.toLocaleString('ar-DZ')} دج</span> <span style="color: var(--success-color); font-weight: bold;">${deliveryPrice.toLocaleString('ar-DZ')} دج</span>`;
+                }
+                deliveryBreakdown.innerHTML = deliveryText;
+            }
+            
+            if (finalTotalBreakdown) finalTotalBreakdown.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
+        }
+
+        function updateFreeDeliveryBadge() {
+            const badge = document.getElementById('freeDeliveryBadge');
+            if (badge) {
+                badge.style.display = currentQuantity >= 2 ? 'block' : 'none';
             }
         }
-    }
-    
-    const unitPrice = getCurrentUnitPrice();
-    const productTotal = unitPrice * currentQuantity;
-    const totalPrice = productTotal + deliveryPrice;
 
-    document.getElementById('unitPriceBreakdown').textContent = unitPrice.toLocaleString('ar-DZ') + ' دج';
-    document.getElementById('quantityBreakdown').textContent = currentQuantity;
-    document.getElementById('productTotalBreakdown').textContent = productTotal.toLocaleString('ar-DZ') + ' دج';
-    
-    // Show delivery breakdown with discount if applicable
-    let deliveryText = deliveryPrice.toLocaleString('ar-DZ') + ' دج';
-    if (discountAmount > 0) {
-        deliveryText = `<span style="text-decoration: line-through; color: #999;">${originalDeliveryPrice.toLocaleString('ar-DZ')} دج</span> <span style="color: var(--success-color); font-weight: bold;">${deliveryPrice.toLocaleString('ar-DZ')} دج</span>`;
-    }
-    document.getElementById('deliveryBreakdown').innerHTML = deliveryText;
-    
-    document.getElementById('finalTotalBreakdown').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-}
-
-
-        // Add this function to your JavaScript
-function updateFreeDeliveryBadge() {
-    const badge = document.getElementById('freeDeliveryBadge');
-    if (currentQuantity >= 2) {
-        badge.style.display = 'block';
-    } else {
-        badge.style.display = 'none';
-    }
-}
-
-function updateDeliveryInfoMessage(wilaya, deliveryType, originalPrice, finalPrice, discountApplied) {
-    const messageDiv = document.getElementById('deliveryInfoMessage');
-    
-    if (!wilaya || !deliveryType) {
-        messageDiv.classList.remove('show');
-        return;
-    }
-    
-    if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo && discountApplied) {
-        let message = '';
-        
-        if (deliveryType === 'office' && originalPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
-            message = `🎉 <strong>مبروك!</strong> حصلت على توصيل مجاني للمكتب في ولاية ${wilaya}`;
-        } else if (deliveryType === 'home' && originalPrice > finalPrice) {
-            const discount = originalPrice - finalPrice;
-            message = `🎉 <strong>تهانينا!</strong> حصلت على خصم ${discount.toLocaleString('ar-DZ')} دج على التوصيل للمنزل`;
+        function updateDeliveryInfoMessage(wilaya, deliveryType, originalPrice, finalPrice, discountApplied) {
+            const messageDiv = document.getElementById('deliveryInfoMessage');
+            if (!messageDiv) return;
             
-            if (finalPrice === 0) {
-                message += ' - <strong>التوصيل مجاني تماماً!</strong>';
+            if (!wilaya || !deliveryType) {
+                messageDiv.classList.remove('show');
+                return;
             }
-        }
-        
-        if (message) {
-            messageDiv.innerHTML = `<i class="icon">ℹ️</i><p>${message}</p>`;
-            messageDiv.classList.add('show');
-            return;
-        }
-    }
-    
-    messageDiv.classList.remove('show');
-}
-
-// Update the changeQuantity function to call updateFreeDeliveryBadge
-function changeQuantity(change) {
-    const newQuantity = currentQuantity + change;
-    if (newQuantity >= 1 && newQuantity <= 10) {
-        currentQuantity = newQuantity;
-        updateQuantityDisplay();
-        updatePrice();
-        updateFreeDeliveryBadge(); // Add this line
-    }
-}
             
-const unitPrice = getCurrentUnitPrice(); // NEW: Get current model price
-    const productTotal = unitPrice * currentQuantity; // MODIFIED: Use unitPrice
-    const totalPrice = productTotal + deliveryPrice;
-
-    document.getElementById('unitPriceBreakdown').textContent = unitPrice.toLocaleString('ar-DZ') + ' دج'; // MODIFIED: Use unitPrice
-    document.getElementById('quantityBreakdown').textContent = currentQuantity;
-    
-    // REMOVED: document.getElementById('colorBreakdown').textContent = ...
-    
-    document.getElementById('productTotalBreakdown').textContent = productTotal.toLocaleString('ar-DZ') + ' دج';
-    document.getElementById('deliveryBreakdown').textContent = deliveryPrice.toLocaleString('ar-DZ') + ' دج';
-    document.getElementById('finalTotalBreakdown').textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-
-    function closePromoModal() {
-    document.getElementById('promoModal').style.display = 'none';
-    // Save to localStorage that user has seen the promo
-    localStorage.setItem('promoModalSeen', 'true');
-}
-
-// Show promo modal on page load (only once per session)
-window.addEventListener('load', function() {
-    const hasSeenPromo = localStorage.getItem('promoModalSeen');
-    if (!hasSeenPromo) {
-        setTimeout(() => {
-            document.getElementById('promoModal').style.display = 'flex';
-        }, 1000); // Show after 1 second
-    }
-});
-
-        // Sticky Bar
-        window.addEventListener('scroll', function() {
-            const stickyBar = document.getElementById('stickyBar');
-            const scrollPosition = window.pageYOffset;
-            
-            if (scrollPosition > 500) {
-                stickyBar.classList.add('visible');
-            } else {
-                stickyBar.classList.remove('visible');
+            if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo && discountApplied) {
+                let message = '';
+                
+                if (deliveryType === 'office' && originalPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
+                    message = `🎉 <strong>مبروك!</strong> حصلت على توصيل مجاني للمكتب في ولاية ${wilaya}`;
+                } else if (deliveryType === 'home' && originalPrice > finalPrice) {
+                    const discount = originalPrice - finalPrice;
+                    message = `🎉 <strong>تهانينا!</strong> حصلت على خصم ${discount.toLocaleString('ar-DZ')} دج على التوصيل للمنزل`;
+                    
+                    if (finalPrice === 0) {
+                        message += ' - <strong>التوصيل مجاني تماماً!</strong>';
+                    }
+                }
+                
+                if (message) {
+                    messageDiv.innerHTML = `<i class="icon">ℹ️</i><p>${message}</p>`;
+                    messageDiv.classList.add('show');
+                    return;
+                }
             }
-        });
+            
+            messageDiv.classList.remove('show');
+        }
 
-        // Wilaya and Commune Management
+        // ============================================
+        // WILAYA FUNCTIONS
+        // ============================================
         function initializeWilayaSelect() {
             const wilayaSelect = document.getElementById('wilayaSelect');
+            if (!wilayaSelect) {
+                console.error('Wilaya select element not found');
+                return;
+            }
+            
+            // Clear existing options except the first one
+            wilayaSelect.innerHTML = '<option value="">اختر الولاية</option>';
+            
+            // Populate wilaya options
             wilayasData.forEach(wilaya => {
                 const option = document.createElement('option');
                 option.value = wilaya;
                 option.textContent = wilaya;
                 wilayaSelect.appendChild(option);
             });
+            
+            console.log('Wilayas populated:', wilayasData.length);
+            
+            // Add event listener for wilaya change
+wilayaSelect.addEventListener('change', function() {
+    const communeSelect = document.getElementById('communeSelect');
+    const selectedWilaya = this.value;
+    
+    communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
+    
+    if (selectedWilaya && communesData[selectedWilaya]) {
+        communesData[selectedWilaya].forEach(commune => {
+            const option = document.createElement('option');
+            option.value = commune;
+            option.textContent = commune;
+            communeSelect.appendChild(option);
+        });
+        communeSelect.disabled = false;
+    } else {
+        communeSelect.disabled = true;
+    }
+    
+    updatePrice();
+});
         }
 
-        document.getElementById('wilayaSelect').addEventListener('change', function() {
-            const communeSelect = document.getElementById('communeSelect');
-            const selectedWilaya = this.value;
+        // ============================================
+        // FORM FUNCTIONS
+        // ============================================
+        function initializeForm() {
+            const orderForm = document.getElementById('orderForm');
+            const deliveryTypeSelect = document.getElementById('deliveryType');
             
-            communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
+            if (!orderForm || !deliveryTypeSelect) return;
             
-            if (selectedWilaya && communesData[selectedWilaya]) {
-                communesData[selectedWilaya].forEach(commune => {
-                    const option = document.createElement('option');
-                    option.value = commune;
-                    option.textContent = commune;
-                    communeSelect.appendChild(option);
-                });
-                communeSelect.disabled = false;
-            } else {
-                communeSelect.disabled = true;
-            }
+            // Add event listener for delivery type change
+            deliveryTypeSelect.addEventListener('change', updatePrice);
             
-            updatePrice();
-        });
-
-        document.getElementById('deliveryType').addEventListener('change', updatePrice);
-
-        // Form Submission
-        document.getElementById('orderForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const totalPriceText = document.getElementById('finalTotalBreakdown').textContent;
-            
-            const formData = {
-                name: this.first_name.value,
-                phone: this.phone.value,
-                wilaya: this.wilaya.value,
-                commune: this.commune.value,
-                deliveryType: this.delivery_type.value === 'home' ? 'التوصيل للمنزل' : 'التوصيل للمكتب',
-                quantity: currentQuantity,
-                model: CURRENT_MODEL,
-                color: currentColor,
-                unitPrice: PRODUCT_PRICE,
-                productTotal: PRODUCT_PRICE * currentQuantity,
-                deliveryPrice: document.getElementById('deliveryBreakdown').textContent,
-                totalPrice: totalPriceText,
-                notes: this.notes.value || 'لا توجد',
-                originalDeliveryPrice: originalDeliveryPrice,
-                deliveryDiscount: discountAmount,
-                finalDeliveryPrice: deliveryPrice,
-                promotionApplied: discountAmount > 0
-            };
-            
-            const submitButton = this.querySelector('.submit-btn');
-            submitButton.disabled = true;
-            submitButton.textContent = 'جاري الإرسال...';
-            
-            try {
-                await fetch(SCRIPT_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(formData)
-                });
+            // Add form submit handler
+            orderForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
                 
-                // Facebook Pixel
-                const purchaseValue = parseFloat(totalPriceText.replace(' دج', '').trim());
-                if (typeof fbq === 'function') {
-                    fbq('track', 'Purchase', {
-                        value: purchaseValue,
-                        currency: 'DZD',
-                        content_name: CURRENT_MODEL,
-                        content_type: 'product'
+                const totalPriceText = document.getElementById('finalTotalBreakdown').textContent;
+                
+                const formData = {
+                    name: this.first_name.value,
+                    phone: this.phone.value,
+                    wilaya: this.wilaya.value,
+                    commune: this.commune.value,
+                    deliveryType: this.delivery_type.value === 'home' ? 'التوصيل للمنزل' : 'التوصيل للمكتب',
+                    quantity: currentQuantity,
+                    model: currentModel,
+                    color: currentColor,
+                    unitPrice: getCurrentUnitPrice(),
+                    productTotal: getCurrentUnitPrice() * currentQuantity,
+                    deliveryPrice: document.getElementById('deliveryBreakdown').textContent,
+                    totalPrice: totalPriceText,
+                    notes: this.notes.value || 'لا توجد'
+                };
+                
+                const submitButton = this.querySelector('.submit-btn');
+                submitButton.disabled = true;
+                submitButton.textContent = 'جاري الإرسال...';
+                
+                try {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(formData)
                     });
+                    
+                    showModal(
+                        'success',
+                        'تم إرسال طلبك بنجاح!',
+                        'شكراً لك! سيتواصل معك فريقنا قريباً لتأكيد الطلب.',
+                        `الاسم: ${formData.name}<br>الهاتف: ${formData.phone}<br>الولاية: ${formData.wilaya}<br>البلدية: ${formData.commune}<br>الكمية: ${formData.quantity}<br>اللون: ${productData[currentModel].colors[currentColor]?.name || 'غير محدد'}<br>المجموع: ${formData.totalPrice}`
+                    );
+                    
+                    // Reset form
+                    this.reset();
+                    currentQuantity = 1;
+                    updateQuantityDisplay();
+                    updatePrice();
+                    updateFreeDeliveryBadge();
+                    
+                    const breakdownCard = document.getElementById('priceBreakdownCard');
+                    if (breakdownCard) {
+                        breakdownCard.style.display = 'none';
+                    }
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    showModal(
+                        'error',
+                        'حدث خطأ!',
+                        'عذراً، حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.',
+                        ''
+                    );
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = '🛒 أكد طلبك الآن';
                 }
-                
-                showModal(
-                    'success',
-                    'تم إرسال طلبك بنجاح!',
-                    'شكراً لك! سيتواصل معك فريقنا قريباً لتأكيد الطلب.',
-                    `الاسم: ${formData.name}<br>الهاتف: ${formData.phone}<br>الولاية: ${formData.wilaya} <br>الكمية: ${formData.quantity}<br>اللون: ${formData.color}<br>المجموع: ${formData.totalPrice}`
-                );
-                
-                this.reset();
-                currentQuantity = 1;
-                currentColor = 'general';
-                updateQuantityDisplay();
-                updatePrice();
-                document.getElementById('priceBreakdownCard').style.display = 'none';
-                // selectColor('white');
-                
-            } catch (error) {
-                showModal(
-                    'error',
-                    'حدث خطأ!',
-                    'عذراً، حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.',
-                    ''
-                );
-            } finally {
-                submitButton.disabled = false;
-                submitButton.textContent = '🛒 أكد طلبك الآن';
-            }
-        });
+            });
+        }
 
-        // Modal Functions
+        // ============================================
+        // MODAL FUNCTIONS
+        // ============================================
         function showModal(type, title, message, details) {
             const modal = document.getElementById('customModal');
             const icon = document.getElementById('modalIcon');
             
+            if (!modal || !icon) return;
+            
             icon.className = `modal-icon ${type}`;
             icon.textContent = type === 'success' ? '✓' : '✕';
             
-            document.getElementById('modalTitle').textContent = title;
-            document.getElementById('modalMessage').textContent = message;
-            document.getElementById('modalDetails').innerHTML = details;
+            const modalTitle = document.getElementById('modalTitle');
+            const modalMessage = document.getElementById('modalMessage');
+            const modalDetails = document.getElementById('modalDetails');
+            
+            if (modalTitle) modalTitle.textContent = title;
+            if (modalMessage) modalMessage.textContent = message;
+            if (modalDetails) modalDetails.innerHTML = details;
             
             modal.style.display = 'flex';
         }
 
         function closeModal() {
-            document.getElementById('customModal').style.display = 'none';
+            const modal = document.getElementById('customModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
         }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded!');
-    
-    // Initialize wilayas
-    initializeWilayaSelect();
-    console.log('Wilaya initialized');
-    
-    // Initialize models
-    updateModelOptions();
-    console.log('Model options updated');
-    
-    // Select default model (this will auto-select first color)
-    selectModel(currentModel);
-    console.log('Model selected');
-    
-    updateQuantityDisplay();
-    console.log('Quantity updated');
-});
+        function closePromoModal() {
+            const promoModal = document.getElementById('promoModal');
+            if (promoModal) {
+                promoModal.style.display = 'none';
+            }
+            sessionStorage.setItem('promoModalSeen', 'true');
+        }
 
-// Backup initialization
-window.addEventListener('load', function() {
-    console.log('Window fully loaded!');
-    
-    // Double-check wilayas are populated
-    const wilayaSelect = document.getElementById('wilayaSelect');
-    if (wilayaSelect && wilayaSelect.options.length <= 1) {
-        console.warn('⚠️ Wilayas not populated, retrying...');
-        initializeWilayaSelect();
-    }
-});
+        // ============================================
+        // STICKY BAR FUNCTIONS
+        // ============================================
+        function initializeStickyBar() {
+            window.addEventListener('scroll', function() {
+                const stickyBar = document.getElementById('stickyBar');
+                if (!stickyBar) return;
+                
+                const scrollPosition = window.pageYOffset;
+                
+                if (scrollPosition > 500) {
+                    stickyBar.classList.add('visible');
+                } else {
+                    stickyBar.classList.remove('visible');
+                }
+            });
+        }
 
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        function initializePage() {
+            console.log('Initializing page...');
+            
+            // Initialize wilayas
+            initializeWilayaSelect();
+            
+            // Initialize models
+            updateModelOptions();
+            
+            // Select default model
+            selectModel(currentModel);
+            
+            // Initialize quantity display
+            updateQuantityDisplay();
+            
+            // Initialize price
+            updatePriceDisplay();
+            updatePrice();
+            
+            // Initialize free delivery badge
+            updateFreeDeliveryBadge();
+            
+            // Initialize form
+            initializeForm();
+            
+            // Initialize sticky bar
+            initializeStickyBar();
+            
+            // Start image slider
+            startAutoSlider();
+            
+            // Show promo modal if not seen before
+            const hasSeenPromo = sessionStorage.getItem('promoModalSeen');
+            if (!hasSeenPromo) {
+                setTimeout(() => {
+                    const promoModal = document.getElementById('promoModal');
+                    if (promoModal) {
+                        promoModal.style.display = 'flex';
+                    }
+                }, 1500);
+            }
+            
+            console.log('Page initialization complete');
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+        // Initialize when DOM is fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePage);
+        } else {
+            initializePage();
+        }
+
+        // Backup initialization on window load
+        window.addEventListener('load', function() {
+            console.log('Window loaded, checking initialization...');
+            
+            // Double-check critical elements
+            const wilayaSelect = document.getElementById('wilayaSelect');
+            if (wilayaSelect && wilayaSelect.options.length <= 1) {
+                console.warn('Wilayas not populated, retrying...');
+                initializeWilayaSelect();
+            }
+            
+            const modelContainer = document.getElementById('modelOptionsContainer');
+            if (modelContainer && modelContainer.children.length === 0) {
+                console.warn('Models not populated, retrying...');
+                updateModelOptions();
+            }
+        });
+
+        // Debug info
+        setTimeout(() => {
+            console.log('=== DEBUG INFO ===');
+            console.log('Wilaya options:', document.getElementById('wilayaSelect')?.options.length || 0);
+            console.log('Model options:', document.querySelectorAll('#modelOptionsContainer .model-option').length);
+            console.log('Color options:', document.querySelectorAll('#colorOptionsContainer .color-option').length);
+            console.log('Current model:', currentModel);
+            console.log('Current color:', currentColor);
+            console.log('Current quantity:', currentQuantity);
+        }, 1000);
     </script>
+</body>
+</html>
