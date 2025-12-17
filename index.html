@@ -751,15 +751,15 @@
         }
 
         @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
         /* Responsive Design */
         @media (max-width: 968px) {
@@ -1177,52 +1177,57 @@
                 colors: {
                     'Blanc': {
                         name: 'أبيض',
-                        images: ['/images/model_Jogging/blan.jpg'],
+                        images: ['/images/model_Jogging/white/blanc.jpg','/images/model_Jogging/white/blanc_2.png'],
                         colorCode: 'white'
                     },
                     'Maron Foncé': {
                         name: 'بني غامق - Maron Foncé',
-                        images: ['/images/model_Jogging/maronF.jpg'],
+                        images: ['/images/model_Jogging/brown/maronF.jpg','/images/model_Jogging/brown/marron_2.png'],
                         colorCode: '#4E342E'
                     },
                     'Beige clair': {
                         name: 'بيج فاتح - Beige clair',
-                        images: ['/images/model_Jogging/bc.jpg'],
+                        images: ['/images/model_Jogging/beige/bc.jpg','/images/model_Jogging/beige/beige_2.png'],
                         colorCode: '#F5F5DC'
                     },
                     'Beige Foncé': {
                         name: 'بيج غامق - Beige Foncé',
-                        images: ['/images/model_Jogging/bf.jpg'],
+                        images: ['/images/model_Jogging/beigeF/bf.jpg','/images/model_Jogging/beigeF/beige_fonce_2.png'],
                         colorCode: '#C2B280'
                     },
                     'Vert': {
                         name: 'أخضر - Vert',
-                        images: ['/images/model_Jogging/vert.jpg'],
+                        images: ['/images/model_Jogging/green/vert.jpg','/images/model_Jogging/green/vert_2.png'],
                         colorCode: 'green'
                     },
-                    'Violet Aubergine': {
-                        name: 'بنفسجي باذنجاني - Violet Aubergine',
-                        images: ['/images/model_Jogging/blan.jpg'],
-                        colorCode: '#4B2E39'
-                    },
-                    'Rose': {
-                        name: 'وردي - Rose',
-                        images: ['/images/model_Jogging/rose.jpg'],
-                        colorCode: '#E91E63'
+                    'Noir': {
+                        name: 'أسود - Noir',
+                        images: ['/images/model_Jogging/black/noir_2.png'],
+                        colorCode: '#000000'
                     },
                     'Crevette': {
                         name: 'وردي سلمون(كروفيت) - Crevette',
-                        images: ['/images/model_Jogging/crevette.jpg'],
-                        colorCode: '#FF8A80'
+                        images: ['/images/model_Jogging/crevette/crevettes_2.png'],
+                        colorCode: '#FF8C8C'
                     },
                     'Bleu Roi': {
                         name: 'أزرق ملكي - Bleu Roi',
-                        images: ['/images/model_Jogging/bleu.jpg'],
+                        images: ['/images/model_Jogging/blue/bleu.jpg','/images/model_Jogging/blue/bleu_roi_2.png'],
                         colorCode: '#4169E1'
-                    }     
+                    },
+                    'Rouge brique': {
+                        name: 'أحمر بريكي - Rouge brique',
+                        images: ['/images/model_Jogging/red_brique/rouge_brique_2.png'],
+                        colorCode: '#8B3A2E'
+                    },
+                    'Cassis': {
+                        name: 'Cassis',
+                        images: ['/images/model_Jogging/cassis/cassis_2.png'],
+                        colorCode: '#5A2A3C'                        
                 }
             }
-        };
+        }
+}
 
         const PROMOTION_CONFIG = {
             minQuantityForPromo: 2,
@@ -1336,25 +1341,36 @@
         // HELPER FUNCTIONS
         // ============================================
         function getCurrentImages() {
-            if (currentColor && productData[currentModel].colors[currentColor]) {
-                return productData[currentModel].colors[currentColor].images;
-            } else {
-                const allImages = [];
-                Object.keys(productData[currentModel].colors).forEach(colorKey => {
-                    const firstImage = productData[currentModel].colors[colorKey].images[0];
-                    allImages.push(firstImage);
-                });
-                return allImages;
+    // Case 1: No model selected (initial state) - show all models
+    if (!currentModel) {
+        const modelImages = [];
+        Object.keys(productData).forEach(modelKey => {
+            const model = productData[modelKey];
+            const firstColorKey = Object.keys(model.colors)[0];
+            const firstColor = model.colors[firstColorKey];
+            // Use the first image of the first color for each model
+            if (firstColor && firstColor.images && firstColor.images.length > 0) {
+                modelImages.push(firstColor.images[0]);
             }
-        }
-
-        function getCurrentUnitPrice() {
-            return productData[currentModel].unitPrice;
-        }
-
-        function getCurrentProductName() {
-            return productData[currentModel].name;
-        }
+        });
+        return modelImages;
+    }
+    
+    // Case 2: Model selected but no color selected - show each color's first image
+    if (!currentColor) {
+        const model = productData[currentModel];
+        const colorImages = [];
+        Object.keys(model.colors).forEach(colorKey => {
+            const color = model.colors[colorKey];
+            // Use the first image of each color
+            colorImages.push(color.images[0]);
+        });
+        return colorImages;
+    }
+    
+    // Case 3: Both model and color selected - show all images of selected color
+    return productData[currentModel].colors[currentColor].images;
+}
 
         // ============================================
         // IMAGE SLIDER FUNCTIONS
@@ -1383,17 +1399,29 @@
         }
 
         function updateMainImage() {
-            const mainImage = document.getElementById('mainImage');
-            const images = getCurrentImages();
-            
-            if (images.length > 0 && currentImageIndex < images.length) {
-                mainImage.style.opacity = '0';
-                setTimeout(() => {
-                    mainImage.src = images[currentImageIndex];
-                    mainImage.style.opacity = '1';
-                }, 300);
-            }
-        }
+    const mainImage = document.getElementById('mainImage');
+    const images = getCurrentImages();
+    
+    if (!mainImage) return;
+    
+    if (images.length > 0 && currentImageIndex < images.length) {
+        mainImage.style.opacity = '0';
+        setTimeout(() => {
+            mainImage.src = images[currentImageIndex];
+            mainImage.onload = function() {
+                mainImage.style.opacity = '1';
+            };
+            mainImage.onerror = function() {
+                // Fallback image
+                this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2224%22%3Eصورة غير متوفرة%3C/text%3E%3C/svg%3E';
+                this.style.opacity = '1';
+            };
+        }, 300);
+    } else {
+        // No images available
+        mainImage.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2224%22%3Eاختر منتجاً%3C/text%3E%3C/svg%3E';
+    }
+}
 
         function updateIndicators() {
             const indicatorContainer = document.getElementById('imageIndicator');
@@ -1420,80 +1448,96 @@
         // MODEL SELECTION FUNCTIONS
         // ============================================
         function updateModelOptions() {
-            const container = document.getElementById('modelOptionsContainer');
-            if (!container) {
-                console.error('Model container not found');
-                return;
-            }
-            
-            container.innerHTML = '';
-            
-            Object.keys(productData).forEach(modelKey => {
-                const modelData = productData[modelKey];
-                const firstColorKey = Object.keys(modelData.colors)[0];
-                const firstColorData = modelData.colors[firstColorKey];
-                
-                const option = document.createElement('div');
-                option.className = `model-option ${modelKey === currentModel ? 'selected' : ''}`;
-                option.setAttribute('data-model', modelKey);
-                
-                const thumbnail = document.createElement('img');
-                thumbnail.className = 'model-thumbnail-img';
-                thumbnail.src = firstColorData.images[0];
-                thumbnail.alt = modelData.name;
-                thumbnail.onerror = function() {
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect fill="%23ddd" width="80" height="80"/%3E%3Ctext x="40" y="40" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="14"%3E' + modelData.name + '%3C/text%3E%3C/svg%3E';
-                };
-                
-                const span = document.createElement('span');
-                span.className = 'model-name';
-                span.textContent = modelData.name.split(' (')[0];
-                
-                option.appendChild(thumbnail);
-                option.appendChild(span);
-                
-                option.onclick = function() {
-                    selectModel(modelKey);
-                };
-                
-                container.appendChild(option);
-            });
-            
-            console.log('Models populated:', Object.keys(productData).length);
-        }
+    const container = document.getElementById('modelOptionsContainer');
+    if (!container) {
+        console.error('Model container not found');
+        return;
+    }
+    
+    container.innerHTML = '';
+    
+    Object.keys(productData).forEach(modelKey => {
+        const modelData = productData[modelKey];
+        const firstColorKey = Object.keys(modelData.colors)[0];
+        const firstColorData = modelData.colors[firstColorKey];
+        
+        const option = document.createElement('div');
+        option.className = `model-option`; // Don't add 'selected' initially
+        option.setAttribute('data-model', modelKey);
+        
+        const thumbnail = document.createElement('img');
+        thumbnail.className = 'model-thumbnail-img';
+        thumbnail.src = firstColorData.images[0];
+        thumbnail.alt = modelData.name;
+        thumbnail.onerror = function() {
+            this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect fill="%23ddd" width="80" height="80"/%3E%3Ctext x="40" y="40" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="14"%3E' + modelData.name + '%3C/text%3E%3C/svg%3E';
+        };
+        
+        const span = document.createElement('span');
+        span.className = 'model-name';
+        span.textContent = modelData.name.split(' (')[0];
+        
+        option.appendChild(thumbnail);
+        option.appendChild(span);
+        
+        option.onclick = function() {
+            selectModel(modelKey);
+        };
+        
+        container.appendChild(option);
+    });
+    
+    console.log('Models populated:', Object.keys(productData).length);
+}
 
         function selectModel(modelKey) {
-            if (!productData[modelKey]) {
-                console.error('Model not found:', modelKey);
-                return;
-            }
-            
-            currentModel = modelKey;
-            currentColor = null;
-            
-            // Update model selection UI
-            document.querySelectorAll('#modelOptionsContainer .model-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            const selectedModel = document.querySelector(`.model-option[data-model="${modelKey}"]`);
-            if (selectedModel) {
-                selectedModel.classList.add('selected');
-            }
-            
-            // Update product name
-            const productName = productData[modelKey].name;
-            document.getElementById('productNameHero').textContent = productName;
-            document.getElementById('productNameSticky').textContent = productName;
-            
-            // Update color options
-            updateColorOptions();
-            
-            // Update price
-            updatePriceDisplay();
-            updatePrice();
-            
-            console.log('Model selected:', modelKey);
-        }
+    if (!productData[modelKey]) {
+        console.error('Model not found:', modelKey);
+        return;
+    }
+    
+    currentModel = modelKey;
+    currentColor = null; // Reset color selection
+    currentImageIndex = 0; // Reset to first image
+    
+    // Update model selection UI
+    document.querySelectorAll('#modelOptionsContainer .model-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    const selectedModel = document.querySelector(`.model-option[data-model="${modelKey}"]`);
+    if (selectedModel) {
+        selectedModel.classList.add('selected');
+    }
+    
+    // Update product name
+    const productName = productData[modelKey].name;
+    document.getElementById('productNameHero').textContent = productName;
+    document.getElementById('productNameSticky').textContent = productName;
+    
+    // Update color options
+    updateColorOptions();
+    
+    // Clear selected color name
+    const colorNameElement = document.getElementById('selectedColorName');
+    if (colorNameElement) {
+        colorNameElement.textContent = '';
+    }
+    
+    // Clear color selection UI
+    document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    
+    // Update price
+    updatePriceDisplay();
+    updatePrice();
+    
+    // Restart slider with new images
+    stopAutoSlider();
+    startAutoSlider();
+    
+    console.log('Model selected:', modelKey);
+}
 
         // ============================================
         // COLOR SELECTION FUNCTIONS
@@ -1542,48 +1586,54 @@
         }
 
         function selectColor(colorKey) {
-            const modelColors = productData[currentModel].colors;
-            if (!modelColors[colorKey]) {
-                console.error('Color not found:', colorKey);
-                return;
-            }
-            
-            currentColor = colorKey;
-            
-            // Update color selection UI
-            document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            const selectedColor = document.querySelector(`.color-option[data-color="${colorKey}"]`);
-            if (selectedColor) {
-                selectedColor.classList.add('selected');
-            }
-            
-            // Update color name display
-            const colorNameElement = document.getElementById('selectedColorName');
-            if (colorNameElement) {
-                colorNameElement.textContent = `(${modelColors[colorKey].name})`;
-            }
-            
-            // Update images
-            currentImageIndex = 0;
-            startAutoSlider();
-            
-            console.log('Color selected:', colorKey);
-        }
+    const modelColors = productData[currentModel].colors;
+    if (!modelColors[colorKey]) {
+        console.error('Color not found:', colorKey);
+        return;
+    }
+    
+    currentColor = colorKey;
+    currentImageIndex = 0; // Reset to first image
+    
+    // Update color selection UI
+    document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    const selectedColor = document.querySelector(`.color-option[data-color="${colorKey}"]`);
+    if (selectedColor) {
+        selectedColor.classList.add('selected');
+    }
+    
+    // Update color name display
+    const colorNameElement = document.getElementById('selectedColorName');
+    if (colorNameElement) {
+        colorNameElement.textContent = `(${modelColors[colorKey].name})`;
+    }
+    
+    // Update images
+    updateMainImage();
+    updateIndicators();
+    stopAutoSlider();
+    startAutoSlider();
+    
+    console.log('Color selected:', colorKey);
+}
 
         // ============================================
         // QUANTITY FUNCTIONS
         // ============================================
         function changeQuantity(change) {
-            const newQuantity = currentQuantity + change;
-            if (newQuantity >= 1 && newQuantity <= 10) {
-                currentQuantity = newQuantity;
-                updateQuantityDisplay();
-                updatePrice();
-                updateFreeDeliveryBadge();
-            }
-        }
+    const newQuantity = currentQuantity + change;
+    if (newQuantity >= 1 && newQuantity <= 10) {
+        currentQuantity = newQuantity;
+        updateQuantityDisplay();
+        updatePrice();
+        updateFreeDeliveryBadge(); // Make sure this is called
+        
+        // Debug log
+        console.log('Quantity changed to:', currentQuantity, 'Free delivery badge should show:', currentQuantity >= 2);
+    }
+}
 
         function updateQuantityDisplay() {
             const quantityDisplay = document.getElementById('quantityDisplay');
@@ -1722,11 +1772,22 @@
         }
 
         function updateFreeDeliveryBadge() {
-            const badge = document.getElementById('freeDeliveryBadge');
-            if (badge) {
-                badge.style.display = currentQuantity >= 2 ? 'block' : 'none';
-            }
+    const badge = document.getElementById('freeDeliveryBadge');
+    console.log('Free delivery badge check:', {
+        badgeExists: !!badge,
+        currentQuantity: currentQuantity,
+        shouldShow: currentQuantity >= 2
+    });
+    
+    if (badge) {
+        if (currentQuantity >= 2) {
+            badge.style.display = 'block';
+            badge.style.animation = 'slideInUp 0.3s ease-out';
+        } else {
+            badge.style.display = 'none';
         }
+    }
+}
 
         function updateDeliveryInfoMessage(wilaya, deliveryType, originalPrice, finalPrice, discountApplied) {
             const messageDiv = document.getElementById('deliveryInfoMessage');
@@ -1918,12 +1979,14 @@ wilayaSelect.addEventListener('change', function() {
         }
 
         function closePromoModal() {
-            const promoModal = document.getElementById('promoModal');
-            if (promoModal) {
-                promoModal.style.display = 'none';
-            }
-            sessionStorage.setItem('promoModalSeen', 'true');
-        }
+    const promoModal = document.getElementById('promoModal');
+    if (promoModal) {
+        promoModal.style.display = 'none';
+        // Store with a timestamp for debugging
+        sessionStorage.setItem('promoModalSeen', new Date().toISOString());
+        console.log('Promo modal closed and sessionStorage set');
+    }
+}
 
         // ============================================
         // STICKY BAR FUNCTIONS
@@ -1947,49 +2010,89 @@ wilayaSelect.addEventListener('change', function() {
         // INITIALIZATION
         // ============================================
         function initializePage() {
-            console.log('Initializing page...');
-            
-            // Initialize wilayas
-            initializeWilayaSelect();
-            
-            // Initialize models
-            updateModelOptions();
-            
-            // Select default model
-            selectModel(currentModel);
-            
-            // Initialize quantity display
-            updateQuantityDisplay();
-            
-            // Initialize price
-            updatePriceDisplay();
-            updatePrice();
-            
-            // Initialize free delivery badge
-            updateFreeDeliveryBadge();
-            
-            // Initialize form
-            initializeForm();
-            
-            // Initialize sticky bar
-            initializeStickyBar();
-            
-            // Start image slider
-            startAutoSlider();
-            
-            // Show promo modal if not seen before
-            const hasSeenPromo = sessionStorage.getItem('promoModalSeen');
-            if (!hasSeenPromo) {
-                setTimeout(() => {
-                    const promoModal = document.getElementById('promoModal');
-                    if (promoModal) {
-                        promoModal.style.display = 'flex';
-                    }
-                }, 1500);
-            }
-            
-            console.log('Page initialization complete');
+    console.log('Initializing page...');
+    
+    // Set initial state - no model selected
+    currentModel = null;
+    currentColor = null;
+    currentImageIndex = 0;
+    
+    // Initialize wilayas FIRST
+    initializeWilayaSelect();
+    
+    // Initialize models - don't auto-select the first model
+    updateModelOptions();
+    
+    // Don't select any model initially - let user see all models
+    // Instead, update the display to show all models
+    const productNameHero = document.getElementById('productNameHero');
+    const productNameSticky = document.getElementById('productNameSticky');
+    if (productNameHero) productNameHero.textContent = 'اختر المنتج المفضل';
+    if (productNameSticky) productNameSticky.textContent = 'اختر المنتج المفضل';
+    
+    // Clear color selection
+    const colorNameElement = document.getElementById('selectedColorName');
+    if (colorNameElement) {
+        colorNameElement.textContent = '';
+    }
+    
+    // Clear color options container
+    const colorContainer = document.getElementById('colorOptionsContainer');
+    if (colorContainer) {
+        colorContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">اختر الموديل أولاً</div>';
+    }
+    
+    // Initialize quantity display
+    updateQuantityDisplay();
+    
+    // Initialize price
+    updatePriceDisplay();
+    updatePrice();
+    
+    // Initialize free delivery badge
+    updateFreeDeliveryBadge();
+    
+    // Initialize form
+    initializeForm();
+    
+    // Initialize sticky bar
+    initializeStickyBar();
+    
+    // Start image slider - this should now show all models
+    stopAutoSlider();
+    startAutoSlider();
+    
+    // Show promo modal if not seen before
+    // Show promo modal if not seen before - fixed version
+const hasSeenPromo = sessionStorage.getItem('promoModalSeen');
+console.log('Promo modal check:', {hasSeenPromo, timestamp: new Date().toISOString()});
+
+if (!hasSeenPromo) {
+    console.log('Will show promo modal');
+    setTimeout(() => {
+        const promoModal = document.getElementById('promoModal');
+        console.log('Promo modal element found:', !!promoModal);
+        if (promoModal) {
+            promoModal.style.display = 'flex';
+            // Add click handler for the overlay
+            promoModal.onclick = function(e) {
+                if (e.target === promoModal) {
+                    closePromoModal();
+                }
+            };
         }
+    }, 1500);
+} else {
+    console.log('Promo modal already seen at:', hasSeenPromo);
+}
+    
+    console.log('Page initialization complete');
+
+    // At the end of initializePage()
+setTimeout(() => {
+    testAllFeatures();
+}, 2000);
+}
 
         // ============================================
         // EVENT LISTENERS
@@ -2029,6 +2132,34 @@ wilayaSelect.addEventListener('change', function() {
             console.log('Current color:', currentColor);
             console.log('Current quantity:', currentQuantity);
         }, 1000);
+
+        // Add this function and call it after initialization
+function testAllFeatures() {
+    console.log('=== TESTING ALL FEATURES ===');
+    
+    // Test 1: Check initial state
+    console.log('1. Initial State:');
+    console.log('- Current Model:', currentModel);
+    console.log('- Current Color:', currentColor);
+    console.log('- Current Images:', getCurrentImages());
+    console.log('- Image Count:', getCurrentImages().length);
+    
+    // Test 2: Check promo modal
+    console.log('2. Promo Modal:');
+    console.log('- SessionStorage:', sessionStorage.getItem('promoModalSeen'));
+    console.log('- Modal Element:', document.getElementById('promoModal'));
+    
+    // Test 3: Check free delivery badge
+    console.log('3. Free Delivery Badge:');
+    console.log('- Badge Element:', document.getElementById('freeDeliveryBadge'));
+    console.log('- Quantity:', currentQuantity);
+    
+    // Test 4: Check model selection
+    console.log('4. Available Models:', Object.keys(productData));
+    
+    // Test 5: Force show promo modal for testing (temporary)
+    // sessionStorage.removeItem('promoModalSeen'); // Uncomment to test
+}
     </script>
 </body>
 </html>
