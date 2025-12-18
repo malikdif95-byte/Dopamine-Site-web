@@ -751,15 +751,15 @@
         }
 
         @keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* Responsive Design */
         @media (max-width: 968px) {
@@ -1227,7 +1227,7 @@
                 }
             }
         }
-}
+};
 
         const PROMOTION_CONFIG = {
             minQuantityForPromo: 2,
@@ -1340,36 +1340,26 @@
         // ============================================
         // HELPER FUNCTIONS
         // ============================================
-function getCurrentImages() {
-    // Case 1: No model selected - show first image of each model
-    if (!currentModel) {
-        const modelImages = [];
-        Object.keys(productData).forEach(modelKey => {
-            const model = productData[modelKey];
-            const firstColorKey = Object.keys(model.colors)[0];
-            if (firstColorKey && model.colors[firstColorKey].images.length > 0) {
-                modelImages.push(model.colors[firstColorKey].images[0]);
+        function getCurrentImages() {
+            if (currentColor && productData[currentModel].colors[currentColor]) {
+                return productData[currentModel].colors[currentColor].images;
+            } else {
+                const allImages = [];
+                Object.keys(productData[currentModel].colors).forEach(colorKey => {
+                    const firstImage = productData[currentModel].colors[colorKey].images[0];
+                    allImages.push(firstImage);
+                });
+                return allImages;
             }
-        });
-        return modelImages;
-    }
-    
-    // Case 2: Model selected but no color selected - show first image of each color
-    if (!currentColor) {
-        const model = productData[currentModel];
-        const colorImages = [];
-        Object.keys(model.colors).forEach(colorKey => {
-            const color = model.colors[colorKey];
-            if (color.images.length > 0) {
-                colorImages.push(color.images[0]);
-            }
-        });
-        return colorImages;
-    }
-    
-    // Case 3: Both model and color selected - show all images of selected color
-    return productData[currentModel].colors[currentColor].images;
-}
+        }
+
+        function getCurrentUnitPrice() {
+            return productData[currentModel].unitPrice;
+        }
+
+        function getCurrentProductName() {
+            return productData[currentModel].name;
+        }
 
         // ============================================
         // IMAGE SLIDER FUNCTIONS
@@ -1398,29 +1388,17 @@ function getCurrentImages() {
         }
 
         function updateMainImage() {
-    const mainImage = document.getElementById('mainImage');
-    const images = getCurrentImages();
-    
-    if (!mainImage) return;
-    
-    if (images.length > 0 && currentImageIndex < images.length) {
-        mainImage.style.opacity = '0';
-        setTimeout(() => {
-            mainImage.src = images[currentImageIndex];
-            mainImage.onload = function() {
-                mainImage.style.opacity = '1';
-            };
-            mainImage.onerror = function() {
-                // Fallback image
-                this.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2224%22%3Eصورة غير متوفرة%3C/text%3E%3C/svg%3E';
-                this.style.opacity = '1';
-            };
-        }, 300);
-    } else {
-        // No images available
-        mainImage.src = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2224%22%3Eاختر منتجاً%3C/text%3E%3C/svg%3E';
-    }
-}
+            const mainImage = document.getElementById('mainImage');
+            const images = getCurrentImages();
+            
+            if (images.length > 0 && currentImageIndex < images.length) {
+                mainImage.style.opacity = '0';
+                setTimeout(() => {
+                    mainImage.src = images[currentImageIndex];
+                    mainImage.style.opacity = '1';
+                }, 300);
+            }
+        }
 
         function updateIndicators() {
             const indicatorContainer = document.getElementById('imageIndicator');
@@ -1447,172 +1425,170 @@ function getCurrentImages() {
         // MODEL SELECTION FUNCTIONS
         // ============================================
         function updateModelOptions() {
-    const container = document.getElementById('modelOptionsContainer');
-    if (!container) {
-        console.error('Model container not found');
-        return;
-    }
-    
-    container.innerHTML = '';
-    
-    Object.keys(productData).forEach(modelKey => {
-        const modelData = productData[modelKey];
-        const firstColorKey = Object.keys(modelData.colors)[0];
-        const firstColorData = modelData.colors[firstColorKey];
-        
-        const option = document.createElement('div');
-        option.className = `model-option`; // Don't add 'selected' initially
-        option.setAttribute('data-model', modelKey);
-        
-        const thumbnail = document.createElement('img');
-        thumbnail.className = 'model-thumbnail-img';
-        thumbnail.src = firstColorData.images[0];
-        thumbnail.alt = modelData.name;
-        thumbnail.onerror = function() {
-            this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect fill="%23ddd" width="80" height="80"/%3E%3Ctext x="40" y="40" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="14"%3E' + modelData.name + '%3C/text%3E%3C/svg%3E';
-        };
-        
-        const span = document.createElement('span');
-        span.className = 'model-name';
-        span.textContent = modelData.name.split(' (')[0];
-        
-        option.appendChild(thumbnail);
-        option.appendChild(span);
-        
-        option.onclick = function() {
-            selectModel(modelKey);
-        };
-        
-        container.appendChild(option);
-    });
-    
-    console.log('Models populated:', Object.keys(productData).length);
-}
+            const container = document.getElementById('modelOptionsContainer');
+            if (!container) {
+                console.error('Model container not found');
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            Object.keys(productData).forEach(modelKey => {
+                const modelData = productData[modelKey];
+                const firstColorKey = Object.keys(modelData.colors)[0];
+                const firstColorData = modelData.colors[firstColorKey];
+                
+                const option = document.createElement('div');
+                option.className = `model-option ${modelKey === currentModel ? 'selected' : ''}`;
+                option.setAttribute('data-model', modelKey);
+                
+                const thumbnail = document.createElement('img');
+                thumbnail.className = 'model-thumbnail-img';
+                thumbnail.src = firstColorData.images[0];
+                thumbnail.alt = modelData.name;
+                thumbnail.onerror = function() {
+                    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect fill="%23ddd" width="80" height="80"/%3E%3Ctext x="40" y="40" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="14"%3E' + modelData.name + '%3C/text%3E%3C/svg%3E';
+                };
+                
+                const span = document.createElement('span');
+                span.className = 'model-name';
+                span.textContent = modelData.name.split(' (')[0];
+                
+                option.appendChild(thumbnail);
+                option.appendChild(span);
+                
+                option.onclick = function() {
+                    selectModel(modelKey);
+                };
+                
+                container.appendChild(option);
+            });
+            
+            console.log('Models populated:', Object.keys(productData).length);
+        }
 
-    function selectModel(modelKey) {
-    currentModel = modelKey;
-    currentColor = null; // Reset color selection
-    currentImageIndex = 0; // Reset to first image
-    
-    // Update model selection UI
-    document.querySelectorAll('#modelOptionsContainer .model-option').forEach(option => {
-        option.classList.remove('selected');
-    });
-    const selectedModel = document.querySelector(`.model-option[data-model="${modelKey}"]`);
-    if (selectedModel) {
-        selectedModel.classList.add('selected');
-    }
-    
-    // Update product name
-    const productName = productData[modelKey].name;
-    document.getElementById('productNameHero').textContent = productName;
-    document.getElementById('productNameSticky').textContent = productName;
-    
-    // Update color options - this will automatically select first color
-    updateColorOptions();
-    
-    // Update price
-    updatePrice();
-    
-    // Restart slider with new images
-    stopAutoSlider();
-    startAutoSlider();
-}
+        function selectModel(modelKey) {
+            if (!productData[modelKey]) {
+                console.error('Model not found:', modelKey);
+                return;
+            }
+            
+            currentModel = modelKey;
+            currentColor = null;
+            
+            // Update model selection UI
+            document.querySelectorAll('#modelOptionsContainer .model-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            const selectedModel = document.querySelector(`.model-option[data-model="${modelKey}"]`);
+            if (selectedModel) {
+                selectedModel.classList.add('selected');
+            }
+            
+            // Update product name
+            const productName = productData[modelKey].name;
+            document.getElementById('productNameHero').textContent = productName;
+            document.getElementById('productNameSticky').textContent = productName;
+            
+            // Update color options
+            updateColorOptions();
+            
+            // Update price
+            updatePriceDisplay();
+            updatePrice();
+            
+            console.log('Model selected:', modelKey);
+        }
 
         // ============================================
         // COLOR SELECTION FUNCTIONS
         // ============================================
-function updateColorOptions() {
-    const container = document.getElementById('colorOptionsContainer');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    const modelColors = productData[currentModel].colors;
-    
-    Object.keys(modelColors).forEach(colorKey => {
-        const colorData = modelColors[colorKey];
-        
-        const option = document.createElement('div');
-        option.className = 'color-option';
-        option.setAttribute('data-color', colorKey);
-        
-        const circle = document.createElement('div');
-        circle.className = 'color-circle custom-color';
-        circle.style.setProperty('--color-code', colorData.colorCode);
-        
-        const span = document.createElement('span');
-        span.textContent = colorData.name;
-        
-        option.appendChild(circle);
-        option.appendChild(span);
-        
-        option.onclick = function() {
-            selectColor(colorKey);
-        };
-        
-        container.appendChild(option);
-    });
-    
-    // Select first color by default AND update images
-    const firstColorKey = Object.keys(modelColors)[0];
-    if (firstColorKey) {
-        selectColor(firstColorKey);
-    }
-}
+        function updateColorOptions() {
+            const container = document.getElementById('colorOptionsContainer');
+            if (!container) {
+                console.error('Color container not found');
+                return;
+            }
+            
+            container.innerHTML = '';
+            const modelColors = productData[currentModel].colors;
+            
+            Object.keys(modelColors).forEach(colorKey => {
+                const colorData = modelColors[colorKey];
+                
+                const option = document.createElement('div');
+                option.className = `color-option`;
+                option.setAttribute('data-color', colorKey);
+                
+                const circle = document.createElement('div');
+                circle.className = 'color-circle custom-color';
+                circle.style.setProperty('--color-code', colorData.colorCode);
+                
+                const span = document.createElement('span');
+                span.textContent = colorData.name;
+                
+                option.appendChild(circle);
+                option.appendChild(span);
+                
+                option.onclick = function() {
+                    selectColor(colorKey);
+                };
+                
+                container.appendChild(option);
+            });
+            
+            // Select first color by default
+            const firstColorKey = Object.keys(modelColors)[0];
+            if (firstColorKey) {
+                selectColor(firstColorKey);
+            }
+            
+            console.log('Colors populated:', Object.keys(modelColors).length);
+        }
 
         function selectColor(colorKey) {
-    const modelColors = productData[currentModel].colors;
-    if (!modelColors[colorKey]) {
-        console.error('Color not found:', colorKey);
-        return;
-    }
-    
-    currentColor = colorKey;
-    currentImageIndex = 0; // Reset to first image
-    
-    // Update color selection UI
-    document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
-        option.classList.remove('selected');
-    });
-    const selectedColor = document.querySelector(`.color-option[data-color="${colorKey}"]`);
-    if (selectedColor) {
-        selectedColor.classList.add('selected');
-    }
-    
-    // Update color name display
-    const colorNameElement = document.getElementById('selectedColorName');
-    if (colorNameElement) {
-        colorNameElement.textContent = `(${modelColors[colorKey].name})`;
-    }
-    
-    // Update images
-    updateMainImage();
-    updateIndicators();
-    stopAutoSlider();
-    startAutoSlider();
-    
-    console.log('Color selected:', colorKey);
-}
+            const modelColors = productData[currentModel].colors;
+            if (!modelColors[colorKey]) {
+                console.error('Color not found:', colorKey);
+                return;
+            }
+            
+            currentColor = colorKey;
+            
+            // Update color selection UI
+            document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            const selectedColor = document.querySelector(`.color-option[data-color="${colorKey}"]`);
+            if (selectedColor) {
+                selectedColor.classList.add('selected');
+            }
+            
+            // Update color name display
+            const colorNameElement = document.getElementById('selectedColorName');
+            if (colorNameElement) {
+                colorNameElement.textContent = `(${modelColors[colorKey].name})`;
+            }
+            
+            // Update images
+            currentImageIndex = 0;
+            startAutoSlider();
+            
+            console.log('Color selected:', colorKey);
+        }
 
         // ============================================
         // QUANTITY FUNCTIONS
         // ============================================
         function changeQuantity(change) {
-    const newQuantity = currentQuantity + change;
-    if (newQuantity >= 1 && newQuantity <= 10) {
-        currentQuantity = newQuantity;
-        updateQuantityDisplay();
-        updatePrice();
-        updateFreeDeliveryBadge(); // Make sure this is called
-        
-        // Debug log
-        console.log('Quantity changed to:', currentQuantity, 'Free delivery badge should show:', currentQuantity >= 2);
-    }
-}
-
-function getCurrentUnitPrice() {
-    return currentModel ? productData[currentModel].unitPrice : PRODUCT_PRICE;
-}
+            const newQuantity = currentQuantity + change;
+            if (newQuantity >= 1 && newQuantity <= 10) {
+                currentQuantity = newQuantity;
+                updateQuantityDisplay();
+                updatePrice();
+                updateFreeDeliveryBadge();
+            }
+        }
 
         function updateQuantityDisplay() {
             const quantityDisplay = document.getElementById('quantityDisplay');
@@ -1678,8 +1654,6 @@ function getCurrentUnitPrice() {
             
             if (displayPrice) displayPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
             if (stickyPrice) stickyPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-
-            
             
             // Update delivery info message
             updateDeliveryInfoMessage(wilaya, deliveryType, originalDeliveryPrice, deliveryPrice, discountApplied);
@@ -1748,18 +1722,16 @@ function getCurrentUnitPrice() {
                 }
                 deliveryBreakdown.innerHTML = deliveryText;
             }
+            
+            if (finalTotalBreakdown) finalTotalBreakdown.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
         }
-function updateFreeDeliveryBadge() {
-    const badge = document.getElementById('freeDeliveryBadge');
-    if (badge) {
-        if (currentQuantity >= 2) {
-            badge.style.display = 'block';
-            badge.style.animation = 'slideInUp 0.3s ease-out';
-        } else {
-            badge.style.display = 'none';
+
+        function updateFreeDeliveryBadge() {
+            const badge = document.getElementById('freeDeliveryBadge');
+            if (badge) {
+                badge.style.display = currentQuantity >= 2 ? 'block' : 'none';
+            }
         }
-    }
-}
 
         function updateDeliveryInfoMessage(wilaya, deliveryType, originalPrice, finalPrice, discountApplied) {
             const messageDiv = document.getElementById('deliveryInfoMessage');
@@ -1843,71 +1815,82 @@ wilayaSelect.addEventListener('change', function() {
         // ============================================
         // FORM FUNCTIONS
         // ============================================
-// Update the form submission handler
-orderForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    // Get form values
-    const formData = {
-        timestamp: new Date().toISOString(),
-        name: this.first_name.value,
-        phone: this.phone.value,
-        wilaya: this.wilaya.value,
-        commune: this.commune.value,
-        deliveryType: this.delivery_type.value === 'home' ? 'التوصيل للمنزل' : 'التوصيل للمكتب',
-        quantity: currentQuantity,
-        model: currentModel ? productData[currentModel].name : 'غير محدد',
-        color: currentColor ? productData[currentModel].colors[currentColor].name : 'غير محدد',
-        unitPrice: getCurrentUnitPrice(),
-        productTotal: getCurrentUnitPrice() * currentQuantity,
-        deliveryPrice: document.getElementById('deliveryBreakdown').textContent,
-        totalPrice: document.getElementById('finalTotalBreakdown').textContent,
-        notes: this.notes.value || 'لا توجد'
-    };
-    
-    const submitButton = this.querySelector('.submit-btn');
-    submitButton.disabled = true;
-    submitButton.textContent = 'جاري الإرسال...';
-    
-    try {
-        // Try different methods to send data
-        const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams(formData).toString()
-        });
-        
-        // Even with no-cors, the request should still go through
-        showModal(
-            'success',
-            'تم إرسال طلبك بنجاح!',
-            'شكراً لك! سيتواصل معك فريقنا خلال 24 ساعة لتأكيد الطلب.',
-            `الاسم: ${formData.name}<br>الهاتف: ${formData.phone}<br>الولاية: ${formData.wilaya}<br>البلدية: ${formData.commune}<br>الكمية: ${formData.quantity}<br>الموديل: ${formData.model}<br>اللون: ${formData.color}<br>المجموع: ${formData.totalPrice}`
-        );
-        
-        // Reset form
-        this.reset();
-        currentQuantity = 1;
-        updateQuantityDisplay();
-        updatePrice();
-        updateFreeDeliveryBadge();
-        
-    } catch (error) {
-        console.error('Form submission error:', error);
-        showModal(
-            'error',
-            'حدث خطأ!',
-            'عذراً، حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى أو الاتصال بنا مباشرة.',
-            ''
-        );
-    } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = '🛒 أكد طلبك الآن';
-    }
-});
+        function initializeForm() {
+            const orderForm = document.getElementById('orderForm');
+            const deliveryTypeSelect = document.getElementById('deliveryType');
+            
+            if (!orderForm || !deliveryTypeSelect) return;
+            
+            // Add event listener for delivery type change
+            deliveryTypeSelect.addEventListener('change', updatePrice);
+            
+            // Add form submit handler
+            orderForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const totalPriceText = document.getElementById('finalTotalBreakdown').textContent;
+                
+                const formData = {
+                    name: this.first_name.value,
+                    phone: this.phone.value,
+                    wilaya: this.wilaya.value,
+                    commune: this.commune.value,
+                    deliveryType: this.delivery_type.value === 'home' ? 'التوصيل للمنزل' : 'التوصيل للمكتب',
+                    quantity: currentQuantity,
+                    model: currentModel,
+                    color: currentColor,
+                    unitPrice: getCurrentUnitPrice(),
+                    productTotal: getCurrentUnitPrice() * currentQuantity,
+                    deliveryPrice: document.getElementById('deliveryBreakdown').textContent,
+                    totalPrice: totalPriceText,
+                    notes: this.notes.value || 'لا توجد'
+                };
+                
+                const submitButton = this.querySelector('.submit-btn');
+                submitButton.disabled = true;
+                submitButton.textContent = 'جاري الإرسال...';
+                
+                try {
+                    await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    showModal(
+                        'success',
+                        'تم إرسال طلبك بنجاح!',
+                        'شكراً لك! سيتواصل معك فريقنا قريباً لتأكيد الطلب.',
+                        `الاسم: ${formData.name}<br>الهاتف: ${formData.phone}<br>الولاية: ${formData.wilaya}<br>البلدية: ${formData.commune}<br>الكمية: ${formData.quantity}<br>اللون: ${productData[currentModel].colors[currentColor]?.name || 'غير محدد'}<br>المجموع: ${formData.totalPrice}`
+                    );
+                    
+                    // Reset form
+                    this.reset();
+                    currentQuantity = 1;
+                    updateQuantityDisplay();
+                    updatePrice();
+                    updateFreeDeliveryBadge();
+                    
+                    const breakdownCard = document.getElementById('priceBreakdownCard');
+                    if (breakdownCard) {
+                        breakdownCard.style.display = 'none';
+                    }
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    showModal(
+                        'error',
+                        'حدث خطأ!',
+                        'عذراً، حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.',
+                        ''
+                    );
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = '🛒 أكد طلبك الآن';
+                }
+            });
+        }
 
         // ============================================
         // MODAL FUNCTIONS
@@ -1940,14 +1923,12 @@ orderForm.addEventListener('submit', async function(e) {
         }
 
         function closePromoModal() {
-    const promoModal = document.getElementById('promoModal');
-    if (promoModal) {
-        promoModal.style.display = 'none';
-        // Store with a timestamp for debugging
-        sessionStorage.setItem('promoModalSeen', new Date().toISOString());
-        console.log('Promo modal closed and sessionStorage set');
-    }
-}
+            const promoModal = document.getElementById('promoModal');
+            if (promoModal) {
+                promoModal.style.display = 'none';
+            }
+            sessionStorage.setItem('promoModalSeen', 'true');
+        }
 
         // ============================================
         // STICKY BAR FUNCTIONS
@@ -1970,56 +1951,51 @@ orderForm.addEventListener('submit', async function(e) {
         // ============================================
         // INITIALIZATION
         // ============================================
-      function initializePage() {
-    console.log('Initializing page...');
-    
-    // Initialize wilayas FIRST
-    initializeWilayaSelect();
-    
-    // Initialize models
-    updateModelOptions();
-    
-    // Set initial product name
-    const productNameHero = document.getElementById('productNameHero');
-    const productNameSticky = document.getElementById('productNameSticky');
-    if (productNameHero) productNameHero.textContent = 'اختر المنتج المفضل';
-    if (productNameSticky) productNameSticky.textContent = 'اختر المنتج المفضل';
-    
-    // Initialize color options container message
-    const colorContainer = document.getElementById('colorOptionsContainer');
-    if (colorContainer) {
-        colorContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">اختر الموديل أولاً</div>';
-    }
-    
-    // Initialize quantity display
-    updateQuantityDisplay();
-    
-    // Initialize price
-    updatePrice();
-    
-    // Initialize free delivery badge
-    updateFreeDeliveryBadge();
-    
-    // Initialize form
-    initializeForm();
-    
-    // Initialize sticky bar
-    initializeStickyBar();
-    
-    // Start image slider
-    stopAutoSlider();
-    startAutoSlider();
-    
-    // Show promo modal after 1.5 seconds
-    setTimeout(() => {
-        const promoModal = document.getElementById('promoModal');
-        if (promoModal) {
-            promoModal.style.display = 'flex';
+        function initializePage() {
+            console.log('Initializing page...');
+            
+            // Initialize wilayas
+            initializeWilayaSelect();
+            
+            // Initialize models
+            updateModelOptions();
+            
+            // Select default model
+            selectModel(currentModel);
+            
+            // Initialize quantity display
+            updateQuantityDisplay();
+            
+            // Initialize price
+            updatePriceDisplay();
+            updatePrice();
+            
+            // Initialize free delivery badge
+            updateFreeDeliveryBadge();
+            
+            // Initialize form
+            initializeForm();
+            
+            // Initialize sticky bar
+            initializeStickyBar();
+            
+            // Start image slider
+            startAutoSlider();
+            
+            // Show promo modal if not seen before
+            const hasSeenPromo = sessionStorage.getItem('promoModalSeen');
+            if (!hasSeenPromo) {
+                setTimeout(() => {
+                    const promoModal = document.getElementById('promoModal');
+                    if (promoModal) {
+                        promoModal.style.display = 'flex';
+                    }
+                }, 1500);
+            }
+            
+            console.log('Page initialization complete');
         }
-    }, 1500);
-    
-    console.log('Page initialization complete');
-}
+
         // ============================================
         // EVENT LISTENERS
         // ============================================
@@ -2058,34 +2034,6 @@ orderForm.addEventListener('submit', async function(e) {
             console.log('Current color:', currentColor);
             console.log('Current quantity:', currentQuantity);
         }, 1000);
-
-        // Add this function and call it after initialization
-function testAllFeatures() {
-    console.log('=== TESTING ALL FEATURES ===');
-    
-    // Test 1: Check initial state
-    console.log('1. Initial State:');
-    console.log('- Current Model:', currentModel);
-    console.log('- Current Color:', currentColor);
-    console.log('- Current Images:', getCurrentImages());
-    console.log('- Image Count:', getCurrentImages().length);
-    
-    // Test 2: Check promo modal
-    console.log('2. Promo Modal:');
-    console.log('- SessionStorage:', sessionStorage.getItem('promoModalSeen'));
-    console.log('- Modal Element:', document.getElementById('promoModal'));
-    
-    // Test 3: Check free delivery badge
-    console.log('3. Free Delivery Badge:');
-    console.log('- Badge Element:', document.getElementById('freeDeliveryBadge'));
-    console.log('- Quantity:', currentQuantity);
-    
-    // Test 4: Check model selection
-    console.log('4. Available Models:', Object.keys(productData));
-    
-    // Test 5: Force show promo modal for testing (temporary)
-    // sessionStorage.removeItem('promoModalSeen'); // Uncomment to test
-}
     </script>
 </body>
 </html>
