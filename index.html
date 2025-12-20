@@ -899,6 +899,72 @@
                 font-size: 0.75em;
             }
         }
+
+        /* Improved Promo Modal for Mobile */
+#promoModal .modal-content {
+    max-width: 450px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    margin: 20px;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+    #promoModal .modal-content {
+        max-width: 95%;
+        padding: 25px 20px;
+        max-height: 85vh;
+    }
+    
+    #promoModal .modal-title {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+    
+    #promoModal .modal-content > div {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    #promoModal .modal-close-btn {
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        padding: 15px;
+        margin-top: 10px;
+        z-index: 10;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+    
+    /* Make content scrollable */
+    #promoModal .modal-content > div:nth-child(2) {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    #promoModal .modal-content {
+        max-height: 90vh;
+        padding: 20px 15px;
+    }
+    
+    #promoModal .modal-title {
+        font-size: 1.1em;
+    }
+    
+    #promoModal .modal-content > div {
+        padding: 12px;
+        font-size: 0.9em;
+    }
+    
+    #promoModal .modal-content ul {
+        padding-right: 15px;
+        line-height: 1.8;
+    }
+}
     </style>
 </head>
 <body>
