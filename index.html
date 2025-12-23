@@ -1202,7 +1202,7 @@
     </div>
 
     <!-- Promotion Popup Modal -->
-    <div class="modal-overlay" id="promoModal" style="display: none;">
+    <!-- <div class="modal-overlay" id="promoModal" style="display: none;">
         <div class="modal-content" style="max-width: 600px;">
             <div style="font-size: 3em; margin-bottom: 15px;">🎉</div>
             <h3 class="modal-title" style="color: var(--success-color); margin-bottom: 15px;">
@@ -1226,7 +1226,7 @@
                 فهمت! دعني أتسوق الآن
             </button>
         </div>
-    </div>
+    </div> -->
 
     <script>
         // ============================================
@@ -1988,13 +1988,13 @@ wilayaSelect.addEventListener('change', function() {
             }
         }
 
-        function closePromoModal() {
-            const promoModal = document.getElementById('promoModal');
-            if (promoModal) {
-                promoModal.style.display = 'none';
-            }
-            sessionStorage.setItem('promoModalSeen', 'true');
-        }
+        // function closePromoModal() {
+        //     const promoModal = document.getElementById('promoModal');
+        //     if (promoModal) {
+        //         promoModal.style.display = 'none';
+        //     }
+        //     sessionStorage.setItem('promoModalSeen', 'true');
+        // }
 
         // ============================================
         // STICKY BAR FUNCTIONS
@@ -2049,15 +2049,15 @@ wilayaSelect.addEventListener('change', function() {
             startAutoSlider();
             
             // Show promo modal if not seen before
-            const hasSeenPromo = sessionStorage.getItem('promoModalSeen');
-            if (!hasSeenPromo) {
-                setTimeout(() => {
-                    const promoModal = document.getElementById('promoModal');
-                    if (promoModal) {
-                        promoModal.style.display = 'flex';
-                    }
-                }, 1500);
-            }
+            // const hasSeenPromo = sessionStorage.getItem('promoModalSeen');
+            // if (!hasSeenPromo) {
+            //     setTimeout(() => {
+            //         const promoModal = document.getElementById('promoModal');
+            //         if (promoModal) {
+            //             promoModal.style.display = 'flex';
+            //         }
+            //     }, 1500);
+            // }
             
             console.log('Page initialization complete');
         }
