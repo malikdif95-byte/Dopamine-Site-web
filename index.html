@@ -1,1324 +1,581 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NG8XG4BV');</script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOPAMINE</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <title>Ensemble Jogging | الطقم الشتوي</title>
     
-    <!-- Facebook Pixel -->
-    <!-- <script>
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1518648616073474'); 
-      fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1518648616073474&ev=PageView&noscript=1"
-    /></noscript> -->
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P3RCP3HC5X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-P3RCP3HC5X');
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        /* =========================================
+           1. VARIABLES & COLOR PALETTE
+           "Cool" Modern Colors
+           ========================================= */
         :root {
-            --primary-color: #1a1a2e;
-            --secondary-color: #16213e;
-            --accent-color: #0f3460;
-            --highlight-color: #e94560;
-            --success-color: #27ae60;
-            --bg-light: #f8f9fa;
-            --text-dark: #2c3e50;
-            --border-radius: 20px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary: #0f172a;      /* Midnight Blue (Professional background) */
+            --surface: #ffffff;      /* Pure White */
+            --accent: #10b981;       /* Electric Green (Call to Action) */
+            --accent-hover: #059669; /* Darker Green for hover */
+            --text-main: #1e293b;    /* Dark Slate for text */
+            --text-muted: #64748b;   /* Muted Blue-Grey */
+            --border: #e2e8f0;       /* Light border */
+            --shadow: 0 10px 40px -10px rgba(0,0,0,0.1); /* Soft, expensive shadow */
+            --radius: 16px;          /* Smooth rounded corners */
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth physics */
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Cairo', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: #f1f5f9; /* Very light slate background */
+            color: var(--text-main);
+            padding-bottom: 100px; /* Space for mobile bottom bar */
         }
 
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 80px 20px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            animation: float 20s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-title {
-            font-size: 3em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: slideInDown 0.8s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3em;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            animation: slideInUp 0.8s ease-out 0.2s both;
-        }
-
-        @keyframes slideInDown {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Trust Badges */
-        .trust-badges {
+        /* =========================================
+           2. HEADER (Simple & Clean)
+           ========================================= */
+        .header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px); /* Glass effect */
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
             display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 40px;
-            animation: fadeIn 1s ease-out 0.4s both;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .trust-badge {
-            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
-            font-size: 1.1em;
-            background: rgba(255,255,255,0.1);
-            padding: 15px 25px;
-            border-radius: 50px;
-            backdrop-filter: blur(10px);
         }
 
-        .trust-badge i {
-            font-size: 1.5em;
+        .brand { font-weight: 900; font-size: 1.3rem; color: var(--primary); }
+        .header-price { 
+            font-weight: 700; 
+            color: var(--accent);
+            
+            /* Add this line for smooth animation */
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Main Container */
+        /* New Class: Moves the price to the right when bubble is active */
+        .header-price.pushed {
+            margin-left: 75px; /* Physical left spacing to clear the bubble*/
+        }
+
+        /* =========================================
+           3. MAIN LAYOUT (Grid System)
+           Desktop: Side-by-Side | Mobile: Stacked
+           ========================================= */
         .container {
-            max-width: 1400px;
-            margin: 40px auto 0;
+            max-width: 1100px;
+            margin: 30px auto;
             padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .main-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 0.9fr 1.1fr; /* Image takes 45%, Form takes 55% */
             gap: 40px;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            overflow: hidden;
+            align-items: start;
+        }
+        .container > div {
+            min-width: 0;
         }
 
-        /* Product Section */
-        .product-showcase {
-            padding: 50px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        }
-
-        /* Image Gallery */
-        .image-gallery {
-            margin-bottom: 30px;
-        }
-
-        .main-image-container {
-            position: relative;
+        /* =========================================
+           4. IMAGE STYLING (The Magic Part)
+           ========================================= */
+        .image-wrapper {
+            position: sticky;
+            top: 90px; /* Sticks on Desktop scroll */
             width: 100%;
-            height: 420px;
-            border-radius: 20px;
+            border-radius: var(--radius);
             overflow: hidden;
             background: white;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 50; /* Above normal content */
         }
 
-        .main-image {
+        .main-img {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: var(--transition);
-            cursor: zoom-in;
+            height: auto;
+            object-fit: cover;
+            aspect-ratio: 3/4; /* Vertical fashion ratio */
+            display: block;
         }
 
-        .main-image:hover {
-            transform: scale(1.05);
+        /* MOBILE FLOATING IMAGE LOGIC 
+           This class '.floating' is added by JS when scrolling
+        */
+        .image-wrapper.floating {
+            position: fixed;
+            top: 10px;
+            left: 20px;
+            width: 60px;  /* Small size */
+            height: 60px; /* Small size */
+            border-radius: 50%; /* Make it round */
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 200; /* On top of everything */
+            aspect-ratio: 1/1;
         }
 
-        .image-indicator {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 5;
+        /* Hide the original placeholder when floating prevents layout jump */
+        .image-placeholder {
+            display: none; 
+            width: 100%;
+            aspect-ratio: 3/4;
+        }
+        .image-wrapper.floating + .image-placeholder {
+            display: block; /* Takes up the space left behind */
         }
 
-        .indicator-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: var(--transition);
+        /* =========================================
+           5. FORM & INTERACTION SECTION
+           ========================================= */
+        .product-card {
+            background: var(--surface);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
         }
 
-        .indicator-dot.active {
-            background: white;
-            width: 30px;
-            border-radius: 6px;
+        h1 { font-size: 1.8rem; font-weight: 800; color: var(--primary); line-height: 1.2; }
+        .subtitle { color: var(--text-muted); margin-bottom: 20px; font-size: 0.95rem; }
+
+        /* --- ADD THIS TO YOUR CSS --- */
+
+        /* Slideshow Fade Effect */
+        .main-img {
+            transition: opacity 0.5s ease-in-out;
         }
 
-        /* Color Selector */
-        .color-selector {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        /* Order Summary Box */
+        .order-summary-box {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
             padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-            border: 2px solid #e9ecef;
+            margin-top: 25px;
+            display: none; /* Hidden by default */
+            animation: slideUp 0.3s ease-out;
         }
 
-        .color-selector h3 {
-            font-size: 1.1em;
-            margin-bottom: 12px;
-            color: var(--text-dark);
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+
+        .summary-row.total {
+            border-top: 2px solid var(--text-main);
+            border-bottom: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        .summary-label { font-weight: 600; }
+        .summary-value { color: var(--text-main); font-weight: 700; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Scrolling Selectors (Models & Colors) */
+        .scroll-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 5px;
+            padding-bottom: 15px;
+            /* Hide scrollbar visually but keep functionality */
+            scrollbar-width: none; 
+            /*new lines to fix the width issue*/
+            width: 100%;
+            max-width: 100%;
+            white-space: nowrap;
+        }
+        .scroll-container::-webkit-scrollbar { display: none; }
+
+        /* Color Buttons */
+        .color-btn {
+            flex-shrink: 0; /* Don't shrink */
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            border-radius: 50px;
+            background: white;
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: var(--transition);
+        }
+        .color-btn.active {
+            border-color: var(--accent);
+            background: #ecfdf5; /* Light green bg */
+            transform: scale(1.05);
+        }
+        .color-dot { width: 20px; height: 20px; border-radius: 50%; border: 1px solid #ddd; }
+
+        /* --- ADD TO YOUR CSS --- */
+
+        /* Badge for Color Quantity */
+        .color-btn {
+            position: relative; /* Needed to position the badge */
         }
 
-        .color-selector h3::before {
-            content: '🎨';
-            font-size: 1.2em;
-        }
-
-        /* --- FIXED COLOR SECTION --- */
-.color-options {
-    display: flex;
-    gap: 12px;
-    /* Start from the right for RTL */
-    justify-content: flex-start; 
-    /* Force single line */
-    flex-wrap: nowrap; 
-    /* Enable horizontal scrolling */
-    overflow-x: auto; 
-    /* Padding prevents shadow cutoff */
-    padding: 10px 5px; 
-    
-    /* Smooth scrolling */
-    -webkit-overflow-scrolling: touch;
-    scroll-behavior: smooth;
-
-    /* Hide scrollbars */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-}
-
-.color-options::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-}
-
-.color-option {
-    /* Prevents buttons from shrinking */
-    flex-shrink: 0; 
-    
-    position: relative;
-    cursor: pointer;
-    border: 3px solid #e9ecef;
-    border-radius: 50px;
-    padding: 8px 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: var(--transition);
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-/* --------------------------- */
-
-        .color-option.selected {
-            border-color: var(--primary-color);
-            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f7 100%);
-            box-shadow: 0 4px 15px rgba(26, 26, 46, 0.2);
-        }
-
-        .color-option.selected::after {
-            content: '✓';
+        .qty-badge {
             position: absolute;
-            top: -5px;
-            left: -5px;
-            background: var(--success-color);
+            top: -8px;
+            right: -8px;
+            background: var(--accent); /* Electric Green */
             color: white;
+            font-size: 0.75rem;
             width: 22px;
             height: 22px;
             border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 0.8em;
-            font-weight: bold;
-            box-shadow: 0 2px 8px rgba(39, 174, 96, 0.4);
-        }
-
-        .color-circle {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: 3px solid #e9ecef;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-            transition: var(--transition);
-        }
-
-        .color-option:hover .color-circle {
-            transform: scale(1.1);
-            border-color: var(--primary-color);
-        }
-
-        .color-circle.white {
-            background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-        }
-
-        .color-circle.black {
-            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
-        }
-
-        .color-option span {
-            font-size: 0.95em;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* Quantity Selector */
-        .quantity-selector-box {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-        }
-
-        .quantity-selector-box h3 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .quantity-controls {
-            display: flex;
             align-items: center;
+            border: 2px solid white;
+            font-weight: 800;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+            /* Animation */
+            transform: scale(0);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .qty-badge.visible {
+            transform: scale(1);
+        }
+
+        /* Quantity & Price Row */
+        .action-row {
+            display: flex;
             justify-content: space-between;
-            gap: 20px;
-        }
-
-        .quantity-btn {
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            font-size: 1.5em;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
             align-items: center;
-            justify-content: center;
-        }
-
-        .quantity-btn:hover:not(:disabled) {
-            transform: scale(1.1);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .quantity-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .quantity-display {
-            font-size: 2.5em;
-            font-weight: 800;
-            color: var(--primary-color);
-            min-width: 80px;
-            text-align: center;
-        }
-
-        /* Price Display */
-        .price-display {
-            background: linear-gradient(135deg, var(--success-color), #229954);
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 10px 30px rgba(39, 174, 96, 0.3);
-            margin-bottom: 25px;
-        }
-
-        .price-label {
-            font-size: 1.1em;
-            opacity: 0.9;
-            margin-bottom: 10px;
-        }
-
-        .price-amount {
-            font-size: 3.5em;
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        /* Features Section */
-        .features-section {
-            padding: 25px 25px;
-        }
-
-        .section-title {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            text-align: right;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
+            margin: 25px 0;
+            background: #f8fafc;
             padding: 15px;
-            margin-bottom: 12px;
-            background: #f8f9fa;
             border-radius: 12px;
-            border-right: 4px solid var(--primary-color);
-            transition: all 0.3s ease;
         }
 
-        .feature-item:hover {
-            background: #f0f0f5;
-            transform: translateX(-5px);
-            box-shadow: 0 3px 10px rgba(108, 99, 255, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 1.5em;
-            margin-left: 15px;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .feature-text {
-            font-size: 0.95em;
-            color: var(--text-dark);
-            line-height: 1.5;
-            flex: 1;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 480px) {
-            body {
-                padding: 10px;
-            }
-
-            .product-image {
-                height: 280px;
-            }
-
-            .features-section {
-                padding: 25px 20px;
-            }
-
-            .section-title {
-                font-size: 1.2em;
-                margin-bottom: 15px;
-            }
-
-            .feature-item {
-                padding: 12px;
-                margin-bottom: 10px;
-            }
-
-            .feature-icon {
-                font-size: 1.3em;
-                min-width: 35px;
-            }
-
-            .feature-text {
-                font-size: 0.9em;
-            }
-        }
-
-        /* Order Form Section */
-        .order-form-section {
-            padding: 50px;
-            background: white;
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .form-header h2 {
-            font-size: 2.2em;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .form-header p {
-            color: #6c757d;
-            font-size: 1.1em;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-            font-size: 1.05em;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px 20px;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            font-size: 1em;
-            font-family: 'Cairo', sans-serif;
-            transition: var(--transition);
-            background: #f8f9fa;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(26, 26, 46, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        /* Price Breakdown */
-        .price-breakdown-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 30px 0;
-            border: 2px solid #e9ecef;
-        }
-
-        .price-breakdown-card h3 {
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .breakdown-row {
+        .qty-control {
             display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            font-size: 1.05em;
-            border-bottom: 1px solid #e9ecef;
+            align-items: center;
+            gap: 15px;
+        }
+        .qty-btn {
+            width: 35px; height: 35px;
+            border-radius: 8px; border: none;
+            background: white; color: var(--primary);
+            font-weight: bold; cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .breakdown-row:last-child {
-            border-bottom: none;
-            border-top: 2px solid var(--primary-color);
-            padding-top: 20px;
-            margin-top: 10px;
-            font-weight: 700;
-            font-size: 1.3em;
-            color: var(--success-color);
+        /* Order Form Inputs */
+        .form-group { margin-bottom: 15px; }
+        .form-label { display: block; margin-bottom: 6px; font-weight: 700; font-size: 0.9rem; }
+        
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Cairo';
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #f8fafc;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
         }
 
         /* Submit Button */
         .submit-btn {
             width: 100%;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--highlight-color), #d63447);
+            padding: 18px;
+            background: var(--accent);
             color: white;
             border: none;
             border-radius: 12px;
-            font-size: 1.4em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
-            font-family: 'Cairo', sans-serif;
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(233, 69, 96, 0.4);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* Sticky Bar */
-        .sticky-bar {
-            position: fixed;
-            top: -100px;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 15px 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-            z-index: 1000;
-            transition: top 0.3s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: white;
-        }
-
-        .sticky-bar.visible {
-            top: 0;
-        }
-
-        .sticky-info {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .sticky-price {
-            font-size: 1.8em;
+            font-size: 1.1rem;
             font-weight: 800;
-        }
-
-        /* Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            text-align: center;
-            animation: slideInDown 0.4s;
-        }
-
-        .modal-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-        }
-
-        .modal-icon.success {
-            color: var(--success-color);
-        }
-
-        .modal-icon.error {
-            color: var(--highlight-color);
-        }
-
-        .modal-title {
-            font-size: 2em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .modal-message {
-            font-size: 1.2em;
-            color: #6c757d;
-            margin-bottom: 20px;
-        }
-
-        .modal-details {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: right;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .modal-close-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
             cursor: pointer;
-            font-size: 1.1em;
-            font-family: 'Cairo', sans-serif;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
             transition: var(--transition);
+            margin-top: 10px;
         }
+        .submit-btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
 
-        .modal-close-btn:hover {
-            background: var(--secondary-color);
-        }
-
-        .delivery-info-message {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-            border-left: 4px solid #ffc107;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-            display: none;
-            animation: slideInUp 0.3s ease-out;
-        }
-
-        .delivery-info-message.show {
-            display: block;
-        }
-
-        .delivery-info-message i {
-            color: #ff9800;
-            font-size: 1.2em;
-            margin-left: 10px;
-        }
-
-        .delivery-info-message p {
-            margin: 0;
-            color: #856404;
-            font-weight: 600;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
+        /* =========================================
+           6. MOBILE RESPONSIVENESS
+           ========================================= */
         @media (max-width: 768px) {
-            .main-grid {
-                grid-template-columns: 1fr;
+            .container {
+                grid-template-columns: 1fr; /* Stack vertically */
+                max-width: 100vw; /* Force mobile width limit */
+                overflow-x: hidden; /* Prevent horizontal scroll body */
             }
 
-            .hero-title {
-                font-size: 2em;
+            /* Image styling adjustments for mobile */
+            .image-wrapper {
+                position: relative; /* Default relative */
+                top: 0;
+                width: 100%;
+                z-index: 99;
             }
 
-            .trust-badges {
-                gap: 15px;
-            }
-
-            .trust-badge {
-                font-size: 0.9em;
-                padding: 10px 15px;
-            }
-
-            .product-showcase,
-            .order-form-section {
-                padding: 30px 20px;
-            }
-
-            .main-image-container {
-                height: 350px;
-            }
-
-            /* .color-options {
-                flex-direction: column;
-            } */
-
-            .price-amount {
-                font-size: 2.5em;
-            }
-
-            .sticky-info {
-                flex-direction: column;
-                gap: 10px;
-                align-items: flex-start;
-            }
-
-            .sticky-price {
-                font-size: 1.5em;
+            /* Mobile Sticky Footer Bar */
+            .mobile-bar {
+                position: fixed; bottom: 0; left: 0; width: 100%;
+                background: white; padding: 12px 20px;
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+                display: flex; justify-content: space-between; align-items: center;
+                z-index: 90;
             }
         }
         
-        /* NEW: Model Selector/Slider Styles */
-        .model-selector {
-            padding: 15px 0;
-            margin-bottom: 25px;
-            border-radius: 15px;
-            background: #ffffff;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border: 2px solid #e9ecef;
-        }
+        /* Hide mobile bar on desktop */
+        @media (min-width: 769px) { .mobile-bar { display: none; } }
 
-        .model-selector h3 {
-            font-size: 1.1em;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-            text-align: center;
-        }
-
-        .model-slider-container {
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 0 10px;
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .model-slider-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .model-options {
-            display: inline-flex;
-            gap: 15px;
-            padding-bottom: 5px;
-        }
-
-        .model-option {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            border: 4px solid #e9ecef;
-            border-radius: 15px;
-            padding: 10px;
-            transition: var(--transition);
-            background: var(--bg-light);
-            min-width: 100px;
-            flex-shrink: 0;
-        }
-
-        .model-option.selected {
-            border-color: var(--highlight-color);
-            background: linear-gradient(135deg, #ffeef1 0%, #f7d4d8 100%);
-            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.2);
-        }
-
-        .model-thumbnail-img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 8px;
-            background: white;
-            padding: 5px;
-        }
-
-        .model-name {
-            font-size: 0.85em;
-            font-weight: 600;
-            color: var(--text-dark);
-            white-space: normal;
-            text-align: center;
-        }
-
-        /* Update Color Selector for dynamic colors */
-        .color-circle.custom-color {
-            background: var(--color-code);
-        }
-
-        @media (max-width: 600px) {
-            .model-option {
-                min-width: 80px;
-                padding: 8px;
-            }
-            .model-thumbnail-img {
-                width: 60px;
-                height: 60px;
-            }
-            .model-name {
-                font-size: 0.75em;
-            }
-        }
-
-        /* Improved Promo Modal for Mobile */
-#promoModal .modal-content {
-    max-width: 450px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    margin: 20px;
-}
-
-/* Mobile-specific adjustments */
-@media (max-width: 768px) {
-    #promoModal .modal-content {
-        max-width: 95%;
-        padding: 25px 20px;
-        max-height: 85vh;
-    }
-    
-    #promoModal .modal-title {
-        font-size: 1.3em;
-        margin-bottom: 10px;
-    }
-    
-    #promoModal .modal-content > div {
-        padding: 15px;
-        margin-bottom: 15px;
-    }
-    
-    #promoModal .modal-close-btn {
-        position: sticky;
-        bottom: 0;
-        width: 100%;
-        padding: 15px;
-        margin-top: 10px;
-        z-index: 10;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    }
-    
-    /* Make content scrollable */
-    #promoModal .modal-content > div:nth-child(2) {
-        max-height: 50vh;
-        overflow-y: auto;
-    }
-}
-
-/* Extra small screens */
-@media (max-width: 480px) {
-    #promoModal .modal-content {
-        max-height: 90vh;
-        padding: 20px 15px;
-    }
-    
-    #promoModal .modal-title {
-        font-size: 1.1em;
-    }
-    
-    #promoModal .modal-content > div {
-        padding: 12px;
-        font-size: 0.9em;
-    }
-    
-    #promoModal .modal-content ul {
-        padding-right: 15px;
-        line-height: 1.8;
-    }
-}
     </style>
 </head>
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NG8XG4BV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <!-- Sticky Bar -->
-    <div class="sticky-bar" id="stickyBar">
-        <div class="sticky-info">
-            <span id="productNameSticky">Jogging</span>
-            <span id="stickyQuantity">الكمية: 1</span>
-        </div>
-        <div class="sticky-price" id="stickyPrice">2500 دج</div>
-    </div>
+    <header class="header">
+        <div class="brand">DOPAMINE</div>
+        <div class="header-price" id="headerPrice">2500 دج</div>
+    </header>
 
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-title" id="productNameHero">Jogging</h1>
-            <p class="hero-subtitle">الطقم الشتوي الفاخر - قصة Oversize وخامة دافئة</p>
-            <div class="trust-badges">
-                <div class="trust-badge">
-                    <span>✓</span>
-                    <span>توصيل سريع</span>
-                </div>
-                <div class="trust-badge">
-                    <span>✓</span>
-                    <span>جودة مضمونة</span>
-                </div>
-                <div class="trust-badge">
-                    <span>✓</span>
-                    <span>دفع عند الاستلام</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Container -->
     <div class="container">
-        <div class="main-grid">
-            <!-- Product Showcase -->
-            <div class="product-showcase">
-                <!-- Image Gallery -->
-                <div class="image-gallery">
-                    <div class="main-image-container">
-                        <img src="/images/model_Jogging/blan.jpg" alt="Jogging" class="main-image" id="mainImage" 
-                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect fill=%22%23ddd%22 width=%22400%22 height=%22400%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2224%22%3EDUNTH DU-T244%3C/text%3E%3C/svg%3E'">
-                        <div class="image-indicator" id="imageIndicator"></div>
-                    </div>
-                </div>
-
-                <div class="model-selector">
-                    <h3>اختر الموديل/المنتج</h3>
-                    <div class="model-slider-container">
-                        <div class="model-options" id="modelOptionsContainer">
-                            <!-- Models will be added here by JavaScript -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="color-selector">
-                    <h3>اختر اللون <span id="selectedColorName"></span></h3>
-                    <div class="color-options" id="colorOptionsContainer">
-                        <!-- Colors will be added here by JavaScript -->
-                    </div>
-                </div>
-
-                <!-- Quantity Selector -->
-                <div class="quantity-selector-box">
-                    <h3>اختر الكمية المطلوبة</h3>
-                    <div class="quantity-controls">
-                        <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
-                        <div class="quantity-display" id="quantityDisplay">1</div>
-                        <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
-                    </div>
-                </div>
-
-                <!-- Free Delivery Badge -->
-                <div id="freeDeliveryBadge" 
-                     style="
-                        display: none;
-                        background: linear-gradient(135deg, #27ae60, #229954);
-                        padding: 15px 20px;
-                        border-radius: 12px;
-                        text-align: center;
-                        color: white;
-                        margin-bottom: 20px;
-                        animation: slideInUp 0.3s ease-out;
-                     ">
-                    <div style="font-size: 1.3em; font-weight: 700; margin-bottom: 5px;">
-                        🎉 توصيل مجاني!
-                    </div>
-                    <div style="font-size: 0.95em; opacity: 0.9;">
-                        عند شراء قطعتين أو أكثر
-                    </div>
-                </div>
-
-                <!-- Delivery Info Message -->
-                <div id="deliveryInfoMessage" class="delivery-info-message">
-                    <i class="icon">ℹ️</i>
-                    <p>سيتم احتساب تكلفة التوصيل بعد اختيار الولاية ومكان التوصيل</p>
-                </div>
-
-                <!-- Price Display -->
-                <div class="price-display">
-                    <div class="price-label">سعر الكمية</div>
-                    <div class="price-amount" id="displayPrice">2500 دج</div>
-                </div>
-            </div>
-
-            <!-- Order Form Section -->
-            <div class="order-form-section">
-                <div class="form-header">
-                    <h2>أكمل طلبك الآن</h2>
-                    <p>املأ البيانات وسنتواصل معك فوراً</p>
-                </div>
-
-                <form id="orderForm">
-                    <div class="form-group">
-                        <label>الإسم و اللقب *</label>
-                        <input type="text" name="first_name" required placeholder="أدخل اسمك الكامل">
-                    </div>
-
-                    <div class="form-group">
-                        <label>رقم الهاتف *</label>
-                        <input type="tel" name="phone" required placeholder="أدخل رقم الهاتف" pattern="0[567][0-9]{8}">
-                    </div>
-
-                    <div class="form-group">
-                        <label>الولاية *</label>
-                        <select name="wilaya" id="wilayaSelect" required>
-                            <option value="">اختر الولاية</option>
-                            <!-- Will be populated by JavaScript -->
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>البلدية *</label>
-                        <select name="commune" id="communeSelect" required disabled>
-                            <option value="">اختر الولاية أولاً</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>مكان التوصيل *</label>
-                        <select name="delivery_type" id="deliveryType" required>
-                            <option value="">اختر مكان التوصيل</option>
-                            <option value="home">التوصيل للمنزل</option>
-                            <option value="office">التوصيل للمكتب</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>ملاحظات إضافية (اختياري)</label>
-                        <textarea name="notes" placeholder="أضف أي ملاحظات خاصة بطلبك..."></textarea>
-                    </div>
-
-                    <div class="price-breakdown-card" id="priceBreakdownCard" style="display: none;">
-                        <h3>تفاصيل الفاتورة</h3>
-                        <div class="breakdown-row">
-                            <span>سعر الوحدة:</span>
-                            <span id="unitPriceBreakdown">2500 دج</span>
-                        </div>
-                        <div class="breakdown-row">
-                            <span>الكمية:</span>
-                            <span id="quantityBreakdown">1</span>
-                        </div>
-                        <div class="breakdown-row">
-                            <span>تكلفة المنتج:</span>
-                            <span id="productTotalBreakdown">2500 دج</span>
-                        </div>
-                        <div class="breakdown-row">
-                            <span>تكلفة التوصيل:</span>
-                            <span id="deliveryBreakdown">0 دج</span>
-                        </div>
-                        <div class="breakdown-row">
-                            <span>المجموع:</span>
-                            <span id="finalTotalBreakdown">2500 دج</span>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="submit-btn">🛒 أكد طلبك الآن</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="features-section">
-        <h3 class="section-title">✨ تفاصيل وميزات الطقم الشتوي ✨</h3>
         
-        <div class="feature-item">
-            <span class="feature-icon">🧶</span>
-            <span class="feature-text">
-                **خامة فاخرة:** قماش شتوي **دافيء وناعم وثقيل**، يضمن لكِ الدفء والرقي طوال اليوم.
-            </span>
-        </div>
-        <div class="feature-item">
-            <span class="feature-icon">👗</span>
-            <span class="feature-text">
-                **قصة عصرية:** تصميم **Oversize** أنيق، يمنحكِ لوكًا مرتّبًا بلا مجهود.
-            </span>
+        <div>
+            <div class="image-wrapper" id="floatingImage">
+                <img id="mainImg" class="main-img" src="" alt="Product">
+            </div>
+            <div class="image-placeholder"></div>
+            
+            <div style="margin-top:15px; text-align:center; font-size:0.85rem; color:var(--text-muted);">
+                🔒 الدفع عند الاستلام &nbsp; | &nbsp; ⚡ توصيل سريع
+            </div>
         </div>
 
-        <div class="feature-item">
-            <span class="feature-icon">📏</span>
-            <span class="feature-text">
-                **مقاس مرن:** يلبس من **36 حتى 48**، قصّة لا تشدّ ولا تبرّم، مريحة جداً.
-            </span>
-        </div>
+        <div class="product-card">
+            <h1 id="productTitle">Ensemble Jogging</h1>
+            <p class="subtitle">طقم شتوي فاخر - جودة عالية وتصميم مريح</p>
 
-        <div class="feature-item">
-            <span class="feature-icon">🧕</span>
-            <span class="feature-text">
-                **متعدد الاستخدام:** مناسب للمحجبات وغير المحجبات، ويليق بمختلف الإطلالات (بوت، سبور، للخروج والعمل).
-            </span>
-        </div>
+            <div class="form-group">
+                <label class="form-label">اختر اللون: <span id="colorName" style="color:var(--accent)"></span></label>
+                <div class="scroll-container" id="colorContainer">
+                    </div>
+            </div>
 
-        <div class="feature-item">
-            <span class="feature-icon">🎨</span>
-            <span class="feature-text">
-                **ألوان متناسقة:** متوفر في **بزاف الألوان العصرية** التي تضفي ستايلًا بناتيًا راقيًا.
-            </span>
-        </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal-overlay" id="customModal">
-        <div class="modal-content">
-            <div class="modal-icon" id="modalIcon">✓</div>
-            <h3 class="modal-title" id="modalTitle"></h3>
-            <p class="modal-message" id="modalMessage"></p>
-            <div class="modal-details" id="modalDetails"></div>
-            <button class="modal-close-btn" onclick="closeModal()">حسناً</button>
-        </div>
-    </div>
-
-    <!-- Promotion Popup Modal -->
-    <!-- <div class="modal-overlay" id="promoModal" style="display: none;">
-        <div class="modal-content" style="max-width: 600px;">
-            <div style="font-size: 3em; margin-bottom: 15px;">🎉</div>
-            <h3 class="modal-title" style="color: var(--success-color); margin-bottom: 15px;">
-                عرض خاص! توصيل مجاني ومخفض
-            </h3>
-            <div style="text-align: right; padding: 20px; background: #f8f9fa; border-radius: 12px; margin-bottom: 20px;">
-                <div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 8px; border-right: 4px solid var(--success-color);">
-                    <strong style="color: var(--success-color); font-size: 1.1em;">📦 عند شراء قطعتين أو أكثر:</strong>
-                    <ul style="margin-top: 10px; padding-right: 25px; line-height: 2;">
-                        <li><strong>توصيل مجاني للمكتب</strong> في الولايات التي تكلفة التوصيل للمكتب فيها 500 دج أو أقل</li>
-                        <li><strong>خصم 500 دج</strong> على التوصيل للمنزل في جميع الولايات</li>
-                    </ul>
+            <div class="action-row">
+                <div style="flex: 1;">
+                    <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px;">
+                          كمية اللون <span id="qtyLabelColor" style="color:var(--primary); font-weight:700;">...</span>:
+                    </div>
+                    <div class="qty-control">
+                        <button class="qty-btn" onclick="updateQty(-1)" type="button">-</button>
+                        <span id="qtyDisplay" style="font-weight:800; width:30px; text-align:center;">0</span>
+                        <button class="qty-btn" onclick="updateQty(1)" type="button">+</button>
+                    </div>
                 </div>
-                <div style="padding: 10px; background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-radius: 8px; margin-top: 10px;">
-                    <p style="margin: 0; color: #856404; font-weight: 600;">
-                        ⚡ العرض ساري الآن! استفد من التوصيل المجاني والمخفض
-                    </p>
+    
+                <div style="text-align: left;">
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">المجموع الكلي</div>
+                    <div style="font-size:1.5rem; font-weight:900; color:var(--primary);" id="displayPrice">0 دج</div>
                 </div>
             </div>
-            <button class="modal-close-btn" onclick="closePromoModal()" style="width: 100%;">
-                فهمت! دعني أتسوق الآن
-            </button>
+
+            <form id="orderForm">
+                <div class="form-group">
+                    <label class="form-label">الاسم الكامل *</label>
+                        <input type="text" id="inputName" name="name" class="input-field" placeholder="اكتب اسمك هنا" required oninput="checkFormCompletion()">
+                </div>
+    
+                <div class="form-group">
+                    <label class="form-label">رقم الهاتف *</label>
+                    <input type="tel" id="inputPhone" name="phone" class="input-field" placeholder="05 / 06 / 07..." pattern="0[567][0-9]{8}" required oninput="checkFormCompletion()">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">الولاية *</label>
+                    <select name="wilaya" id="wilayaSelect" class="input-field" required onchange="handleWilayaChange()">
+                        <option value="">اختر الولاية</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">البلدية *</label>
+                    <select name="commune" id="communeSelect" class="input-field" disabled required onchange="checkFormCompletion()">
+                        <option value="">اختر الولاية أولاً</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">نوع التوصيل *</label>
+                    <select name="delivery" id="deliverySelect" class="input-field" required onchange="updateTotal()">
+                        <option value="home">توصيل للمنزل (لباب الدار)</option>
+                        <option value="office">توصيل للمكتب (Stop Desk)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">ملاحظات (اختياري)</label>
+                    <textarea name="notes" id="inputNotes" class="input-field" rows="3" placeholder="مثال: يرجى الاتصال قبل الوصول..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">تأكيد الطلب الآن</button>
+
+                                <div id="liveSummary" class="order-summary-box">
+                    <h3 style="margin-bottom:15px; font-size:1.1rem; color:var(--primary);">📄 ملخص الطلب</h3>
+        
+                    <div class="summary-row">
+                        <span class="summary-label">المنتج:</span>
+                        <span class="summary-value" id="sumProduct">Jogging</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">اللون / الكمية:</span>
+                        <span class="summary-value"><span id="sumColor">أبيض</span> (x<span id="sumQty">1</span>)</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">معلومات العميل:</span>
+                        <span class="summary-value" id="sumClient">...</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">العنوان:</span>
+                        <span class="summary-value" id="sumAddress">...</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">سعر التوصيل:</span>
+                        <span class="summary-value" id="sumDelivery">...</span>
+                    </div>
+                
+                    <div class="summary-row total">
+                        <span class="summary-label">المجموع الكلي:</span>
+                        <span class="summary-value" id="sumTotal">2500 دج</span>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="details-section">
+                <h3 style="text-align: center; margin-bottom: 20px;">تفاصيل ومميزات المنتج</h3>
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <span class="feature-icon">🧶</span>
+                        <strong>قماش قطني فاخر</strong>
+                        <p>خامة شتوية ثقيلة تحافظ على الدفء</p>
+                    </div>
+                    <div class="feature-box">
+                        <span class="feature-icon">👗</span>
+                        <strong>قصة Oversize</strong>
+                        <p>تصميم عصري مريح يناسب جميع الأجسام</p>
+                    </div>
+                    <div class="feature-box">
+                        <span class="feature-icon">📏</span>
+                        <strong>المقاسات (36-48)</strong>
+                        <p>مقاس موحد (Standard) يناسب الجميع</p>
+                    </div>
+                    <div class="feature-box">
+                        <span class="feature-icon">🎨</span>
+                        <strong>ألوان ثابتة</strong>
+                        <p>لا تتغير مع الغسيل المتكرر</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div> -->
+    </div>
+
+    <div class="mobile-bar">
+        <div style="font-weight:700" id="stickyTotal">2500 دج</div>
+        <button onclick="document.getElementById('orderForm').scrollIntoView({behavior:'smooth'})" 
+                style="background:var(--accent); color:white; border:none; padding:8px 20px; border-radius:50px; font-weight:700;">
+            اطلب الآن
+        </button>
+    </div>
+
 
     <script>
-        // ============================================
-        // CONFIGURATION AND DATA
-        // ============================================
-        const PRODUCT_PRICE = 2500;
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAQB5f1HMRxNuYBxiwuTirh458vErLN815VLSzUcMwvlPtt4gxRJjMLoGXEB959S0/exec';
+    // ==========================================
+    // 1. DATA CONFIGURATION
+    // ==========================================
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAQB5f1HMRxNuYBxiwuTirh458vErLN815VLSzUcMwvlPtt4gxRJjMLoGXEB959S0/exec'; 
 
-        const productData = {
-            'JOGGING': {
-                name: 'Ensemble Jogging',
-                unitPrice: 2500,
-                defaultColor: 'Blanc',
-                colors: {
-                    'Blanc': {
-                        name: 'أبيض',
-                        images: ['/images/model_Jogging/white/blanc.jpg','/images/model_Jogging/white/blanc_2.png'],
-                        colorCode: 'white'
-                    },
-                    'Maron Foncé': {
-                        name: 'بني غامق - Maron Foncé',
-                        images: ['/images/model_Jogging/brown/maronF.jpg','/images/model_Jogging/brown/marron_2.png'],
-                        colorCode: '#4E342E'
-                    },
-                    'Beige clair': {
-                        name: 'بيج فاتح - Beige clair',
-                        images: ['/images/model_Jogging/beige/bc.jpg','/images/model_Jogging/beige/beige_2.png'],
-                        colorCode: '#F5F5DC'
-                    },
-                    'Beige Foncé': {
-                        name: 'بيج غامق - Beige Foncé',
-                        images: ['/images/model_Jogging/beigeF/bf.jpg','/images/model_Jogging/beigeF/beige_fonce_2.png'],
-                        colorCode: '#C2B280'
-                    },
-                    'Vert': {
-                        name: 'أخضر - Vert',
-                        images: ['/images/model_Jogging/green/vert.jpg','/images/model_Jogging/green/vert_2.png'],
-                        colorCode: 'green'
-                    },
-                    'Noir': {
-                        name: 'أسود - Noir',
-                        images: ['/images/model_Jogging/black/noir_2.png'],
-                        colorCode: '#000000'
-                    },
-                    'Crevette': {
-                        name: 'وردي سلمون(كروفيت) - Crevette',
-                        images: ['/images/model_Jogging/crevette/crevettes_2.png'],
-                        colorCode: '#FF8C8C'
-                    },
-                    'Bleu Roi': {
-                        name: 'أزرق ملكي - Bleu Roi',
-                        images: ['/images/model_Jogging/blue/bleu.jpg','/images/model_Jogging/blue/bleu_roi_2.png'],
-                        colorCode: '#4169E1'
-                    },
-                    'Rouge brique': {
-                        name: 'أحمر بريكي - Rouge brique',
-                        images: ['/images/model_Jogging/red_brique/rouge_brique_2.png'],
-                        colorCode: '#8B3A2E'
-                    },
-                    'Cassis': {
-                        name: 'Cassis',
-                        images: ['/images/model_Jogging/cassis/cassis_2.png'],
-                        colorCode: '#E0AFFF'                        
+    // Your Cleaned Product Data
+    const productData = {
+        'JOGGING': {
+            name: 'Ensemble Jogging',
+            price: 2500,
+            colors: {
+                'white': {
+                    name: 'أبيض',
+                    code: '#ffffff',
+                    images: ['/images/model_Jogging/white/blanc.jpg', '/images/model_Jogging/white/blanc_2.png']
+                },
+                'brown': {
+                    name: 'بني غامق',
+                    code: '#4E342E',
+                    images: ['/images/model_Jogging/brown/maronF.jpg', '/images/model_Jogging/brown/marron_2.png']
+                },
+                'beige': {
+                    name: 'بيج فاتح',
+                    code: '#F5F5DC',
+                    images: ['/images/model_Jogging/beige/bc.jpg', '/images/model_Jogging/beige/beige_2.png']
+                },
+                'dark_beige': {
+                    name: 'بيج غامق',
+                    code: '#C2B280',
+                    images: ['/images/model_Jogging/beigeF/bf.jpg', '/images/model_Jogging/beigeF/beige_fonce_2.png']
+                },
+                'green': {
+                    name: 'أخضر',
+                    code: '#10b981',
+                    images: ['/images/model_Jogging/green/vert.jpg', '/images/model_Jogging/green/vert_2.png']
+                },
+                'black': {
+                    name: 'أسود',
+                    code: '#000000',
+                    images: ['/images/model_Jogging/black/noir_2.png']
+                },
+                'crevette': {
+                    name: 'وردي سلمون',
+                    code: '#FF8C8C',
+                    images: ['/images/model_Jogging/crevette/crevettes_2.png']
+                },
+                'royal_blue': {
+                    name: 'أزرق ملكي',
+                    code: '#4169E1',
+                    images: ['/images/model_Jogging/blue/bleu.jpg', '/images/model_Jogging/blue/bleu_roi_2.png']
+                },
+                'brick_red': {
+                    name: 'أحمر بريكي',
+                    code: '#8B3A2E',
+                    images: ['/images/model_Jogging/red_brique/rouge_brique_2.png']
+                },
+                'cassis': {
+                    name: 'Cassis',
+                    code: '#E0AFFF',
+                    images: ['/images/model_Jogging/cassis/cassis_2.png']
                 }
             }
         }
-};
+    };
 
-        const PROMOTION_CONFIG = {
-            minQuantityForPromo: 2,
-            maxOfficeDeliveryForFree: 500,
-            homeDeliveryDiscount: 500
-        };
-
-        const wilayasData = [
+    // Location Data
+    const wilayasData = [
             "01: أدرار", "02: الشلف", "03: الأغواط", "04: أم البواقي", "05: باتنة", "06: بجاية", "07: بسكرة", "08: بشار", "09: البليدة", "10: البويرة", 
             "11: تمنراست", "12: تبسة", "13: تلمسان", "14: تيارت", "15: تيزي وزو", "16: الجزائر", "17: الجلفة", "18: جيجل", "19: سطيف", "20: سعيدة", 
             "21: سكيكدة", "22: سيدي بلعباس", "23: عنابة", "24: قالمة", "25: قسنطينة", "26: المدية", "27: مستغانم", "28: المسيلة", "29: معسكر", "30: ورقلة", 
@@ -1411,712 +668,323 @@
             "58: المنيعة": ["المنيعة", "حاسي القارة", "المنصورة ", "حاسي لفحل"]
     };
 
-        // ============================================
-        // STATE VARIABLES
-        // ============================================
-        let currentModel = 'JOGGING';
-        let currentColor = null;
-        let currentQuantity = 1;
-        let currentImageIndex = 0;
-        let autoSlideInterval = null;
+    // ==========================================
+    // 2. STATE MANAGEMENT (UPDATED FOR CART)
+    // ==========================================
+    let state = {
+        model: 'JOGGING',
+        activeColor: 'white',  // The color currently being VIEWED
+        cart: {},              // Stores quantities: { 'white': 2, 'black': 1 }
+        currentImgIndex: 0,
+        slideInterval: null
+    };
 
-        // ============================================
-        // HELPER FUNCTIONS
-        // ============================================
-        function getCurrentImages() {
-            if (currentColor && productData[currentModel].colors[currentColor]) {
-                return productData[currentModel].colors[currentColor].images;
-            } else {
-                const allImages = [];
-                Object.keys(productData[currentModel].colors).forEach(colorKey => {
-                    const firstImage = productData[currentModel].colors[colorKey].images[0];
-                    allImages.push(firstImage);
-                });
-                return allImages;
+    // ==========================================
+    // 3. INITIALIZATION
+    // ==========================================
+    function init() {
+        renderColors();
+        populateWilayas();
+        startImageSlider(); 
+        updateUI();
+        setupScrollListener();
+        
+        // Initialize cart with 0 for all colors if needed, or leave empty
+        // Default: 1 item for the default color to start
+        state.cart['white'] = 1;
+        updateUI(); 
+        renderColors(); // Re-render to show initial badge
+    }
+
+    // ==========================================
+    // 4. IMAGE SLIDER LOGIC
+    // ==========================================
+    function startImageSlider() {
+        if (state.slideInterval) clearInterval(state.slideInterval);
+        state.currentImgIndex = 0;
+        updateMainImage();
+
+        state.slideInterval = setInterval(() => {
+            const images = productData[state.model].colors[state.activeColor].images;
+            if(images.length > 1) {
+                state.currentImgIndex = (state.currentImgIndex + 1) % images.length;
+                updateMainImage();
             }
+        }, 2000);
+    }
+
+    function updateMainImage() {
+        const imgEl = document.getElementById('mainImg');
+        const images = productData[state.model].colors[state.activeColor].images;
+        if (images && images.length > 0) {
+            imgEl.src = images[state.currentImgIndex];
         }
+    }
 
-        function getCurrentUnitPrice() {
-            return productData[currentModel].unitPrice;
-        }
+    // ==========================================
+    // 5. COLOR & CART LOGIC (KEY CHANGES HERE)
+    // ==========================================
+    function renderColors() {
+        const container = document.getElementById('colorContainer');
+        const colors = productData[state.model].colors;
+        container.innerHTML = ''; 
 
-        function getCurrentProductName() {
-            return productData[currentModel].name;
-        }
+        Object.keys(colors).forEach(key => {
+            const color = colors[key];
+            const btn = document.createElement('div');
+            
+            // Check if this color has items in cart
+            const qtyInCart = state.cart[key] || 0;
+            const hasItems = qtyInCart > 0;
 
-        // ============================================
-        // IMAGE SLIDER FUNCTIONS
-        // ============================================
-        function startAutoSlider() {
-            stopAutoSlider();
-            currentImageIndex = 0;
-            updateMainImage();
-            updateIndicators();
+            btn.className = `color-btn ${state.activeColor === key ? 'active' : ''}`;
             
-            autoSlideInterval = setInterval(() => {
-                const images = getCurrentImages();
-                if (images.length > 0) {
-                    currentImageIndex = (currentImageIndex + 1) % images.length;
-                    updateMainImage();
-                    updateIndicators();
-                }
-            }, 3000);
-        }
-
-        function stopAutoSlider() {
-            if (autoSlideInterval) {
-                clearInterval(autoSlideInterval);
-                autoSlideInterval = null;
-            }
-        }
-
-        function updateMainImage() {
-            const mainImage = document.getElementById('mainImage');
-            const images = getCurrentImages();
+            // Add Badge HTML
+            btn.innerHTML = `
+                <div class="color-dot" style="background:${color.code}"></div>
+                <span>${color.name}</span>
+                <span class="qty-badge ${hasItems ? 'visible' : ''}">${qtyInCart}</span>
+            `;
             
-            if (images.length > 0 && currentImageIndex < images.length) {
-                mainImage.style.opacity = '0';
-                setTimeout(() => {
-                    mainImage.src = images[currentImageIndex];
-                    mainImage.style.opacity = '1';
-                }, 300);
-            }
-        }
-
-        function updateIndicators() {
-            const indicatorContainer = document.getElementById('imageIndicator');
-            const images = getCurrentImages();
-            
-            if (!indicatorContainer) return;
-            
-            indicatorContainer.innerHTML = '';
-            
-            images.forEach((image, index) => {
-                const dot = document.createElement('div');
-                dot.className = `indicator-dot ${index === currentImageIndex ? 'active' : ''}`;
-                dot.onclick = () => {
-                    currentImageIndex = index;
-                    updateMainImage();
-                    updateIndicators();
-                    stopAutoSlider();
-                };
-                indicatorContainer.appendChild(dot);
-            });
-        }
-
-        // ============================================
-        // MODEL SELECTION FUNCTIONS
-        // ============================================
-        function updateModelOptions() {
-            const container = document.getElementById('modelOptionsContainer');
-            if (!container) {
-                console.error('Model container not found');
-                return;
-            }
-            
-            container.innerHTML = '';
-            
-            Object.keys(productData).forEach(modelKey => {
-                const modelData = productData[modelKey];
-                const firstColorKey = Object.keys(modelData.colors)[0];
-                const firstColorData = modelData.colors[firstColorKey];
-                
-                const option = document.createElement('div');
-                option.className = `model-option ${modelKey === currentModel ? 'selected' : ''}`;
-                option.setAttribute('data-model', modelKey);
-                
-                const thumbnail = document.createElement('img');
-                thumbnail.className = 'model-thumbnail-img';
-                thumbnail.src = firstColorData.images[0];
-                thumbnail.alt = modelData.name;
-                thumbnail.onerror = function() {
-                    this.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="80" height="80"%3E%3Crect fill="%23ddd" width="80" height="80"/%3E%3Ctext x="40" y="40" dominant-baseline="middle" text-anchor="middle" fill="%23999" font-size="14"%3E' + modelData.name + '%3C/text%3E%3C/svg%3E';
-                };
-                
-                const span = document.createElement('span');
-                span.className = 'model-name';
-                span.textContent = modelData.name.split(' (')[0];
-                
-                option.appendChild(thumbnail);
-                option.appendChild(span);
-                
-                option.onclick = function() {
-                    selectModel(modelKey);
-                };
-                
-                container.appendChild(option);
-            });
-            
-            console.log('Models populated:', Object.keys(productData).length);
-        }
-
-        function selectModel(modelKey) {
-            if (!productData[modelKey]) {
-                console.error('Model not found:', modelKey);
-                return;
-            }
-            
-            currentModel = modelKey;
-            currentColor = null;
-            
-            // Update model selection UI
-            document.querySelectorAll('#modelOptionsContainer .model-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            const selectedModel = document.querySelector(`.model-option[data-model="${modelKey}"]`);
-            if (selectedModel) {
-                selectedModel.classList.add('selected');
-            }
-            
-            // Update product name
-            const productName = productData[modelKey].name;
-            document.getElementById('productNameHero').textContent = productName;
-            document.getElementById('productNameSticky').textContent = productName;
-            
-            // Update color options
-            updateColorOptions();
-            
-            // Update price
-            updatePriceDisplay();
-            updatePrice();
-            
-            console.log('Model selected:', modelKey);
-        }
-
-        // ============================================
-        // COLOR SELECTION FUNCTIONS
-        // ============================================
-        function updateColorOptions() {
-            const container = document.getElementById('colorOptionsContainer');
-            if (!container) {
-                console.error('Color container not found');
-                return;
-            }
-            
-            container.innerHTML = '';
-            const modelColors = productData[currentModel].colors;
-            
-            Object.keys(modelColors).forEach(colorKey => {
-                const colorData = modelColors[colorKey];
-                
-                const option = document.createElement('div');
-                option.className = `color-option`;
-                option.setAttribute('data-color', colorKey);
-                
-                const circle = document.createElement('div');
-                circle.className = 'color-circle custom-color';
-                circle.style.setProperty('--color-code', colorData.colorCode);
-                
-                const span = document.createElement('span');
-                span.textContent = colorData.name;
-                
-                option.appendChild(circle);
-                option.appendChild(span);
-                
-                option.onclick = function() {
-                    selectColor(colorKey);
-                };
-                
-                container.appendChild(option);
-            });
-            
-            // Select first color by default
-            const firstColorKey = Object.keys(modelColors)[0];
-            if (firstColorKey) {
-                selectColor(firstColorKey);
-            }
-            
-            console.log('Colors populated:', Object.keys(modelColors).length);
-        }
-
-        function selectColor(colorKey) {
-            const modelColors = productData[currentModel].colors;
-            if (!modelColors[colorKey]) {
-                console.error('Color not found:', colorKey);
-                return;
-            }
-            
-            currentColor = colorKey;
-            
-            // Update color selection UI
-            document.querySelectorAll('#colorOptionsContainer .color-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            const selectedColor = document.querySelector(`.color-option[data-color="${colorKey}"]`);
-            if (selectedColor) {
-                selectedColor.classList.add('selected');
-            }
-            
-            // Update color name display
-            const colorNameElement = document.getElementById('selectedColorName');
-            if (colorNameElement) {
-                colorNameElement.textContent = `(${modelColors[colorKey].name})`;
-            }
-            
-            // Update images
-            currentImageIndex = 0;
-            startAutoSlider();
-            
-            console.log('Color selected:', colorKey);
-        }
-
-        // ============================================
-        // QUANTITY FUNCTIONS
-        // ============================================
-        function changeQuantity(change) {
-            const newQuantity = currentQuantity + change;
-            if (newQuantity >= 1 && newQuantity <= 10) {
-                currentQuantity = newQuantity;
-                updateQuantityDisplay();
-                updatePrice();
-                updateFreeDeliveryBadge();
-            }
-        }
-
-        function updateQuantityDisplay() {
-            const quantityDisplay = document.getElementById('quantityDisplay');
-            const stickyQuantity = document.getElementById('stickyQuantity');
-            
-            if (quantityDisplay) quantityDisplay.textContent = currentQuantity;
-            if (stickyQuantity) stickyQuantity.textContent = `الكمية: ${currentQuantity}`;
-        }
-
-        // ============================================
-        // PRICE FUNCTIONS
-        // ============================================
-        function updatePriceDisplay() {
-            const unitPrice = getCurrentUnitPrice();
-            const totalPrice = unitPrice * currentQuantity;
-            
-            const displayPrice = document.getElementById('displayPrice');
-            const stickyPrice = document.getElementById('stickyPrice');
-            
-            if (displayPrice) displayPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-            if (stickyPrice) stickyPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-        }
-
-        function updatePrice() {
-            const wilayaSelect = document.getElementById('wilayaSelect');
-            const deliveryTypeSelect = document.getElementById('deliveryType');
-            
-            if (!wilayaSelect || !deliveryTypeSelect) return;
-            
-            const wilaya = wilayaSelect.value;
-            const deliveryType = deliveryTypeSelect.value;
-            
-            let deliveryPrice = 0;
-            let originalDeliveryPrice = 0;
-            let discountApplied = false;
-            
-            if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
-                originalDeliveryPrice = deliveryType === 'home' ? 
-                    deliveryPriceData[wilaya].home : 
-                    deliveryPriceData[wilaya].office;
-                
-                deliveryPrice = originalDeliveryPrice;
-                
-                // Apply promotion if quantity >= 2
-                if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
-                    if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
-                        deliveryPrice = 0;
-                        discountApplied = true;
-                    } else if (deliveryType === 'home') {
-                        deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
-                        discountApplied = true;
-                    }
-                }
-            }
-            
-            const unitPrice = getCurrentUnitPrice();
-            const productTotal = unitPrice * currentQuantity;
-            const totalPrice = productTotal + deliveryPrice;
-            
-            // Update price displays
-            const displayPrice = document.getElementById('displayPrice');
-            const stickyPrice = document.getElementById('stickyPrice');
-            
-            if (displayPrice) displayPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-            if (stickyPrice) stickyPrice.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-            
-            // Update delivery info message
-            updateDeliveryInfoMessage(wilaya, deliveryType, originalDeliveryPrice, deliveryPrice, discountApplied);
-            
-            // Update breakdown
-            updateBreakdown();
-            
-            // Show/hide breakdown card
-            const breakdownCard = document.getElementById('priceBreakdownCard');
-            if (breakdownCard) {
-                breakdownCard.style.display = (wilaya && deliveryType) ? 'block' : 'none';
-            }
-        }
-
-        function updateBreakdown() {
-            const wilayaSelect = document.getElementById('wilayaSelect');
-            const deliveryTypeSelect = document.getElementById('deliveryType');
-            
-            if (!wilayaSelect || !deliveryTypeSelect) return;
-            
-            const wilaya = wilayaSelect.value;
-            const deliveryType = deliveryTypeSelect.value;
-            
-            let deliveryPrice = 0;
-            let originalDeliveryPrice = 0;
-            let discountAmount = 0;
-            
-            if (wilaya && deliveryType && deliveryPriceData[wilaya]) {
-                originalDeliveryPrice = deliveryType === 'home' ? 
-                    deliveryPriceData[wilaya].home : 
-                    deliveryPriceData[wilaya].office;
-                
-                deliveryPrice = originalDeliveryPrice;
-                
-                // Apply promotion
-                if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo) {
-                    if (deliveryType === 'office' && originalDeliveryPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
-                        discountAmount = originalDeliveryPrice;
-                        deliveryPrice = 0;
-                    } else if (deliveryType === 'home') {
-                        discountAmount = Math.min(originalDeliveryPrice, PROMOTION_CONFIG.homeDeliveryDiscount);
-                        deliveryPrice = Math.max(0, originalDeliveryPrice - PROMOTION_CONFIG.homeDeliveryDiscount);
-                    }
-                }
-            }
-            
-            const unitPrice = getCurrentUnitPrice();
-            const productTotal = unitPrice * currentQuantity;
-            const totalPrice = productTotal + deliveryPrice;
-
-            // Update breakdown elements
-            const unitPriceBreakdown = document.getElementById('unitPriceBreakdown');
-            const quantityBreakdown = document.getElementById('quantityBreakdown');
-            const productTotalBreakdown = document.getElementById('productTotalBreakdown');
-            const deliveryBreakdown = document.getElementById('deliveryBreakdown');
-            const finalTotalBreakdown = document.getElementById('finalTotalBreakdown');
-            
-            if (unitPriceBreakdown) unitPriceBreakdown.textContent = unitPrice.toLocaleString('ar-DZ') + ' دج';
-            if (quantityBreakdown) quantityBreakdown.textContent = currentQuantity;
-            if (productTotalBreakdown) productTotalBreakdown.textContent = productTotal.toLocaleString('ar-DZ') + ' دج';
-            
-            if (deliveryBreakdown) {
-                let deliveryText = deliveryPrice.toLocaleString('ar-DZ') + ' دج';
-                if (discountAmount > 0) {
-                    deliveryText = `<span style="text-decoration: line-through; color: #999;">${originalDeliveryPrice.toLocaleString('ar-DZ')} دج</span> <span style="color: var(--success-color); font-weight: bold;">${deliveryPrice.toLocaleString('ar-DZ')} دج</span>`;
-                }
-                deliveryBreakdown.innerHTML = deliveryText;
-            }
-            
-            if (finalTotalBreakdown) finalTotalBreakdown.textContent = totalPrice.toLocaleString('ar-DZ') + ' دج';
-        }
-
-        function updateFreeDeliveryBadge() {
-            const badge = document.getElementById('freeDeliveryBadge');
-            if (badge) {
-                badge.style.display = currentQuantity >= 2 ? 'block' : 'none';
-            }
-        }
-
-        function updateDeliveryInfoMessage(wilaya, deliveryType, originalPrice, finalPrice, discountApplied) {
-            const messageDiv = document.getElementById('deliveryInfoMessage');
-            if (!messageDiv) return;
-            
-            if (!wilaya || !deliveryType) {
-                messageDiv.classList.remove('show');
-                return;
-            }
-            
-            if (currentQuantity >= PROMOTION_CONFIG.minQuantityForPromo && discountApplied) {
-                let message = '';
-                
-                if (deliveryType === 'office' && originalPrice <= PROMOTION_CONFIG.maxOfficeDeliveryForFree) {
-                    message = `🎉 <strong>مبروك!</strong> حصلت على توصيل مجاني للمكتب في ولاية ${wilaya}`;
-                } else if (deliveryType === 'home' && originalPrice > finalPrice) {
-                    const discount = originalPrice - finalPrice;
-                    message = `🎉 <strong>تهانينا!</strong> حصلت على خصم ${discount.toLocaleString('ar-DZ')} دج على التوصيل للمنزل`;
-                    
-                    if (finalPrice === 0) {
-                        message += ' - <strong>التوصيل مجاني تماماً!</strong>';
-                    }
-                }
-                
-                if (message) {
-                    messageDiv.innerHTML = `<i class="icon">ℹ️</i><p>${message}</p>`;
-                    messageDiv.classList.add('show');
-                    return;
-                }
-            }
-            
-            messageDiv.classList.remove('show');
-        }
-
-        // ============================================
-        // WILAYA FUNCTIONS
-        // ============================================
-        function initializeWilayaSelect() {
-            const wilayaSelect = document.getElementById('wilayaSelect');
-            if (!wilayaSelect) {
-                console.error('Wilaya select element not found');
-                return;
-            }
-            
-            // Clear existing options except the first one
-            wilayaSelect.innerHTML = '<option value="">اختر الولاية</option>';
-            
-            // Populate wilaya options
-            wilayasData.forEach(wilaya => {
-                const option = document.createElement('option');
-                option.value = wilaya;
-                option.textContent = wilaya;
-                wilayaSelect.appendChild(option);
-            });
-            
-            console.log('Wilayas populated:', wilayasData.length);
-            
-            // Add event listener for wilaya change
-wilayaSelect.addEventListener('change', function() {
-    const communeSelect = document.getElementById('communeSelect');
-    const selectedWilaya = this.value;
-    
-    communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
-    
-    if (selectedWilaya && communesData[selectedWilaya]) {
-        communesData[selectedWilaya].forEach(commune => {
-            const option = document.createElement('option');
-            option.value = commune;
-            option.textContent = commune;
-            communeSelect.appendChild(option);
+            btn.onclick = () => {
+                state.activeColor = key; // Set as viewing color
+                renderColors();     // Update active styling
+                updateUI();         // Update price/qty display
+                startImageSlider(); // Change images
+            };
+            container.appendChild(btn);
         });
-        communeSelect.disabled = false;
-    } else {
-        communeSelect.disabled = true;
+    }
+
+    function updateQty(change) {
+        const currentQty = state.cart[state.activeColor] || 0;
+        const newQty = currentQty + change;
+
+        // Prevent negative numbers
+        if (newQty >= 0) {
+            if (newQty === 0) {
+                delete state.cart[state.activeColor];
+            } else {
+                state.cart[state.activeColor] = newQty;
+            }
+            
+            updateUI();
+            renderColors(); // Refresh badges
+            checkFormCompletion();
+        }
+    }
+
+    function updateUI() {
+        const currentProduct = productData[state.model];
+        const currentColorObj = currentProduct.colors[state.activeColor];
+        
+        // 1. Update Labels
+        document.getElementById('colorName').textContent = currentColorObj.name;
+        document.getElementById('qtyLabelColor').textContent = `(${currentColorObj.name})`;
+        
+        // 2. Update Quantity Display for ACTIVE color
+        const currentQty = state.cart[state.activeColor] || 0;
+        document.getElementById('qtyDisplay').textContent = currentQty;
+        
+        updateTotal(); 
+    }
+
+    // ==========================================
+    // 6. TOTALS & SUMMARY LOGIC
+    // ==========================================
+    function getCartTotalQty() {
+        return Object.values(state.cart).reduce((a, b) => a + b, 0);
+    }
+
+    function updateTotal() {
+        const productPrice = productData[state.model].price;
+        const totalQty = getCartTotalQty();
+        const subtotal = productPrice * totalQty;
+        
+        // Delivery
+        const wilaya = document.getElementById('wilayaSelect').value;
+        const type = document.getElementById('deliverySelect').value;
+        let deliveryCost = 0;
+
+        if (wilaya && deliveryPriceData[wilaya]) {
+            deliveryCost = deliveryPriceData[wilaya][type] || 0;
+        }
+
+        // Optional: Free delivery rule (e.g., if qty >= 2)
+        if (totalQty >= 2) {
+             // deliveryCost = Math.max(0, deliveryCost - 500); // Uncomment for promo
+        }
+
+        const total = subtotal + deliveryCost;
+
+        // Update Displays
+        document.getElementById('displayPrice').textContent = subtotal + ' دج';
+        document.getElementById('headerPrice').textContent = total + ' دج';
+        document.getElementById('stickyTotal').textContent = total + ' دج';
+
+        // Update Summary Box
+        updateSummaryBox(deliveryCost, total);
+
+        return { subtotal, deliveryCost, total, totalQty };
+    }
+
+    function updateSummaryBox(deliveryCost, finalTotal) {
+        const colors = productData[state.model].colors;
+        
+        // Build Cart String (e.g., "White (2), Black (1)")
+        let cartItemsHTML = '';
+        let cartTextString = ''; // For Google Sheet
+        
+        Object.entries(state.cart).forEach(([key, qty]) => {
+            const colorName = colors[key].name;
+            cartItemsHTML += `<div>• ${colorName}: <strong>x${qty}</strong></div>`;
+            cartTextString += `${colorName} (${qty}) | `;
+        });
+
+        if (cartItemsHTML === '') cartItemsHTML = 'لم يتم اختيار أي لون';
+
+        document.getElementById('sumProduct').textContent = productData[state.model].name;
+        // Replaced simple color text with the List
+        document.getElementById('sumColor').innerHTML = cartItemsHTML; 
+        document.getElementById('sumQty').textContent = getCartTotalQty();
+        document.getElementById('sumDelivery').textContent = deliveryCost > 0 ? deliveryCost + ' دج' : 'يحدد بعد اختيار الولاية';
+        document.getElementById('sumTotal').textContent = finalTotal + ' دج';
+        
+        return cartTextString;
+    }
+
+    // ==========================================
+    // 7. FORM HANDLERS
+    // ==========================================
+    function checkFormCompletion() {
+        const name = document.getElementById('inputName').value;
+        const phone = document.getElementById('inputPhone').value;
+        const wilaya = document.getElementById('wilayaSelect').value;
+        const totalQty = getCartTotalQty();
+
+        const summaryBox = document.getElementById('liveSummary');
+        
+        // Show summary if fields are filled AND user has picked at least 1 item
+        if (name.length > 2 && phone.length > 9 && wilaya && totalQty > 0) {
+            summaryBox.style.display = 'block';
+            
+            const delivery = document.getElementById('deliverySelect').options[document.getElementById('deliverySelect').selectedIndex].text;
+            const commune = document.getElementById('communeSelect').value;
+            
+            document.getElementById('sumClient').textContent = `${name} | ${phone}`;
+            document.getElementById('sumAddress').textContent = `${wilaya} - ${commune} (${delivery})`;
+            updateTotal();
+        } else {
+            summaryBox.style.display = 'none';
+        }
     }
     
-    updatePrice();
-});
-        }
+    // Wilaya / Commune / Scroll Logic (Same as before)
+    function populateWilayas() {
+        const select = document.getElementById('wilayaSelect');
+        while (select.options.length > 1) { select.remove(1); }
+        wilayasData.forEach(w => {
+            const opt = document.createElement('option');
+            opt.value = w; opt.textContent = w;
+            select.appendChild(opt);
+        });
+    }
 
-        // ============================================
-        // FORM FUNCTIONS
-        // ============================================
-        function initializeForm() {
-            const orderForm = document.getElementById('orderForm');
-            const deliveryTypeSelect = document.getElementById('deliveryType');
-            
-            if (!orderForm || !deliveryTypeSelect) return;
-            
-            // Add event listener for delivery type change
-            deliveryTypeSelect.addEventListener('change', updatePrice);
-            
-            // Add form submit handler
-            orderForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const totalPriceText = document.getElementById('finalTotalBreakdown').textContent;
-                
-                const formData = {
-                    name: this.first_name.value,
-                    phone: this.phone.value,
-                    wilaya: this.wilaya.value,
-                    commune: this.commune.value,
-                    deliveryType: this.delivery_type.value === 'home' ? 'التوصيل للمنزل' : 'التوصيل للمكتب',
-                    quantity: currentQuantity,
-                    model: currentModel,
-                    color: currentColor,
-                    unitPrice: getCurrentUnitPrice(),
-                    productTotal: getCurrentUnitPrice() * currentQuantity,
-                    deliveryPrice: document.getElementById('deliveryBreakdown').textContent,
-                    totalPrice: totalPriceText,
-                    notes: this.notes.value || 'لا توجد'
-                };
-                
-                const submitButton = this.querySelector('.submit-btn');
-                submitButton.disabled = true;
-                submitButton.textContent = 'جاري الإرسال...';
-                
-                try {
-                    await fetch(SCRIPT_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {'Content-Type': 'application/json'},
-                        body: JSON.stringify(formData)
-                    });
-                    
-                    showModal(
-                        'success',
-                        'تم إرسال طلبك بنجاح!',
-                        'شكراً لك! سيتواصل معك فريقنا قريباً لتأكيد الطلب.',
-                        `الاسم: ${formData.name}<br>الهاتف: ${formData.phone}<br>الولاية: ${formData.wilaya}<br>البلدية: ${formData.commune}<br>الكمية: ${formData.quantity}<br>اللون: ${productData[currentModel].colors[currentColor]?.name || 'غير محدد'}<br>المجموع: ${formData.totalPrice}`
-                    );
-                    
-                    // Reset form
-                    this.reset();
-                    currentQuantity = 1;
-                    updateQuantityDisplay();
-                    updatePrice();
-                    updateFreeDeliveryBadge();
-                    
-                    const breakdownCard = document.getElementById('priceBreakdownCard');
-                    if (breakdownCard) {
-                        breakdownCard.style.display = 'none';
-                    }
-                    
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    showModal(
-                        'error',
-                        'حدث خطأ!',
-                        'عذراً، حدث خطأ أثناء إرسال الطلب. يرجى المحاولة مرة أخرى.',
-                        ''
-                    );
-                } finally {
-                    submitButton.disabled = false;
-                    submitButton.textContent = '🛒 أكد طلبك الآن';
-                }
+    function handleWilayaChange() {
+        const wilayaSelect = document.getElementById('wilayaSelect');
+        const communeSelect = document.getElementById('communeSelect');
+        const selectedWilaya = wilayaSelect.value;
+
+        communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
+        
+        if (selectedWilaya && communesData[selectedWilaya]) {
+            communeSelect.disabled = false;
+            communesData[selectedWilaya].forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c; opt.textContent = c;
+                communeSelect.appendChild(opt);
             });
-        }
-
-        // ============================================
-        // MODAL FUNCTIONS
-        // ============================================
-        function showModal(type, title, message, details) {
-            const modal = document.getElementById('customModal');
-            const icon = document.getElementById('modalIcon');
-            
-            if (!modal || !icon) return;
-            
-            icon.className = `modal-icon ${type}`;
-            icon.textContent = type === 'success' ? '✓' : '✕';
-            
-            const modalTitle = document.getElementById('modalTitle');
-            const modalMessage = document.getElementById('modalMessage');
-            const modalDetails = document.getElementById('modalDetails');
-            
-            if (modalTitle) modalTitle.textContent = title;
-            if (modalMessage) modalMessage.textContent = message;
-            if (modalDetails) modalDetails.innerHTML = details;
-            
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('customModal');
-            if (modal) {
-                modal.style.display = 'none';
-            }
-        }
-
-        // function closePromoModal() {
-        //     const promoModal = document.getElementById('promoModal');
-        //     if (promoModal) {
-        //         promoModal.style.display = 'none';
-        //     }
-        //     sessionStorage.setItem('promoModalSeen', 'true');
-        // }
-
-        // ============================================
-        // STICKY BAR FUNCTIONS
-        // ============================================
-        function initializeStickyBar() {
-            window.addEventListener('scroll', function() {
-                const stickyBar = document.getElementById('stickyBar');
-                if (!stickyBar) return;
-                
-                const scrollPosition = window.pageYOffset;
-                
-                if (scrollPosition > 500) {
-                    stickyBar.classList.add('visible');
-                } else {
-                    stickyBar.classList.remove('visible');
-                }
-            });
-        }
-
-        // ============================================
-        // INITIALIZATION
-        // ============================================
-        function initializePage() {
-            console.log('Initializing page...');
-            
-            // Initialize wilayas
-            initializeWilayaSelect();
-            
-            // Initialize models
-            updateModelOptions();
-            
-            // Select default model
-            selectModel(currentModel);
-            
-            // Initialize quantity display
-            updateQuantityDisplay();
-            
-            // Initialize price
-            updatePriceDisplay();
-            updatePrice();
-            
-            // Initialize free delivery badge
-            updateFreeDeliveryBadge();
-            
-            // Initialize form
-            initializeForm();
-            
-            // Initialize sticky bar
-            initializeStickyBar();
-            
-            // Start image slider
-            startAutoSlider();
-            
-            // Show promo modal if not seen before
-            // const hasSeenPromo = sessionStorage.getItem('promoModalSeen');
-            // if (!hasSeenPromo) {
-            //     setTimeout(() => {
-            //         const promoModal = document.getElementById('promoModal');
-            //         if (promoModal) {
-            //             promoModal.style.display = 'flex';
-            //         }
-            //     }, 1500);
-            // }
-            
-            console.log('Page initialization complete');
-        }
-
-        // ============================================
-        // EVENT LISTENERS
-        // ============================================
-        // Initialize when DOM is fully loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializePage);
         } else {
-            initializePage();
+            communeSelect.disabled = true;
         }
+        updateTotal();
+        checkFormCompletion();
+    }
+    
+    function setupScrollListener() {
+        const imgWrapper = document.getElementById('floatingImage');
+        const priceEl = document.getElementById('headerPrice'); // Select the price text
 
-        // Backup initialization on window load
-        window.addEventListener('load', function() {
-            console.log('Window loaded, checking initialization...');
-            
-            // Double-check critical elements
-            const wilayaSelect = document.getElementById('wilayaSelect');
-            if (wilayaSelect && wilayaSelect.options.length <= 1) {
-                console.warn('Wilayas not populated, retrying...');
-                initializeWilayaSelect();
-            }
-            
-            const modelContainer = document.getElementById('modelOptionsContainer');
-            if (modelContainer && modelContainer.children.length === 0) {
-                console.warn('Models not populated, retrying...');
-                updateModelOptions();
+        window.addEventListener('scroll', () => {
+            // Only run on the mobile
+            if (window.innerWidth > 768) return; 
+
+            // If scrolled down past 150px
+            if (window.scrollY > 150) {
+                imgWrapper.classList.add('floating'); // Show Bubble
+                priceEl.classList.add('pushed'); // Move Price
+            } else {
+                imgWrapper.classList.remove('floating'); // Hide Bubble
+                priceEl.classList.remove('pushed'); // Reset Price
             }
         });
+    }
 
-        // Debug info
-        setTimeout(() => {
-            console.log('=== DEBUG INFO ===');
-            console.log('Wilaya options:', document.getElementById('wilayaSelect')?.options.length || 0);
-            console.log('Model options:', document.querySelectorAll('#modelOptionsContainer .model-option').length);
-            console.log('Color options:', document.querySelectorAll('#colorOptionsContainer .color-option').length);
-            console.log('Current model:', currentModel);
-            console.log('Current color:', currentColor);
-            console.log('Current quantity:', currentQuantity);
-        }, 1000);
-    </script>
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const totalQty = getCartTotalQty();
+        if (totalQty === 0) {
+            alert("يرجى اختيار لون واحد على الأقل");
+            return;
+        }
+
+        const btn = document.getElementById('submitBtn');
+        btn.textContent = 'جاري الإرسال...';
+        btn.disabled = true;
+
+        const formData = new FormData(this);
+        const prices = updateTotal();
+        // Generate the cart string for the sheet
+        const cartString = updateSummaryBox(prices.deliveryCost, prices.total);
+
+        const data = {
+            product: state.model,
+            color: cartString, // Sends "White (2) | Black (1)"
+            qty: totalQty,
+            name: formData.get('name'),
+            phone: formData.get('phone'),
+            wilaya: formData.get('wilaya'),
+            commune: formData.get('commune'),
+            delivery: formData.get('delivery'),
+            notes: formData.get('notes'),
+            totalPrice: prices.total
+        };
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            alert('تم استلام طلبك بنجاح!');
+            this.reset();
+            state.cart = {}; // Reset Cart
+            state.cart['white'] = 1; // Reset to default
+            renderColors();
+            updateUI();
+            btn.textContent = 'تأكيد الطلب الآن';
+            btn.disabled = false;
+            document.getElementById('liveSummary').style.display = 'none';
+        })
+        .catch(err => {
+            alert('خطأ في الاتصال');
+            btn.disabled = false;
+        });
+    });
+
+    init();
+</script>
 </body>
 </html>
